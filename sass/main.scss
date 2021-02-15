@@ -36,15 +36,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  padding : 0.25rem 0rem;
+  border-bottom: solid 2px #cce4ff;
+  position: relative;
 }
+h2:after {
+    position: absolute;
+    content: " ";
+    display: block;
+    border-bottom: solid 2px var(--accent);
+    bottom: -2px;
+    width: 20%;
+  }
 
 h3 {
   font-size: 1.2rem;
+  padding: 0.25em 0.5em;
+  background: transparent;
+  border-left: solid 4px var(--accent);
 }
 
 h4, h5, h6 {

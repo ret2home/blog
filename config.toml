@@ -1,6 +1,6 @@
 # Be sure to change these!
-base_url = "https://pawroman.github.io/zola-theme-terminimal"
-title = "Zola Terminimal theme"
+base_url = "https://0xdef12e.github.io/blog"
+title = "define's blog"
 
 # Sass compilation is required
 compile_sass = true
@@ -27,7 +27,7 @@ accent_color = "blue"
 background_color = "blue"
 
 # The logo text - defaults to "Terminimal theme"
-logo_text = "Terminimal theme"
+logo_text = "define's blog"
 
 # The logo link - defaults to base_url.
 #logo_home_link = "/take/me/away!"
@@ -35,7 +35,7 @@ logo_text = "Terminimal theme"
 # Author name: when specified, modifies the default
 # copyright text. Apart from author, it will
 # contain current year and a link to the theme.
-#author = "My Name"
+author = "0xdef12e"
 
 # Copyright text in HTML format. If specified,
 # entirely replaces default copyright and author.
@@ -46,15 +46,15 @@ menu_items = [
     # each of these is optional, name and url are required
     # $BASE_URL is going to be substituted by base_url from configuration
     {name = "blog", url = "$BASE_URL"},
+    {name = "about me", url = "$BASE_URL/about"},
 
     # tags should only be enabled if you have "tags" taxonomy
     # see documentation below for more details
     {name = "tags", url = "$BASE_URL/tags"},
     {name = "archive", url = "$BASE_URL/archive"},
-    {name = "about me", url = "$BASE_URL/about"},
 
     # set newtab to true to make the link open in new tab
-    {name = "github", url = "https://github.com/pawroman/zola-theme-terminimal", newtab = true},
+    {name = "github", url = "https://github.com/0xdef12e/blog", newtab = true},
 ]
 
 # Whether to show links to earlier and later posts
@@ -75,5 +75,7 @@ use_full_hack_font = false
 #           Mimetype defaults to "image/x-icon".
 #           The URL should point at a file located
 #           in your site's "static" directory.
-# favicon = "/favicon.png"
-# favicon_mimetype = "image/png"
+ favicon = "/img/avatar.png"
+ favicon_mimetype = "image/png"
+
+default_language = "ja"

@@ -1,9 +1,22 @@
 {% extends "index.html" %}
 
+{%- block title %}
+{{page.title}} | {{ config.title }}
+{% endblock title -%}
+
+{% block extra_head %}
+<meta property="og:title" content= "{{ page.title }} | {{config.title}}"/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="0xdef12e.github.io/blog/{{page.path}}" />
+<meta property="og:locale" content="ja_JP"  />
+{% endblock extra_head %}
+
 {% block content %}
     <div class="post">
         {{ post_macros::header(page=page) }}
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         {{ post_macros::content(page=page, summary=false) }}
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         {{ post_macros::earlier_later(page=page) }}
     </div>
 {% endblock content %}
