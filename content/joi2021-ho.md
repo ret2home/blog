@@ -21,7 +21,7 @@ tags = ["競プロ","JOI","参加記"]
 
 <!-- more -->
 
-{{image(src="/img/joi2021-ho/damedeshita.jpeg")}}
+{{image(src="../img/joi2021-ho/damedeshita.jpeg")}}
 
 ## Day 1
 
@@ -70,7 +70,7 @@ tags = ["競プロ","JOI","参加記"]
 
 オーダーを減らす方法が分からなかったので、取り敢えず解法の確認がてら提出してみると ... 
 
-{{image(src="/img/joi2021-ho/A-0pts.png")}}
+{{image(src="../img/joi2021-ho/A-0pts.png")}}
 
 > 出力は正しくない
 
@@ -82,7 +82,7 @@ tags = ["競プロ","JOI","参加記"]
 
 問題を読むと、小課題 1 が座標圧縮してセグ木で殴れそうなので殴ってみると ...
 
-{{image(src="/img/joi2021-ho/B-0pts.png")}}
+{{image(src="../img/joi2021-ho/B-0pts.png")}}
 
 > 実行時間超過
 
@@ -98,7 +98,7 @@ $4 \times 10^6$ に log 付けても流石に通ると思ってたら通らな�
 
 あれ、これは右側と左側それぞれの SUM の MAX が答えでは？これは中止を決め打ちして累積和で解ける。提出すると ...
 
-{{image(src="/img/joi2021-ho/A-100pts.png")}}
+{{image(src="../img/joi2021-ho/A-100pts.png")}}
 
 開始 2 時間にしてようやく点を得た。やばいね！
 
@@ -140,7 +140,7 @@ int main() {
 
 提出すると ... 
 
-{{image(src="/img/joi2021-ho/B-100pts.png")}}
+{{image(src="../img/joi2021-ho/B-100pts.png")}}
 
 OK, OK
 
@@ -251,7 +251,7 @@ $i$ から $X$ まで区間に含める遷移が分かっている時、$X+1$ �
 
 よって、$O(N^2 \\ log \\ N)$ で間に合うはず。実装すると、一発で AC できた。
 
-{{image(src="/img/joi2021-ho/C-100pts.png")}}
+{{image(src="../img/joi2021-ho/C-100pts.png")}}
 
 <details>
 <summary>コード</summary>
@@ -308,7 +308,7 @@ D の 小課題 1 の解法がなんとなく思いついていたが、流石�
 ちなみに、去年春合宿に参加した人で本選落ちした人は私含めて 4 人ないし 5 人いるようだ。
 kaage が本選落ち春er三銃士の画像を作っていたので紹介する。煽りやすい人を集めたっぽい。
 
-{{image(src="/img/joi2021-ho/sanjushi.jpg")}}
+{{image(src="../img/joi2021-ho/sanjushi.jpg")}}
 
 落ちた状態で交流会なんて出来る訳ないだろと思っていたが、交流は楽しかった。本選競技より遊んでいる時間の方が長かったかも知れない。
 
