@@ -75,7 +75,7 @@ use_full_hack_font = false
 #           Mimetype defaults to "image/x-icon".
 #           The URL should point at a file located
 #           in your site's "static" directory.
- favicon = "../img/avatar.png"
+ favicon = "/blog/img/avatar.png"
  favicon_mimetype = "image/png"
 
 default_language = "ja"
