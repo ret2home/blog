@@ -17,6 +17,8 @@ ptr-yudaiさんには SECCON Beginners の Discord で Villager B 関連で相�
 
 さて、結果はと言うと Welcome とかを除くと 2 完でした。順位は 131/951 です（得点を得たチームのみ）。かな〜り微妙ですが、CTF 初心者としましては割と頑張った方なんです！！（主張）
 
+<!-- more -->
+
 {{image(src="../img/zer0pts-ctf-2021/diploma.png")}}
 
 
@@ -27,8 +29,6 @@ ptr-yudaiさんには SECCON Beginners の Discord で Villager B 関連で相�
 > `0xdef12e` solved `Welcome`
 
 みたいな感じで誰がどれを解いたかが通知されるんですが、ID を ``a`@everyone`` にして ``` ` ``` を閉じて @everyone メンションをした人がいました。その人はイエローカードを食らっていましたが、個人的に CTF らしくて面白かったです。
-
-<!-- more -->
 
 ## [pwn] Not Beginner's Stack
 
