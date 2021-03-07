@@ -1,5 +1,15 @@
 {% extends "index.html" %}
 
+{%- block title %}
+#{{ term.name }} | {{ config.title }}
+{% endblock title -%}
+
+{% block extra_head %}
+<meta property="og:title" content= "#{{ term.name }} | {{config.title}}"/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{term.permalink}}" />
+{% endblock extra_head %}
+
 {% block content %}
     <div class="post">
         <h1 class="post-title">

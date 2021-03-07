@@ -15,6 +15,9 @@ path = "about"
 - Twitter : [@0xdef12e](https://twitter.com/0xdef12e)
 - AtCoder : [define](https://atcoder.jp/users/define)
 - GitHub : [0xdef12e](https://github.com/0xdef12e)
+- CTF : [0xdef12e](https://ctftime.org/team/144353)
+
+CTFはそれなりに強くなったらチームを組もうと考えています。
 
 <br>
 

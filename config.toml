@@ -1,6 +1,6 @@
 # Be sure to change these!
 base_url = "https://0xdef12e.github.io/blog"
-title = "define's blog"
+title = "0xdef12e's blog"
 
 # Sass compilation is required
 compile_sass = true
@@ -27,7 +27,7 @@ accent_color = "blue"
 background_color = "blue"
 
 # The logo text - defaults to "Terminimal theme"
-logo_text = "define's blog"
+logo_text = "0xdef12e's blog"
 
 # The logo link - defaults to base_url.
 #logo_home_link = "/take/me/away!"
@@ -52,6 +52,7 @@ menu_items = [
     # see documentation below for more details
     {name = "tags", url = "$BASE_URL/tags"},
     {name = "archive", url = "$BASE_URL/archive"},
+    {name = "sitemap", url = "$BASE_URL/sitemap.xml", newtab = true},
 
     # set newtab to true to make the link open in new tab
     {name = "github", url = "https://github.com/0xdef12e/blog", newtab = true},
