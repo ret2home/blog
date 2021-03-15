@@ -73,12 +73,12 @@ plugins:
 nav:
   - Home: index.md
   - 競プロ:
-    - JOI 2019/2020 本選参加記: kyopro/joi2020-ho/index.md
-    - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
-    - JOI 2020/2021 二次予選参加記: kyopro/joi2021-yo/index.md
     - JOI 2020/2021 本選参加記: kyopro/joi2021-ho/index.md
+    - JOI 2020/2021 二次予選参加記: kyopro/joi2021-yo/index.md
+    - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
+    - JOI 2019/2020 本選参加記: kyopro/joi2020-ho/index.md
   - CTF:
-    - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
-    - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
-    - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
     - 防衛省 CTF 参加記 : CTF/modctf-2021/index.md
+    - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
+    - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
+    - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
