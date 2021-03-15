@@ -1,17 +1,22 @@
-on: push
-name: Build and deploy GH Pages
+name: Publish docs via GitHub Pages
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   build:
-    name: Deploy
+    name: Deploy docs
     runs-on: ubuntu-latest
     steps:
-      # Checkout
-      - uses: actions/checkout@v2
-      # Build & deploy
-      - name: Deploy to gh-pages branch
-        uses: shalzz/zola-deploy-action@v0.13.0
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        # Or use mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         env:
-          # Target branch
-          PAGES_BRANCH: gh-pages
-          # Provide personal access token
-          TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          CONFIG_FILE: mkdocs.yml
+          EXTRA_PACKAGES: build-base
+          # GITHUB_DOMAIN: github.myenterprise.com

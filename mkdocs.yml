@@ -1,0 +1,84 @@
+site_name: define's blog
+site_url: https://0xdef12e.github.io/blog/
+repo_url: https://github.com/0xdef12e/blog/
+repo_name: 0xdef12e/blog
+site_author: "0xdef12e"
+site_description: >-
+  @0xdef12e のブログや CTF の Writeup など
+theme:
+  name: material
+  custom_dir: overrides
+  language: ja
+  favicon: assets/avatar.png
+  features:
+    - navigation.tabs
+  icon:
+    logo: material/console
+  palette:
+    primary: deep purple
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/0xdef12e/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/0xdef12e
+
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.attr_list
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  
+plugins:
+  - search
+  - git-revision-date-localized
+
+nav:
+  - Home: index.md
+  - 競プロ:
+    - JOI 2019/2020 本選参加記: kyopro/joi2020-ho/index.md
+    - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
+    - JOI 2020/2021 二次予選参加記: kyopro/joi2021-yo/index.md
+    - JOI 2020/2021 本選参加記: kyopro/joi2021-ho/index.md
+  - CTF:
+    - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
+    - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
+    - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
+    - 防衛省 CTF 参加記 : CTF/modctf-2021/index.md
