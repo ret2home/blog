@@ -1,0 +1,79 @@
+## tl;dr
+
+可逆変換
+
+## 解法
+
+例によって、Ghidra と IDA で必死こいて解析します。
+
+結果、以下のようなチェックである事が分かります。
+
+```python
+st=input()
+
+assert len(st)==30
+
+x=0xabcf00d
+
+x1,x2,x3,x4=0,0,0,0
+while x<0xdeadbeef:
+    x1^=(x>>24)%0x100
+    x2^=(x>>16)%0x100
+    x3^=(x>>8)%0x100
+    x4^=x%0x100
+    x+=0x1fab4d
+
+for i in range(30):
+    if i%4==0:
+        st[i]^=x1
+    elif i%4==1:
+        st[i]^=x2
+    elif i%4==2:
+        st[i]^=x3
+    else:
+        st[i]^=x4
+
+for i in range(1,30):
+    x=len(a)//i*i
+    for j in range(0,x,i):
+        st[j],st[j+i-1]=st[j+i-1],st[j]
+
+a=[0x7A,0x2E,0x6E,0x68,0x1D,0x65,0x16,0x7C,0x6D,0x43,0x6F,0x36,0x63,0x62,0x14,0x47,0x43,0x63,0x40,0x63,0x58,0x01,0x58,0x33,0x62,0x3F,0x53,0x30,0x6D,0x17]
+
+for i in range(30):
+    assert a[i]==st[i]
+```
+
+あとは、逆変換をするだけです。
+
+```python
+a=[0x7A,0x2E,0x6E,0x68,0x1D,0x65,0x16,0x7C,0x6D,0x43,0x6F,0x36,0x63,0x62,0x14,0x47,0x43,0x63,0x40,0x63,0x58,0x01,0x58,0x33,0x62,0x3F,0x53,0x30,0x6D,0x17]
+
+for i in range(len(a)-1,0,-1):
+    genkai=len(a)//i*i
+    for j in range(genkai-i,-1,-i):
+        a[j],a[j+i-1]=a[j+i-1],a[j]
+
+
+x=0xabcf00d
+
+x1,x2,x3,x4=0,0,0,0
+while x<0xdeadbeef:
+    x1^=(x>>24)%0x100
+    x2^=(x>>16)%0x100
+    x3^=(x>>8)%0x100
+    x4^=x%0x100
+    x+=0x1fab4d
+
+for i in range(len(a)):
+    num=a[i]
+    if i%4==0:
+        num^=x1
+    elif i%4==1:
+        num^=x2
+    elif i%4==2:
+        num^=x3
+    else:
+        num^=x4
+    print(chr(num),end='')
+```

@@ -45,8 +45,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink:
       repo_url_shorthand: true
-      user: squidfunk
-      repo: mkdocs-material
+      user: "0xdef12e"
+      repo: blog
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.snippets:
@@ -78,6 +78,22 @@ nav:
     - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
     - JOI 2019/2020 本選参加記: kyopro/joi2020-ho/index.md
   - CTF:
+    - picoCTF 2021 writeup:
+      - overview: CTF/picoctf-2021/index.md
+      - pwn:
+        - Binary Gauntlet: CTF/picoctf-2021/pwn/gauntlet/index.md
+        - Cache Me Outside:  CTF/picoctf-2021/pwn/cacheme/index.md
+        - Here's a LIBC: CTF/picoctf-2021/pwn/hereslibc/index.md
+        - Unsubscriptions Are Free: CTF/picoctf-2021/pwn/unsubsc/index.md
+        - filtered-shellcode: CTF/picoctf-2021/pwn/filtered/index.md
+        - Kit Engine: CTF/picoctf-2021/pwn/kitengine/index.md
+        - Download Horsepower: CTF/picoctf-2021/pwn/horsepower/index.md
+      - rev:
+        - gogo: CTF/picoctf-2021/rev/gogo/index.md
+        - Easy as GDB: CTF/picoctf-2021/rev/easyasgdb/index.md
+        - powershelly: CTF/picoctf-2021/rev/powershelly/index.md
+        - Rolling My Own: CTF/picoctf-2021/rev/rolling/index.md
+        - checkpass: CTF/picoctf-2021/rev/checkpass/index.md
     - 防衛省 CTF 参加記 : CTF/modctf-2021/index.md
     - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
     - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
