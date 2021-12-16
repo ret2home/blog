@@ -1,3 +1,3 @@
 # blog
 
-https://0xdef12e.github.io/blog
+https://ret2home.github.io/blog

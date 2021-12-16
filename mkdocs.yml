@@ -1,10 +1,10 @@
 site_name: define's blog
-site_url: https://0xdef12e.github.io/blog/
-repo_url: https://github.com/0xdef12e/blog/
-repo_name: 0xdef12e/blog
-site_author: "0xdef12e"
+site_url: https://ret2home.github.io/blog/
+repo_url: https://github.com/ret2home/blog/
+repo_name: ret2home/blog
+site_author: "ret2home"
 site_description: >-
-  @0xdef12e のブログや CTF の Writeup など
+  @ret2home のブログや CTF の Writeup など
 theme:
   name: material
   custom_dir: overrides
@@ -17,12 +17,15 @@ theme:
   palette:
     primary: deep purple
 
+extra_css:
+  - assets/extra.css
+
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/0xdef12e/
+      link: https://github.com/ret2home/
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/0xdef12e
+      link: https://twitter.com/ret2home
 
 markdown_extensions:
   - markdown.extensions.admonition
@@ -45,7 +48,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink:
       repo_url_shorthand: true
-      user: "0xdef12e"
+      user: "ret2home"
       repo: blog
   - pymdownx.mark
   - pymdownx.smartsymbols
@@ -78,6 +81,7 @@ nav:
     - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
     - JOI 2019/2020 本選参加記: kyopro/joi2020-ho/index.md
   - CTF:
+    - Metared CTF 5th Stage writeup: CTF/metared2021-5/index.md
     - picoCTF 2021 writeup:
       - overview: CTF/picoctf-2021/index.md
       - pwn:
