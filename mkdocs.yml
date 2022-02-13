@@ -76,6 +76,7 @@ plugins:
 nav:
   - Home: index.md
   - 競プロ:
+    - JOI 2021/2022 本選参加記: kyopro/joi2022-ho/index.md
     - JOI 2020/2021 本選参加記: kyopro/joi2021-ho/index.md
     - JOI 2020/2021 二次予選参加記: kyopro/joi2021-yo/index.md
     - JOI 2019/2020 春合宿参加記: kyopro/joi2020-sp/index.md
