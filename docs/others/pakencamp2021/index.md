@@ -1,3 +1,5 @@
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 少年時代とは儚いもので、過ぎてしまえばそこにあるのは漠然とした記憶、幾らかの写真、そして稚拙で読むのも億劫な文章の数々...。
 青春の一ページなんて恥ずかしいワードを使うつもりは毛頭ないけども、青春を駆け抜けた証を残したい気持ちくらい、10 年後の自分も分かってくれるよね。
 
