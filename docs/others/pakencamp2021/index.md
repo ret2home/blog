@@ -1,7 +1,7 @@
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 少年時代とは儚いもので、過ぎてしまえばそこにあるのは漠然とした記憶、幾らかの写真、そして稚拙で読むのも億劫な文章の数々...。
-青春の一ページなんて恥ずかしいワードを使うつもりは毛頭ないけども、青春を駆け抜けた証を残したい気持ちくらい、10 年後の自分も分かってくれるよね。
+（さっきここに稚拙で読むのも億劫な文章を生成してしまったので削除）
 
 あれ、これ運営記に書く事じゃなくない？というツッコミは置いといて（参加記にしてもおかしいと思う）、大体時系列順に記していこうと思います。
 一番作業してたであろうオリバーさんが大体書いてくれているので、自分の担当部分以外は省略気味です。
