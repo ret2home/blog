@@ -1,4 +1,4 @@
-site_name: define's blog
+site_name: risoria's blog
 site_url: https://ret2home.github.io/blog/
 repo_url: https://github.com/ret2home/blog/
 repo_name: ret2home/blog
@@ -103,7 +103,8 @@ nav:
     - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
     - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
     - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
-  - others:
+  - 旅行記他:
+    - Thailand International Science Fair 2023 参加記: others/TISF2023/index.md
     - 関西旅行記2 〜マスフェスタ参加記を添えて〜: others/kansai-trip2/index.md
     - 灘校文化祭訪問記: others/ndfes2022/index.md
     - パ研合宿 2021 運営記: others/pakencamp2021/index.md
