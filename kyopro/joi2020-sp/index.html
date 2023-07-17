@@ -1,0 +1,1522 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/kyopro/joi2020-sp/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>JOI 2019/2020 春合宿参加記 - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JOI 2019/2020 春合宿参加記 - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/kyopro/joi2020-sp/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              JOI 2019/2020 春合宿参加記
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../joi2022-ho/" class="md-tabs__link md-tabs__link--active">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CTF/metared2021-5/" class="md-tabs__link">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../others/nanamogi/" class="md-tabs__link">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        JOI 2019/2020 春合宿参加記
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      JOI 2019/2020 春合宿参加記
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    はじめに
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day-14day0" class="md-nav__link">
+    Day-14〜Day0
+  </a>
+  
+    <nav class="md-nav" aria-label="Day-14〜Day0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#227" class="md-nav__link">
+    2/27
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    3/13
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day1-320" class="md-nav__link">
+    Day1 3/20
+  </a>
+  
+    <nav class="md-nav" aria-label="Day1 3/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    昼食など
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    帰宅後
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day2-321" class="md-nav__link">
+    Day2 3/21
+  </a>
+  
+    <nav class="md-nav" aria-label="Day2 3/21">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day3-322" class="md-nav__link">
+    Day3 3/22
+  </a>
+  
+    <nav class="md-nav" aria-label="Day3 3/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day4-323" class="md-nav__link">
+    Day4 3/23
+  </a>
+  
+    <nav class="md-nav" aria-label="Day4 3/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    最終結果
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/metared2021-5/" class="md-nav__link">
+      Metared CTF 5th Stage writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3">
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/checkpass/" class="md-nav__link">
+      checkpass
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/zer0pts-ctf-2021/" class="md-nav__link">
+      zer0pts CTF 2021 writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/nanamogi/" class="md-nav__link">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/TISF2023/" class="md-nav__link">
+      Thailand International Science Fair 2023 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    はじめに
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day-14day0" class="md-nav__link">
+    Day-14〜Day0
+  </a>
+  
+    <nav class="md-nav" aria-label="Day-14〜Day0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#227" class="md-nav__link">
+    2/27
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    3/13
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day1-320" class="md-nav__link">
+    Day1 3/20
+  </a>
+  
+    <nav class="md-nav" aria-label="Day1 3/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    昼食など
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    帰宅後
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day2-321" class="md-nav__link">
+    Day2 3/21
+  </a>
+  
+    <nav class="md-nav" aria-label="Day2 3/21">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day3-322" class="md-nav__link">
+    Day3 3/22
+  </a>
+  
+    <nav class="md-nav" aria-label="Day3 3/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day4-323" class="md-nav__link">
+    Day4 3/23
+  </a>
+  
+    <nav class="md-nav" aria-label="Day4 3/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    朝
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    競技
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    昼食
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    最終結果
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/kyopro/joi2020-sp/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>JOI 2019/2020 春合宿参加記</h1>
+                
+                <h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>春合宿に参加したのは今回が初めてです.</p>
+<p>競技中の事とか,忘れない内に記録しておこうと思います.</p>
+<p>（順次更新していきます）</p>
+<h2 id="day-14day0">Day-14〜Day0<a class="headerlink" href="#day-14day0" title="Permanent link">&para;</a></h2>
+<h3 id="227">2/27<a class="headerlink" href="#227" title="Permanent link">&para;</a></h3>
+<p>春合宿の大幅な短縮が決定された.
+講義とか,講演とかその他もろもろが中止になった.</p>
+<p>この段階では,希望者は自宅から通うのも可能という感じだったので宿泊する気でいた.（緊張感が保たれるため）</p>
+<h3 id="313">3/13<a class="headerlink" href="#313" title="Permanent link">&para;</a></h3>
+<p>オリセンが受け入れ中止を発表し,東京勢は自宅から通う事になった.</p>
+<p>完全に競技単体になってしまい,悲しかった.</p>
+<h2 id="day1-320">Day1 3/20<a class="headerlink" href="#day1-320" title="Permanent link">&para;</a></h2>
+<h3 id="_2">朝<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>起床成功.</p>
+<p>NTTDATA駒場研修センター8時半集合という,完全に学校と同じだったので実家のような安心感（これだから緊張感がなくなる...）</p>
+<h3 id="_3">競技<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>9時に競技が始まった.</p>
+<p>取り敢えず1問目を読む.</p>
+<p>小課題が11-100という急勾配だった上,11点が自明DPだったので簡単枠だと悟る.</p>
+<p>満点を思いつき,O(N)の怪しいDPを書く.この時,AorBをキーで持たずに1次元DPをしたのがダメだった.このせいで相当遷移が複雑になってしまった.</p>
+<p>バグりまくり,2時間経過.これ以上やるとヤバそうなので一旦諦めて次に進む.この時点でかなり焦っていた.</p>
+<p>絶対に10人くらい解いているに違いないからだ.（実際,13人解いていた)</p>
+<p>2問目の小課題がかなり分かれていて,差のつきどころかと思いきやK=1の自明しか分からない.</p>
+<p>1問目も解けておらず,自明の2点しか取れていないので焦りはMAXに達してしまっていた.</p>
+<p>2点のまま半分経過.</p>
+<p>3問目を読み,得意なセグ木だと分かる.
+取り敢えず小課題1,3を実装する.提出すると,0点.</p>
+<p>なんでかなーと思ったら誤読をしていた.精神状態が悪すぎる.</p>
+<p>適当に直し,出すと小課題1しか取れていない.40分くらい考えていたが,全く理由が思いつかなかった.</p>
+<p>後で分かったことだが,セグ木のupdateをchmaxではなくただ単に代入するだけだったのがダメだった.</p>
+<p>しかも,競技PCの画面がブラックアウトし,チューターさんを呼んで再起動する羽目になった.絶望的だ.</p>
+<p>残り30分になり,まだ3点.こんなに最悪な出来のコンテストが今まであっただろうか？（鉄緑並感）</p>
+<p>このままだとマジでヤバイので,取り敢えず1問目の自明DPだけ取った.</p>
+<p>残り15分になり,3問目の小課題3のバグ取りをしようとしたが結局直らず,競技終了.</p>
+<p>結果はなんと14点,17位だった.実質灰パフォ.</p>
+<p>間違いなく,1問目で焦ってしまったのが原因である.</p>
+<p>満点を実装しようとしたらバグって死亡という,これまで予選本選でも想定していた最悪のシチュエーションが実現されてしまった訳だ...</p>
+<h3 id="_4">昼食など<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>予想通り周りが1問目を解いていた.</p>
+<p>今までオンサイトで冷えたことがなかったので,かなりショックだった.</p>
+<p>今まで暖まり続けてきたのが10^9倍になって返ってきた感じだ.</p>
+<p>普通に泣きそうだった.</p>
+<p>しかも弁当をゴミ箱に片付ける時に容器をひっくり返してしまい,今日は本当についていないと思った.つらい</p>
+<h3 id="_5">帰宅後<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>バグった1問目の満点と3問目の小課題3を実装.</p>
+<p>テストケースを見ながらバグの原因を見つけ,なんとか手元のジャッジで通った.</p>
+<p>というか,割と普段からバグった時にテストケース使ってデバッグする時が多いのがダメなのでは?</p>
+<p>デバッグが下手過ぎる...</p>
+<p>まあ,あと3日間長いので今日の事は一旦忘れて集中して行きたい.</p>
+<h2 id="day2-321">Day2 3/21<a class="headerlink" href="#day2-321" title="Permanent link">&para;</a></h2>
+<h3 id="_6">朝<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>普通に起きた.（えらい）
+適当に朝食を食べ,適当にTwitterをして出かけた.</p>
+<p>Quarantineの検温でkaageが無限にlowを出していて面白かった.</p>
+<p>絶対壊れてるので,下手すると基準の37.5℃を上回るかも知れないと思うと怖すぎる...</p>
+<p>控室でいつも通りいつもの人と喋っていたら緊張が解けて結構ふわふわしてきた.</p>
+<p>これが噂の”相手の緊張を解いて点数を下げる一般的なテク"か,恐ろしい（いいえ）</p>
+<p>ホワイトボードに「私語厳禁.『ヤッター！』,『全完！！』,『よし、グラフだ！！』など」と書かれていて面白かった.</p>
+<p>類似の言葉に「よく分からんが,サンプル通ったのでヨシ！」があるがこれは大抵通らないので気をつけよう.</p>
+<p>割と浮ついたまま競技会場入りした.</p>
+<h3 id="_7">競技<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>昨日今日と4問目があるような事をチラつかせていたので,本当に4問セットなのではとビビっていたが,結局3問だった.</p>
+<p>1問目を見ると,インタラクティブだった.</p>
+<p>問題設定が「各カメレオンは,ちょうど1匹の,自身と性別の異なるカメレオンを好んでいる.」だったので,後でTwitterで物議を醸しそうだな〜とか思っていた.</p>
+<p>小課題1は全員両思いという設定だったので,リア充カメレオン◯ね！くらいに思っていた.</p>
+<p>この小課題は組み合わせを全列挙すればOKかな〜と思ったので後で適当にやるとして小課題2を考察した.</p>
+<p>1時間半くらいうーんうーんって考えた末,両思いのカメレオン以外は,種類数が1になるのが3組あり,両思いは1組のみであり,この内のどれかに同色のカメレオンがいることが分かった.</p>
+<p>後は3組の中から2つ選んでみたいな事をしようとしたのだが,同色以外を選んだ場合と片思い以外を選んだ場合で結果が同じになってしまう事に気づき,絶望.</p>
+<p>よく考えれば,両思いではないのだからペアで成立するのは片方のみであり特定できるのだが,血迷って同色のものを3組の中から全探索した.</p>
+<p>このせいで小課題3を落としていることになる.（実際,小課題2を取って小課題3を取っていないのは僕だけだった）</p>
+<p>小課題2を実装した後で小課題1を考えると,カメレオンの数はNではなく2Nであり,実は間に合わないことに気づいた.</p>
+<p>しかし,選んでも種類数が増えないのは1組だけなので単調性が成り立つな〜という事で適当に二分探索した.</p>
+<p>投げたら両方通っていて安心した.ここまでで2時間.</p>
+<p>次の問題を見ると,これはMaking Friends is Funとほとんど同じ見た目をしている.</p>
+<p>Making Friends is Funは難易度9だったし,これも簡単かと思いきや何もわからない.</p>
+<p>部分点の配点的にも明らかに簡単問なので,焦った.</p>
+<p>何もわからないので30分くらい考えて次の問題に進んだ.</p>
+<p>3問目は見た目がO(N^3)のDPだが,何もわからない.</p>
+<p>取り敢えず今までで各高さをいくつ持ったかという状態数 N*3^N のDPを思いついたのだが,成立するかどうかのチェックに時間がかかるなぁになって死んでいた.</p>
+<p>残り1時間,何もわからないので2問目に戻った.ここで1問目に戻らなかったのは間違いだっただろう.</p>
+<p>ずっと考えていたが,何も分からなかったので自明の小課題1の1点だけ取っておいた.</p>
+<p>何も分からず,25点で競技終了.昨日酷い点数だった上に今日25点だったので軽く絶望的だった.</p>
+<h3 id="_8">昼食<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>周りが1桁とかでびっくりした.</p>
+<p>順位表を見ると,25点で7位だったので相当やばいセットだったんだな〜と思った.</p>
+<p>しかし,昨日の1問目を取れていないので総合では13位,しかも12位とはTAISA_がついていて悲しい（激ウマギャグ）.</p>
+<p>明日あたりに難易度10くらいが出てくれれば挽回のチャンスなので出て欲しいなぁ〜</p>
+<h2 id="day3-322">Day3 3/22<a class="headerlink" href="#day3-322" title="Permanent link">&para;</a></h2>
+<h3 id="_9">朝<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>いつも通りみたいな感じ,起床成功だと思う.
+今日も一日頑張るぞい！をして,適当に競技会場へ向かう.</p>
+<p>今日も今日とて渋谷でkaageに会う.（3回目）</p>
+<p>しかし,今日はQuarantineを一発で突破していた.面白くねえな...</p>
+<p>控室ではE%d氏が作ったCommunication Taskの問題を聞いていた.</p>
+<p>HL分解みたいな事をしますみたいな話を聞いてへーとか思いながら,競技会場へ.</p>
+<h3 id="_10">競技<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>また1完もしていないので,今日こそは1完をしようと意気込んでいた.</p>
+<p>競技が開始されると,いつも通り1問目から解き始めた.</p>
+<p>や,これは結構な簡単枠か〜？と思い考察をしていたのだが,中々解けない.</p>
+<p>しかも周りのタイピング音が凄くて,やべぇみんな解いてるじゃん,解いてないのはお前だけという感じだった.</p>
+<p>1時間位経過し,適当なDPを思いつく.</p>
+<p>これは,同時に残してもいい組に辺を張るとDAGになって,DAG上でDPをするというものだがもちろん嘘だった.</p>
+<p>開始から1時間半くらい経過し,ある事に気づく.</p>
+<p>これは,同時に残してはいけない組に辺を張り,そのいくつかを残し,得点を最大にする問題に帰着するなぁ...おや,これは...?</p>
+<p>†重み付き一般グラフの最大独立集合問題†だ〜！！！ﾄﾞﾝﾄﾞｺﾄﾞﾝﾄﾞｺ</p>
+<p>二部グラフならまだしも,これは解けない事が知られているので解けませんになった.</p>
+<p>とは言えそんな訳がないので,まあアプローチが違いそう.</p>
+<p>という事で諦めて次の問題へ.</p>
+<p>2問目を見ると,前の人との差がC以上なら全部取れて,未満ならダメみたいになりそうに見える.</p>
+<p>よっしゃぁ1完！と思ったら未満でも前の人がギリギリ取れなかった場合に取れる事があるなぁになる.</p>
+<p>しかも小課題2の制約が意味不明だったので,何も分からず3問目へ.</p>
+<p>この時点で3時間が経過しており,まだ0点.</p>
+<p>3問目を見るとCommunication Taskで,小課題も結構分かれていたので救済問だ〜と思った.</p>
+<p>小課題1,2,3が自明だったので取り敢えず実装し,6点獲得.</p>
+<p>ついでに小課題4もほとんど同じだったので,更に9点獲得.</p>
+<p>ここでもう一度1,2問目に戻るも,何も分からず結局3問目に返ってくる.</p>
+<p>小課題5を見ると,なんか無駄に1往復しても大丈夫そうなので適当に葉まで行って戻ってくるような実装をし,5点獲得.</p>
+<p>昨日,採点方法がそれぞれの小課題の最大値の合計である事を知っておいて良かった.</p>
+<p>これの実装が面倒だったのでまあまあ時間がかかった.残り45分.</p>
+<p>もう一度1,2問に戻るがやっぱり何もわからない.</p>
+<p>また3問目に戻り,小課題6の考察をする.ここで朝のE%dの問題を思い出す.</p>
+<p>もしかして,HL分解...?と思ったが12以下なのでそんな訳がなかった.</p>
+<p>そこからも問題を何度も往復したが,結局1点も変わらず20点で終了.</p>
+<h3 id="_11">昼食<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>3問目で小課題6,7を通している人が多くてたまげた.</p>
+<p>どうやら長さ6の特殊なビット列を使って根の方向かどうかを判定するらしいが,流石にそんな事が思いつくはずもなかった.</p>
+<p>kaageが終了10秒前に3問目の満点を投げて結果が分からないと言っていたらThistle氏などのパ研勢が通るかどうかで賭け（？）をしていて面白かった.</p>
+<p>順位表を見ると通っていなかったのだが,blackyukiとかが満点を取っていてやべーになった.</p>
+<p>自分はDay1 14点 17位,Day2 25点 7位,Day3 20点 11位,総合59点 16位で未だに3桁すら到達していない.</p>
+<p>順位表を見る限り,やはりDay1の1問目を通せなかったのが一番大きかったようだ.</p>
+<p>Day4で大成功でもしない限り精神も壊れ、人間関係も壊れ、そして信用も失い、最終的には自殺に追い込まれるかもしれない（引用）ので頑張ろうと思う.</p>
+<h2 id="day4-323">Day4 3/23<a class="headerlink" href="#day4-323" title="Permanent link">&para;</a></h2>
+<h3 id="_12">朝<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>起床全完.</p>
+<p>電車がめっちゃ混んでいて,なんでーと思ったら今日は平日だった.テレワーク推奨.</p>
+<p>平日なので電車の間隔が狭く,kaageとは初めて違う電車に乗った.</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">defineがいつもの電車にいないぞ、絶起か？</p>&mdash; kaage@JOI春合宿 (@ageprocpp) <a href="https://twitter.com/ageprocpp/status/1241859785831538688?ref_src=twsrc%5Etfw">March 22, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>NTTデータ駒場研修センターについても,まだ受付がやっていなかったのでロビーにて待機（ちょっと暑かった）.</p>
+<p>今日まで一発で突破してきたQuarantineだったが,今日は...?</p>
+<p>「37.9℃...ちょっともう1回測って見るね...37.3℃? もう1回...37℃か,部屋が暑かったからかな」</p>
+<p>なんと,一度基準の37.5℃を超えてしまい,マジで終わったかと思った.</p>
+<p>まあ,この体温計は壊れていて上下2℃くらいは動くので,しょうがない.</p>
+<p>つまり,本当に37.5℃とかあっても何回かやれば突破できてしまうと思う.</p>
+<p>めっちゃ眠かったのでコーヒーを一気飲みしてしまった.</p>
+<h3 id="_13">競技<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>1問目を見るとMergersにしか見えないので,HLDかなと思う.</p>
+<p>見るからに簡単枠なので考察するが,やはり何もわからない.</p>
+<p>パス上の種類数など1時間程色々考えたが,ダメだったので2問目を見るとOutput Only!!!!</p>
+<p>流石にやりたくないので3問目へ.</p>
+<p>JOI国の国民が全員ウイルスに感染し,その治療計画を立てるというものだがあまりにもホットな話題で面白かった.</p>
+<p>全員ウイルスに感染ってどういうことだよ...</p>
+<p>治療したものの幅が狭くなっていくというやつだが,かなり面倒そう.</p>
+<p>4日間の疲れからか,面倒な実装を避けるようになってしまっていて本当に良くない.</p>
+<p>小課題1を見ると適当にRでソートしてSegment Treeを使ってDPをすれば解けるっぽいので適当に実装して通す.</p>
+<p>4点のためにセグ木を書くとは...</p>
+<p>色々考えたが進展がないので1問目へ戻る.</p>
+<p>なんかLCAとかUnionfindで都市をいい感じに併合していく,setはマージテクを使うで行けるかなーとか思い信じる心！で実装したが,200行くらい全部実装し終わった所で嘘に気づく.</p>
+<p>Output Onlyに残された時間は僅か40分.</p>
+<p>下手に低い部分点取ってないでOutput Onlyを詰めるほうが正解だっただろう.</p>
+<p>名前が明らかにこどふぉのLegendary Grand MasterのパクリであるLegendary Dango Makerで笑ってしまった.</p>
+<p>もう時間もないので,山登りとかではなくランダム生成の最大値でいいやと思い適当に実装,提出.</p>
+<p>なんとか間に合って12点だった.ひえー</p>
+<h3 id="_14">昼食<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>順位表を適当に配ると代表が分かってしまうということで,配られるのはいつもより遅かった.</p>
+<p>みんなマラソンで高得点取ってて涙.</p>
+<p>まあ山登りすれば結構点数は伸びるよなぁ...</p>
+<p>完全に戦略のミスだった.</p>
+<p>今日単体は16点,15位だった.</p>
+<h2 id="_15">最終結果<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>Day1 11+2+1 14点 17位</p>
+<p>Day2 24+1+0 25点 7位</p>
+<p>Day3 0+0+20 20点 11位</p>
+<p>Day4 0+12+4 16点 15位</p>
+<p>Total 75点 17位</p>
+<p>inf回言ったが,Day1の1問目を取れなかったのが一番ダメだった.</p>
+<p>結局その89点の差を埋める事ができずに終わってしまった.</p>
+<p>来年は極度精進をしてまともな点数を取れるように頑張ろうと思う.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年3月15日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../joi2021-yo/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                JOI 2020/2021 二次予選参加記
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../joi2020-ho/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                JOI 2019/2020 本選参加記
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

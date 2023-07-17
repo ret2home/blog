@@ -1,0 +1,1497 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/others/TISF2023/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Thailand International Science Fair 2023 参加記 - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Thailand International Science Fair 2023 参加記 - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/others/TISF2023/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Thailand International Science Fair 2023 参加記
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../kyopro/joi2022-ho/" class="md-tabs__link">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CTF/metared2021-5/" class="md-tabs__link">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../nanamogi/" class="md-tabs__link md-tabs__link--active">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-sp/" class="md-nav__link">
+      JOI 2019/2020 春合宿参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/metared2021-5/" class="md-nav__link">
+      Metared CTF 5th Stage writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3">
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/checkpass/" class="md-nav__link">
+      checkpass
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/zer0pts-ctf-2021/" class="md-nav__link">
+      zer0pts CTF 2021 writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nanamogi/" class="md-nav__link">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Thailand International Science Fair 2023 参加記
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Thailand International Science Fair 2023 参加記
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    0. 超！概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-9" class="md-nav__link">
+    1. 9 月　参加申し込み
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-10-12" class="md-nav__link">
+    2. 10 〜 12 月　日本学生科学賞
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 10 〜 12 月　日本学生科学賞">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1. エクストリームレポート生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2. 最終審査
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-211" class="md-nav__link">
+    3. 2/11　出国
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-212" class="md-nav__link">
+    4. 2/12　到着
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-213-day-1" class="md-nav__link">
+    5. 2/13　Day 1
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2/13　Day 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1. 開会式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2. ポスター発表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-welcome-dinner" class="md-nav__link">
+    5.3. Welcome Dinner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-214-day2" class="md-nav__link">
+    6. 2/14　Day2
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 2/14　Day2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-oral-presentation" class="md-nav__link">
+    6.1. Oral Presentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-science-activities" class="md-nav__link">
+    6.2. Science Activities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-game-night" class="md-nav__link">
+    6.3. Game Night
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-215-day-3" class="md-nav__link">
+    7. 2/15　Day 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-216-day-4" class="md-nav__link">
+    8. 2/16　Day 4
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 2/16　Day 4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-cultural-excursions" class="md-nav__link">
+    8.1. Cultural Excursions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-farewell-party" class="md-nav__link">
+    8.2. Farewell Party
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-217-departure-day" class="md-nav__link">
+    9. 2/17　Departure Day
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-21819" class="md-nav__link">
+    10. 2/18,19　帰国
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    11. ひとこと
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    0. 超！概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-9" class="md-nav__link">
+    1. 9 月　参加申し込み
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-10-12" class="md-nav__link">
+    2. 10 〜 12 月　日本学生科学賞
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 10 〜 12 月　日本学生科学賞">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1. エクストリームレポート生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2. 最終審査
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-211" class="md-nav__link">
+    3. 2/11　出国
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-212" class="md-nav__link">
+    4. 2/12　到着
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-213-day-1" class="md-nav__link">
+    5. 2/13　Day 1
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 2/13　Day 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1. 開会式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2. ポスター発表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-welcome-dinner" class="md-nav__link">
+    5.3. Welcome Dinner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-214-day2" class="md-nav__link">
+    6. 2/14　Day2
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 2/14　Day2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-oral-presentation" class="md-nav__link">
+    6.1. Oral Presentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-science-activities" class="md-nav__link">
+    6.2. Science Activities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-game-night" class="md-nav__link">
+    6.3. Game Night
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-215-day-3" class="md-nav__link">
+    7. 2/15　Day 3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-216-day-4" class="md-nav__link">
+    8. 2/16　Day 4
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 2/16　Day 4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-cultural-excursions" class="md-nav__link">
+    8.1. Cultural Excursions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-farewell-party" class="md-nav__link">
+    8.2. Farewell Party
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-217-departure-day" class="md-nav__link">
+    9. 2/17　Departure Day
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-21819" class="md-nav__link">
+    10. 2/18,19　帰国
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    11. ひとこと
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/others/TISF2023/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Thailand International Science Fair 2023 参加記</h1>
+                
+                <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<h2 id="0">0. 超！概要<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<p>2/13 〜 2/16 に行われた Thailand International Science Fair 2023 (TISF 2023) に参加し、研究発表や文化交流などをしてきました。
+この記事では、本イベントに参加する事になった経緯や前日譚、そして参加記を主に時系列順に綴ります。日本学生科学賞に関する話もちょっとします。</p>
+<details class="note"><summary>余談</summary><p>去年の秋から、小旅行も含めればもう旅行 6 回目です。ちなみに京都は京大、関西地域研究、マスフェスタで 3 回も行きました。ちなみに、小学生の頃そろばんの大会か何かで京都に 2 回行っているので、もう 5 回も行った計算になりますね。以上、あまりにも偏った旅行遍歴でした。</p>
+<ul>
+<li>(2021) 11/23　京都大学研究室訪問</li>
+<li>(2022) 05/03　灘校文化祭訪問</li>
+<li>(2022) 05/16 〜 05/20　関西地域研究</li>
+<li>(2022) 08/27 〜 08/28　マスフェスタ</li>
+<li>(2023) 01/03　熱海小旅行</li>
+<li>(2023) 02/11 〜 02/19　TISF2023</li>
+</ul>
+</details>
+<h2 id="1-9">1. 9 月　参加申し込み<a class="headerlink" href="#1-9" title="Permanent link">&para;</a></h2>
+<p>9 月末に学校から参加者募集のメールが届きました。要約すると以下の通りです。</p>
+<ul>
+<li>2/13 〜 2/16 にタイで TISF 2023 が開催される</li>
+<li>本校からの派遣は 1 チーム (1 〜 3 人)</li>
+<li>高校入試と被っているため、オンラインの可能性が高い</li>
+</ul>
+<p>まだ研究の方は上手く行っている訳ではありませんでしたが、海外に行った経験がなく憧れていたので、取り敢えず申し込む事にしました。申し込んでから取り下げる事だって出来る訳ですから、申し込んで損はありません。ただ、オンライン発表だけではつまらないので、実地で参加できるなら参加したい旨を強くアピールしました。</p>
+<p>結局、家族が教員の代わりに引率する事を条件に、実地で参加できる事になりました。正直、ほぼ確実にオンラインだと思っていたので非常に嬉しかったです。</p>
+<h2 id="2-10-12">2. 10 〜 12 月　日本学生科学賞<a class="headerlink" href="#2-10-12" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1. エクストリームレポート生成<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>10 月は文化祭作業の傍らで、日本学生科学賞への出品に向けて研究を進めました。応募締切が 10/24(月) 必着だったんですが、本当に計画性が無さすぎてレポートを書き始めたのが 10/18(火)とかでした。本来は木曜日には郵送するはずだったんですが、どうしてこうなったんでしょうねぇ〜</p>
+<p>結局、書き終わって指導教員の先生にレポートの添削をお願いしたのが金曜の夜でした。忙しい合間を縫って 1 日で返してくれた先生には本当に感謝しかないです。</p>
+<p>修正、印刷を済ませ郵送の準備は整いましたが、土曜に送って月曜に着くためには速達で送る必要があり、かつ確実に送るには郵便局に行かないといけません。しかし、土曜は郵便局が閉まるのが早いのです。学校から一番近い郵便局は渋谷郵便局でしたから、渋谷の雑踏を死ぬ気で抜ける必要がありました。</p>
+<p>...が、3 分間に合わず。あぁ哀れなセリヌンティウスよ。しかも、バッグに訳の分からないホストのチラシが 3 枚も入れられていました。メロスは激怒した。</p>
+<p><img alt="shibuya" src="shibuya.jpg" width="250px" /></p>
+<p>しょうがないので、日曜日の朝に速達簡易書留で郵送してなんとか間に合いました。</p>
+<h3 id="22">2.2. 最終審査<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>さて、私は応用数学部門で出品しましたが、この部門は事前審査→中央予備審査→中央最終審査と進んでいきます。11 月中旬に中央予備審査突破のメールが届き、いよいよ大詰めに入りました。学生科学賞は応募総数が 7 万件程ありますが、最終審査まで進めるのは 40 作品のみという事で、この時点でもかなり嬉しかったです。</p>
+<p>予備審査まではレポートの書面審査でしたが、最終審査ではプレゼン審査があります。しかし、このプレゼン動画の時間制限が 5 分とかいう目を疑うような設定だったのが一番大変でした。</p>
+<p>結果に関しては、色々あって主催者賞である読売新聞社賞を受賞する事ができました。
+これで国際大会に参加する体裁は整ったというものです。</p>
+<p><img alt="JSSA" src="JSSA.jpg" width="350px" /></p>
+<p>一方、TISF の Oral Presentation には選ばれていませんでした。Abstract のみの審査だったので、研究の本質パートである解法の部分が伝わらなかったんだろうと思います。ちょっと残念です。</p>
+<details class="note"><summary>余談 (筑駒生向け)</summary><p>最終審査と日程が被っていたおかげで、精神を最大限疲弊する事で知られる某「クリスマス模試」(高 3 の 1 年間のクラスが決まる試験)に参加しないで済んだのは割と大きかったです。後輩の皆さんも、クリ模試を受けたくない場合は学生科学賞に申し込むと良いと思います。知らんけど。ちなみに受けないと下位クラス（数学 SB, 英語 B）の通知が一旦来ますが、普通に救済措置はあるので安心してください。</p>
+<p>救済措置を受けるまでの 2 ヶ月間くらい SB・B ネタを擦れますが、受けても下位クラスだったりすると本当にカッコ悪いので気をつけましょう。</p>
+</details>
+<h2 id="3-211">3. 2/11　出国<a class="headerlink" href="#3-211" title="Permanent link">&para;</a></h2>
+<p>搭乗時刻が 23:55 という深夜便だったので、夕方に羽田まで向かいました。人手不足と噂には聞いていましたが、保安検査場が酷い混雑でした。私はそのまま抜けられましたが、弟はハサミ所持容疑で簡易事情聴取(?)の上没収されていました...。</p>
+<p>人生初のパスポートスタンプをもらって、いよいよ出発です。飛行機が浮いた時、もう絶対に引き返せないという実感が湧いたのを鮮明に覚えています。</p>
+<p><del>東京よさらば！　我が代表堂々出国す</del></p>
+<p><img alt="Tokyo" src="haneda.jpg" width="350px" /></p>
+<p>ちなみに、機内食はこんな感じでした。非常に日本らしいですね。牧場の朝ヨーグルトくんは気圧でパンパンです。</p>
+<p><img alt="in flight meal" src="f_meal.jpg" width="315px" /> <img alt="yogurt" src="yogurt.jpg" width="300px" /></p>
+<h2 id="4-212">4. 2/12　到着<a class="headerlink" href="#4-212" title="Permanent link">&para;</a></h2>
+<p>羽田を 0 時に出発して、5 時くらいにバンコクのスワンナプーム国際空港に到着しました。時差も考慮すると 7 時間くらい掛かった感じです。
+入国審査をパスした後待ち合わせ場所に向かいましたが、ローソンはあるし、上についてる時計も SEIKO だしで何となく外国に来た感が薄い...。</p>
+<p><img alt="lawson" src="lawson.jpg" width="350px" /></p>
+<p>待ち合わせ場所からは、車で開催校である Mahidol Wittayanusorn School まで連れて行ってくれ、Welcome Drinkが振る舞われました。
+ココナッツミルクに果肉のゼリー？のようなものが入っていて、甘くて美味しかったです。</p>
+<p><img alt="welcome drink" src="welcome_drink.jpg" width="350px" /></p>
+<p>ここで家族とはお別れ。あとは一人で行動しないといけません。そして、ついに気づきます。</p>
+<p><strong>冷静に考えて、初めての異国の地に一人で乗り込むって結構頭おかしくない？</strong></p>
+<p>はい、おかしいですよね。一人ディズニー勢もびっくりだと思います。他の日本チームの人もいますが、到着は私よりずっと遅いので、暫くは一人で何とかする必要がありました。</p>
+<p>とは言え、全体を通して面倒を見てくれるバディ(現地学校の生徒さん)がいたのは心強かったです。学校案内をしてくれたり、ココナッツの葉での工作や花のネックレス作りなど、色々なアクティビティに参加させてくれたりしました。葉の工作の方は難しかったですが、折り紙みたいで楽しかったです。</p>
+<p>とても気に入ったので、寮の机に飾っておきました。</p>
+<p><img alt="flower1" src="flower1.jpg" width="300px" /> <img alt="flower2" src="flower2.jpg" width="300px" /></p>
+<p>その後、抗原検査、ポスターのセットアップなどをした後、疲れてしまったので早めにベッドにつきました。</p>
+<details class="note"><summary>余談</summary><p>折角なので、ご飯の話をちょっとしようと思います。本イベントでは、カフェテリアや購買で使えるクーポンが事前に配られ、それを使って各自で食事を取るという形でした。カフェテリアにはドリンクコーナー、タイ料理のコーナー、日本食のコーナーなどが並んでおり、食事は大体 30 〜 40 バーツ、飲み物は 20 バーツくらいしました。1 バーツが 4.5 円くらいなので、せいぜい一食 250 円程度と考えるととても安いです。</p>
+<p>食べ物は基本的に辛いか、甘いかの両極端が多かったように思います。私は全然タイ米に慣れなかったのが大変でしたが、一方飲み物は果物をその場でジュースにしてくれるのが嬉しかったです。普通に飲料水を用意するよりも、果物から取った方が手っ取り早いのかも知れません。</p>
+<p>また、これは結構驚いた事ですが、タイの人は（少なくともそこの生徒さんは）食事を残すのにあまり抵抗がないようです。これが食料自給率の差なんでしょうか...？</p>
+</details>
+<h2 id="5-213-day-1">5. 2/13　Day 1<a class="headerlink" href="#5-213-day-1" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1. 開会式<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>朝食をとった後、シリントーン王女殿下をお招きした開会式に参加しました。流石はタイ王室、軍隊が厳重な警備を敷いていました。学生科学賞表彰式の時は秋篠宮殿下が出席されていましたが、これに比べると警備だいぶ緩かった気がします。あれ？</p>
+<p>あと、異様に待ち時間が長かったので、立命生とどんな研究をしていたのか話したりしていました。花の色の変化と pH の関係についての研究だそうで、そういえば幼稚園の頃、朝顔絞って色水で遊んでたなぁ、などと思い出しながら聞いていました（小学生並みの感想）。プロトプラストもアントシアニンも知らなかったので、良い勉強になりました。</p>
+<p><img alt="opening ceremony" src="opening.jpg" width="350px" /></p>
+<p>(始まった後は撮影禁止だったのであまり人がいない)</p>
+<p>偉い人がスピーチをしていた記憶があるんですが、長過ぎて眠ってしまいました。ただ、選出された 3 つのプロジェクトの発表は面白かったです。特に、抗原検査と PCR 検査のいいとこ取りをした検査方法を開発した、とする発表には驚かされました。本当だったら今すぐにでも商用化できそう。</p>
+<h3 id="52">5.2. ポスター発表<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>研究内容を読みたい人はこちら: <a href="https://drive.google.com/file/d/1OuE_Xuaut4KRlPxL0x9r1FQa-0prYaRl/view" target="_blank">学生科学賞で提出したレポート</a></p>
+<p>Day1 にしてイベントの本質。台本も用意して、先生にも添削してもらって準備万端...のつもりでしたが、最初の発表の途中で気づいた事がありました。これは伝わらないな、という事です。研究の動機を話してから、問題の定式化を行い、議論を行うという流れのつもりでしたが、そもそも定式化の時点で伝わる気がしませんでした。そもそも、話す相手は専門家がメインだと思っていたのが根本的な勘違いだったように思います。</p>
+<p>そこで、それ以降は難しい話を遠ざけ、割当問題が実生活においてどう活用できるか、という話に重点を置いた発表に切り替えました。ほとんど数式を用いない話で、しかも身近な話でしたから、反応は良くなりました。具体的に言うと <a href="https://qiita.com/ret2home/items/b8eb70bb92101241703b" target="_blank">昔 Qiita に書いた記事</a> をベースにしたような話です。</p>
+<p>しかし、私の研究は割当問題の「拡張」についてであり、短時間で分かりやすく解説するために研究の核心に触れる事ができなかったのは残念でした。資料とかも色々用意したんだけどな〜。専門家とか回ってコメントしてくれるのかなと思いましたが、そんな事もありませんでした。あれー？？？</p>
+<details class="note"><summary>余談</summary><p>タイ高専なるものがあるらしく、そこの学校の人は日本語を割と喋れるようでした。三カ国語喋れるって本当に凄い...。
+他にも、ジャニーズ好きが高じて日本語が喋れるようになった人とかもいました。私もホロライブ EN で勉強しようかな？</p>
+</details>
+<h3 id="53-welcome-dinner">5.3. Welcome Dinner<a class="headerlink" href="#53-welcome-dinner" title="Permanent link">&para;</a></h3>
+<p>広場のような場所で、立命生のみんなとパフォーマンスを見ながら夕食をいただきました。他のイベントも含めて全体的に、基本的に立命勢に混ざって行動する事が多かったように思います。ぼっちだったら悲惨だったと思うので、本当に感謝ですね。</p>
+<p>料理にも皿にも、本当によくココナッツが使われていたのが印象的でした。スイーツにも必ずと言っていいほどココナッツが使われていました。日本のあんこみたいなものなのかな？</p>
+<p>どうでもいいですが、熱心な仏教国なはずなのにタイの人がパフォーマンスでハレルヤハレルヤ歌ってて面白かったです。</p>
+<p><img alt="welcome dinner" src="welcome_dinner.jpg" width="450px" /></p>
+<h2 id="6-214-day2">6. 2/14　Day2<a class="headerlink" href="#6-214-day2" title="Permanent link">&para;</a></h2>
+<h3 id="61-oral-presentation">6.1. Oral Presentation<a class="headerlink" href="#61-oral-presentation" title="Permanent link">&para;</a></h3>
+<p>前述の通り、残念ながら私は選ばれませんでしたが、早稲田本庄さんが選出されていたので、それを聞いたりしていました。個人的に一番興味深かったのは中国チームの壁を登るロボットで、凄くダイナミックな動きをしていました。</p>
+<p>私も多少質問をしてみたんですが、癖がある英語だったからか、私のリスニング能力のせいか、なんて回答されたか分からなかったのは残念でした。</p>
+<h3 id="62-science-activities">6.2. Science Activities<a class="headerlink" href="#62-science-activities" title="Permanent link">&para;</a></h3>
+<p>私は生物のグループになり、探偵ごっこ的な事をしました。具体的に言うと、殺人事件の事件現場に残された足跡から身長を割り出したり、証言を解析したりして犯人を特定する課題です。</p>
+<p>生物要素は意外と少なかったんですが、情報量がエグ過ぎて大変でした。普通にそこら辺の読解問題よりキツかったです笑</p>
+<p>あと、グループワークだったので意思疎通もちょっと苦労しました。真面目に英語を勉強しとくんだったと思うにはあまりに遅いですね。帰国後は心を入れ替えてちゃんと勉強しています。...とはならないんだな、これが。</p>
+<p>特筆すべき事といえば、同じグループにいた日本語も絵も上手いカンボジアチームの人がいて面白かったです。</p>
+<p><img alt="portrait" src="sc_ac2.jpg" width="350px" /></p>
+<p>ちなみに、他のグループには数学、物理などがあり、物理では楽器作りをしていたそうです。楽しそ〜</p>
+<h3 id="63-game-night">6.3. Game Night<a class="headerlink" href="#63-game-night" title="Permanent link">&para;</a></h3>
+<p>クイズ大会とかタイの遊びとかを色々やりました。マシュマロとスパゲッティで高い塔を作るのが一番楽しそうでしたが、時間がなくてできませんでした。似た競技としてアイス棒タワーコンテストが有名ですが、建築学科の猛者が集まって凄いらしいですね。</p>
+<p>ここら辺で多少の社交性を身に付け（？）、韓国チームの人とロシアチームの人とちょっと仲良くなれました。</p>
+<p>交流の時、海外だと基本的に Instagram を交換する感じだったので 12 月に始めておいて本当に良かったと思いました。と言うか、本当に会話する度に交換してたので、FF が 1 週間で 2 倍くらいになった気がします。日本だと割と Twitter を交換する事が多かったので、意外な感じでした。でも他の日本チームの皆さんは Twitter やってなさそうな感じがしたので、私の周りだけかも知れません。</p>
+<h2 id="7-215-day-3">7. 2/15　Day 3<a class="headerlink" href="#7-215-day-3" title="Permanent link">&para;</a></h2>
+<p>Day3 は終日 Science Zone という事で、バスで Thailand National Science and Technology Development Agency (タイ国立科学技術開発庁) まで遠出をしました。私のグループは LANTA というスパコンを見に行ったのと、先端的なデンプン技術の実験授業に参加しました。</p>
+<p>京大のスパコンを見に行った時は空冷のファンの音が本当に凄かったので覚悟していたんですが、LANTA は水で冷却しているそうで、普通に静かで意外でした。また、京大のスパコン室の入り口には雷避けのお札が色々あったんですが、こっちは特に宗教的なものはありませんでした笑</p>
+<p><img alt="Thai SC" src="ThaiSC.jpg" width="400px" /></p>
+<p>デンプンの方はと言うと、ただでさえ生物履修してないのに英語の専門用語で解説されるので結構滅入ってしまいましたが、実験も多かったので助かりました。ちなみに、立命の方は普通の授業も英語で受けるコースがあるらしく、こういうのも慣れていそうで羨ましかったです。</p>
+<p>そういえば、私自身白い白衣を着たのは久しぶりだった気がします。うちの学校、文化祭のペンキ作業で服が汚れないように白衣を着る謎の風習があるので、大体白衣がカラフルだったりするんですよね。</p>
+<p><br>
+また、何かと休み時間が多かったので、交流もできました。ジブリ、君の名は、天気の子、SPYxFAMILY、などなど思っている以上に日本のアニメを観ている人が多かったので、一通り分かるのは良かったと思います。東京喰種、呪術廻戦、鬼滅あたりの話になる事も多かったので、そこら辺も観ておけば良かったな、と思うくらいです！</p>
+<details class="note"><summary>余談</summary><p>来年の研究の参考のためなど、日本チームの参加者全員が発表をする訳ではない事は知っていましたが、複数人の早稲田本庄生から「発表はしたが、先輩の研究の流用であり、研究には全然関わっていない、なんなら文系」「主に学院長の指示だった」という旨の話を聞いて、本当に驚きました。ポスターを見てみると、確かに Reference には過去の卒業論文だけ記載されているのが見て取れましたし、示されていたデータもその卒業論文の年次以前のもののみでした。</p>
+<p>生徒当人に研究不正である認識はなさそうだったので責めるつもりはありませんが、学院長についてはその立場にありながら不正に手を染めさせた責任は極めて重大だと考えます。学校を通して正式に抗議するつもりでしたが、立場上渋られたのでこの場で抗議しておきます。</p>
+<p>実際に研究をして発表をしていたのは私と立命勢の合わせて 3 人だけだったようです。お二方には真摯な姿勢に心から敬意を表したいと思います。そして、陰ながら応援しています！</p>
+</details>
+<h2 id="8-216-day-4">8. 2/16　Day 4<a class="headerlink" href="#8-216-day-4" title="Permanent link">&para;</a></h2>
+<h3 id="81-cultural-excursions">8.1. Cultural Excursions<a class="headerlink" href="#81-cultural-excursions" title="Permanent link">&para;</a></h3>
+<p>最終日という事で王宮などバンコクの観光に出掛けました。</p>
+<p>まずは王宮。エメラルド寺院と王宮とで隣接している割に、前者はいかにも東南アジア風にもかかわらず、後者は西洋を感じさせる造りになっていて興味深かったです。屋根の辺りはともかく、1 階とかアナ雪で出て来てもおかしくない感じがしませんか？こっちは暑いけど！</p>
+<p><img alt="emerald" src="emerald.jpg" width="300px" />
+<img alt="Grand Palace" src="palace.jpg" width="450px" /></p>
+<p>王宮の次は、国立博物館に向かいました。お神輿にしか見えない王様の椅子（？）とか、儀式をやると銃弾が通らなくなるらしい象（？）とか色々展示してありました。国立博物館と言う割には、意外と小さかった気がします。</p>
+<p><img alt="omikoshi" src="omikoshi.jpg" width="300px" /> <img alt="elephant" src="elephant.jpg" width="300px" /></p>
+<p>国立博物館の次は、最後に ICONSIAM というショッピングモールに向かいました。ずっとイコンシアムと読んでいましたが、アイコンサイアムだそうです。言われてみればそれはそうですね。<del>英弱がバレる</del></p>
+<p>ICONSIAM は 1 階は屋台が並んだいわゆる「デパ地下」、2 階からは百貨店のような高級感溢れる感じでした。1 階はかなりカオスを感じる所がありますが、上から眺めてみると、意外と統率の取られた「意図的なカオス」とも言える空間設計のようにも思えます。</p>
+<p><img alt="iconsiam1" src="iconsiam1.jpg" width="500px" /> <img alt="iconsiam2" src="iconsiam2.jpg" width="300px" /></p>
+<p>さて、タイに来てからまだトムヤムクンを食べていなかったので、昼食はそれを食べる事にしました。</p>
+<p><img alt="tom_1" src="tom_2.jpg" width="400px" /> <img alt="tom_2" src="tom_1.jpg" width="300px" /></p>
+<p>観光客向けだったのか、そんなに辛くはなかったです。トマトの酸味が絶妙で美味しかったですが、エビが丸々入っていたのでちょっと大変でした。</p>
+<p>その後はお土産を買ったり、スタバ的な場所で飲み物を買って飲んだりしてゆっくり過ごしました。これは解せないんですが、タイでは緑茶にハチミツを入れる事が多いらしいんですよね。なので普通の「お〜いお茶」とかには敢えて "Unsweetened Tea" と書かれていたりします。</p>
+<p><img alt="tea" src="tea.jpg" width="400px" /></p>
+<p>また、1 階半みたいな場所があったので登ってみたらタイ式マッサージ店があり、5 分無料！としきりに勧めてくるので「あ、これぼったくられるやつや...」と思いましたが、敢えて受けてみる事にしました。トンカチみたいなのでひたすら肩とか叩かれるんですね、あれ。私は結構痛かったんですが、一緒に受けてた早稲田の子は普通に気持ちよかったって言ってました。マジか。</p>
+<p>結局、普通に 5 分で終わって無料だった上、写真まで撮ってくれました。疑ってすみませんでした！</p>
+<h3 id="82-farewell-party">8.2. Farewell Party<a class="headerlink" href="#82-farewell-party" title="Permanent link">&para;</a></h3>
+<p>余ったクーポンを全て消化するべく購買でお菓子を爆買いした後、Farewell Party に向かいました。あっという間に TISF も終わりです。</p>
+<p>Farewell Party で日本チームは早稲田本庄生が J-pop&amp;アニソンメドレー、立命&amp;筑駒でソーラン節を踊りました。Day2 辺りから練習を重ねていましたが、私が相当下手だったので練習ではご迷惑をお掛けしました。多分「かぐや様は告らせたい」の白銀御行といい勝負。</p>
+<p><img alt="kaguya" src="kaicho.jpg" width="350px" />
+<br>(同作より引用)</p>
+<p>それでも嫌な顔せずに練習に付き合ってくれた立命の皆は本当に良い人たちだと思いましたし、それに応えるべく私なりの全力を尽くしました。結局上手く出来たかは分かりませんが、ダンス好きな同級生が上がってる動画を見てくれたらしく、褒めてくれたのは安心できたと言うか、本当に嬉しかったです。機材トラブルも起きましたが、観客のみんなのノリが良くて盛り上がったのは最高でした！！</p>
+<p>アニソンメドレーの方が先だったので観ていましたが、夜に駆けるのイントロとか鳥肌立つレベルでダンスがキレッキレでカッコ良かったです。
+他の国のパフォーマンスも最高でしたね、特に韓国チームの K-pop ダンスとか。文化祭の中夜祭を思い出すようでした。</p>
+<p>また、皆さんのテンションも文化祭よろしくぶっ壊れてて、それはもう大量に写真を撮りました。他の人のスマホで撮ったツーショットも色々 Instagram に流れてて、それまで私は顔を載せない主義だったんですがもう諦めましたね笑</p>
+<p><br>
+そして、パーティーが終わるともういよいよ、お別れの時間です。立命館で開かれる JSSF に参加できれば、日本チームとはまた会う機会がありますが、当分は先な上、運が悪ければ...。そう思うと非常に辛かったですし、そう思わせてくれるような素敵なメンバーでした。また近いうちに会える事を切に願っています。（それまで連絡が続くよう努めているつもりですが、煙たがられていない事を願うばかり！）</p>
+<h2 id="9-217-departure-day">9. 2/17　Departure Day<a class="headerlink" href="#9-217-departure-day" title="Permanent link">&para;</a></h2>
+<p>私は早めに出て家族と合流する必要がありましたが、他の日本チームはタイ語教室、アート教室などのアクティビティに参加していたそうで羨ましかったです。</p>
+<p>合流した後は、USJ の JAWS みたいな船に乗ってバンコクを観光しました。</p>
+<p>ガイドさんと一緒に回ったんですが、前の王様の幼少期の顔に似ていると言われました。褒めているつもりなんだと思いますが、喜んでいいのかよくわかりません笑</p>
+<p>帰りの飛行機でも CA さんにタイ語で話しかけられたんですが、そんなにタイ人っぽいんですかね...</p>
+<p><img alt="jaws" src="jaws.jpg" width="450px" /></p>
+<p>泊まったホテルは屋上にプールがあって、景色が最高でした。水着持ってくれば良かったな〜なんて。
+あと、ホテルに「麻薬吸ったら罰金 5000 バーツ！」って書いてあって知ったんですが、最近タイで麻薬が合法化されたそうです。治安さん...</p>
+<p><img alt="hotel" src="hotel.jpg" width="450px" /></p>
+<p>夕食はホテルでマッシュルームとソーセージのスパゲッティを食べました。見た目以上に量があったのでちょっと大変でしたが、チーズが濃厚で美味しかったです。</p>
+<p><img alt="hotel2" src="hotel2.jpg" width="450px" /></p>
+<h2 id="10-21819">10. 2/18,19　帰国<a class="headerlink" href="#10-21819" title="Permanent link">&para;</a></h2>
+<p>18 日の夜に出発の便の予定だったので、それまでは基本的にホテルでゆっくり過ごしつつ、テストが近かったので数Ⅲの問題集をちまちまとやっていたりしました（結局 1A2B がほとんどだったので役に立たなかった）。立命生も期末が近かったそうで、寮で勉強していた記憶があります。</p>
+<p>また、Instagram に上げた写真が学校で話題になっていたそうで、友達から色々連絡が来て嬉しかったのもこの頃です。</p>
+<p>昼食はフカヒレスープを食べに行きました。丸々食べたのは初めてだったんですが、家系ラーメンのスープみたいな味がしました。私の味覚が壊れているんでしょうか？？？</p>
+<p><img alt="fukahire" src="fukahire.jpg" width="400px" /></p>
+<p>そんなこんなで夜になり、出国手続きをして、飛行機に乗り込みました。夜の便だったので、本当に星と朝焼けが綺麗で最高でした。</p>
+<p><img alt="asayake" src="morning.jpg" width="400px" /></p>
+<p>ところで、機内食として配られたサンドウィッチが食べ切れなかったので、バッグに入れて持ち帰ろうとしたら羽田で検疫探知犬に一瞬で捕まりました。小さくて可愛らしいのになんて優秀なんでしょう！</p>
+<p>おまけに警告文までもらいました。</p>
+<p><img alt="haneda2" src="haneda2.jpg" width="400px" /></p>
+<p>皆さんも飛行機に乗る時は気をつけてくださいね！</p>
+<h2 id="11">11. ひとこと<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p>いかがでしたでしょうか？感想など教えてくれると嬉しいです！！ :)</p>
+<p>最後に、貴重な機会を与えてくださった TISF 2023 Organizer、指導教員&amp;国際交流担当教員をはじめとした本校の先生方、また、暖かく受け入れてくれた日本チームの皆さん、現地でお世話になったバディ、などなど本イベントに関わった全ての人に感謝を表して締めくくりたいと思います。</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../nanamogi/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                UFOキャッチャー制作中間記録・七模擬まで
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../kansai-trip2/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                関西旅行記2 〜マスフェスタ参加記を添えて〜
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

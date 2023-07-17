@@ -1,0 +1,1092 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/CTF/picoctf-2021/rev/checkpass/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>checkpass - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="checkpass - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/CTF/picoctf-2021/rev/checkpass/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tldr" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              checkpass
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../kyopro/joi2022-ho/" class="md-tabs__link">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../metared2021-5/" class="md-tabs__link md-tabs__link--active">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../others/nanamogi/" class="md-tabs__link">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../kyopro/joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../kyopro/joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../kyopro/joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../kyopro/joi2020-sp/" class="md-nav__link">
+      JOI 2019/2020 春合宿参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../kyopro/joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../metared2021-5/" class="md-nav__link">
+      Metared CTF 5th Stage writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3" checked>
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        checkpass
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      checkpass
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    解法
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zer0pts-ctf-2021/" class="md-nav__link">
+      zer0pts CTF 2021 writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../others/nanamogi/" class="md-nav__link">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../others/TISF2023/" class="md-nav__link">
+      Thailand International Science Fair 2023 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../others/kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../others/ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../others/pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    解法
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/CTF/picoctf-2021/rev/checkpass/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>checkpass</h1>
+                
+                <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>IDA で頑張る</p>
+<h2 id="_1">解法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Rev の中で解析が一番苦行でした。頑張って解析すると、以下のようなチェックである事が分かります。</p>
+<div class="highlight"><pre><span></span><code><span class="n">st</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">st</span><span class="p">)</span><span class="o">==</span><span class="mi">32</span>
+
+<span class="n">X</span><span class="o">=</span><span class="s2">&quot;0-31までの順列&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">A</span><span class="o">=</span><span class="s2">&quot;0-255までの順列&quot;</span>
+    <span class="n">B</span><span class="o">=</span><span class="s2">&quot;0-31までの順列&quot;</span>
+    <span class="n">C</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">D</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">32</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+        <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">st</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">=</span><span class="n">C</span><span class="p">[</span><span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+    <span class="n">st</span><span class="o">=</span><span class="n">D</span>
+
+<span class="n">check</span><span class="o">=</span><span class="s2">&quot;長さ32の配列&quot;</span>
+<span class="k">assert</span> <span class="n">check</span><span class="o">==</span><span class="n">st</span>
+</code></pre></div>
+<p>プログラム中の順列の値を特定するのがかなりの苦行で、全てが static にプログラム中に書かれている訳ではなく、全てが 1 回で保存される訳でもないので 1 回ずつ監視する必要がありました。</p>
+<p>あとは、頑張って逆変換します。</p>
+<div class="highlight"><pre><span></span><code><span class="n">inputindex</span><span class="o">=</span><span class="p">[</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x09</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x10</span><span class="p">]</span>
+
+<span class="n">resindex</span><span class="o">=</span><span class="p">[</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x09</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x12</span><span class="p">]</span>
+
+<span class="n">final</span><span class="o">=</span><span class="p">[</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span><span class="mh">0xBC</span><span class="p">,</span><span class="mh">0xB8</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0xCB</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0xAE</span><span class="p">,</span><span class="mh">0xCB</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0xCD</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xCF</span><span class="p">,</span><span class="mh">0xE6</span><span class="p">,</span><span class="mh">0x9E</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0xBC</span><span class="p">,</span><span class="mh">0x7a</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x7b</span><span class="p">]</span>
+
+
+<span class="n">perm</span><span class="o">=</span><span class="p">[</span>
+<span class="mh">0x11</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0xA9</span><span class="p">,</span><span class="mh">0xDA</span><span class="p">,</span><span class="mh">0xF6</span><span class="p">,</span><span class="mh">0x55</span><span class="p">,</span><span class="mh">0xD4</span><span class="p">,</span><span class="mh">0xE0</span><span class="p">,</span><span class="mh">0x1</span><span class="p">,</span><span class="mh">0xAE</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x9</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x65</span><span class="p">,</span><span class="mh">0x9B</span><span class="p">,</span><span class="mh">0xAA</span><span class="p">,</span><span class="mh">0x56</span><span class="p">,</span><span class="mh">0xA2</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0xBE</span><span class="p">,</span><span class="mh">0x86</span><span class="p">,</span><span class="mh">0xF1</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0x7</span><span class="p">,</span><span class="mh">0xF2</span><span class="p">,</span><span class="mh">0x95</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x7C</span><span class="p">,</span><span class="mh">0x69</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xFE</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x71</span><span class="p">,</span><span class="mh">0xC3</span><span class="p">,</span><span class="mh">0xED</span><span class="p">,</span><span class="mh">0xEE</span><span class="p">,</span><span class="mh">0x6A</span><span class="p">,</span><span class="mh">0xA7</span><span class="p">,</span><span class="mh">0xD0</span><span class="p">,</span><span class="mh">0xB2</span><span class="p">,</span><span class="mh">0x4C</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span><span class="mh">0x2C</span><span class="p">,</span><span class="mh">0xE3</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="mh">0x7F</span><span class="p">,</span><span class="mh">0xE2</span><span class="p">,</span><span class="mh">0xA5</span><span class="p">,</span><span class="mh">0xE9</span><span class="p">,</span><span class="mh">0xCC</span><span class="p">,</span><span class="mh">0x2B</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0xC8</span><span class="p">,</span><span class="mh">0x94</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0xEC</span><span class="p">,</span><span class="mh">0x8C</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x4</span><span class="p">,</span><span class="mh">0xCB</span><span class="p">,</span><span class="mh">0xBA</span><span class="p">,</span><span class="mh">0xA6</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x79</span><span class="p">,</span><span class="mh">0x97</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0xBD</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x4B</span><span class="p">,</span><span class="mh">0xB9</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0xE6</span><span class="p">,</span><span class="mh">0xC7</span><span class="p">,</span><span class="mh">0xC0</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xA0</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0xE7</span><span class="p">,</span><span class="mh">0xAC</span><span class="p">,</span><span class="mh">0x3</span><span class="p">,</span><span class="mh">0xDC</span><span class="p">,</span><span class="mh">0x5A</span><span class="p">,</span><span class="mh">0xE5</span><span class="p">,</span><span class="mh">0xC1</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x7E</span><span class="p">,</span><span class="mh">0x3C</span><span class="p">,</span><span class="mh">0x2A</span><span class="p">,</span><span class="mh">0x4A</span><span class="p">,</span><span class="mh">0xD6</span><span class="p">,</span><span class="mh">0x6C</span><span class="p">,</span><span class="mh">0xD9</span><span class="p">,</span><span class="mh">0xDB</span><span class="p">,</span><span class="mh">0xB3</span><span class="p">,</span><span class="mh">0xA3</span><span class="p">,</span><span class="mh">0x47</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x6</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x29</span><span class="p">,</span><span class="mh">0xFD</span><span class="p">,</span><span class="mh">0xC4</span><span class="p">,</span><span class="mh">0xA1</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x85</span><span class="p">,</span><span class="mh">0xB1</span><span class="p">,</span><span class="mh">0xDE</span><span class="p">,</span><span class="mh">0x28</span><span class="p">,</span><span class="mh">0xDD</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="mh">0xC5</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0xEA</span><span class="p">,</span><span class="mh">0xC6</span><span class="p">,</span><span class="mh">0x60</span><span class="p">,</span><span class="mh">0xF3</span><span class="p">,</span><span class="mh">0xE1</span><span class="p">,</span><span class="mh">0x9F</span><span class="p">,</span><span class="mh">0xCF</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0xAF</span><span class="p">,</span><span class="mh">0x2E</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x5C</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0xC2</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0xCD</span><span class="p">,</span><span class="mh">0xAD</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x5E</span><span class="p">,</span><span class="mh">0x2D</span><span class="p">,</span><span class="mh">0xB5</span><span class="p">,</span><span class="mh">0xF5</span><span class="p">,</span><span class="mh">0xF0</span><span class="p">,</span><span class="mh">0x98</span><span class="p">,</span><span class="mh">0x26</span><span class="p">,</span><span class="mh">0xD3</span><span class="p">,</span><span class="mh">0xF9</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0xB4</span><span class="p">,</span><span class="mh">0xD5</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x9E</span><span class="p">,</span><span class="mh">0xB6</span><span class="p">,</span><span class="mh">0x9C</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0xD2</span><span class="p">,</span><span class="mh">0x3D</span><span class="p">,</span><span class="mh">0xA8</span><span class="p">,</span><span class="mh">0x52</span><span class="p">,</span><span class="mh">0xD1</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0xCA</span><span class="p">,</span><span class="mh">0xF4</span><span class="p">,</span><span class="mh">0x6E</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0x68</span><span class="p">,</span><span class="mh">0x8</span><span class="p">,</span><span class="mh">0x38</span><span class="p">,</span><span class="mh">0x89</span><span class="p">,</span><span class="mh">0xC9</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0xAB</span><span class="p">,</span><span class="mh">0xB0</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0xFA</span><span class="p">,</span><span class="mh">0x27</span><span class="p">,</span><span class="mh">0xBC</span><span class="p">,</span><span class="mh">0xA4</span><span class="p">,</span><span class="mh">0xB8</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mh">0x4E</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x53</span><span class="p">,</span><span class="mh">0x5D</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0x8E</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x87</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0x42</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x9A</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0x3B</span><span class="p">,</span><span class="mh">0xE8</span><span class="p">,</span><span class="mh">0xE4</span><span class="p">,</span><span class="mh">0xB7</span><span class="p">,</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0xCE</span><span class="p">,</span><span class="mh">0x5</span><span class="p">,</span><span class="mh">0xD8</span><span class="p">,</span><span class="mh">0xFC</span><span class="p">,</span><span class="mh">0xF8</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x84</span><span class="p">,</span><span class="mh">0x9D</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0x7A</span><span class="p">,</span><span class="mh">0x8F</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x8A</span>
+<span class="p">]</span>
+
+<span class="nb">input</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">32</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">resindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="o">=</span><span class="n">inputindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">input</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">=</span><span class="n">perm</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">final</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">perm</span><span class="o">=</span><span class="p">[</span>
+    <span class="mh">0xCE</span><span class="p">,</span><span class="mh">0x6A</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xC5</span><span class="p">,</span><span class="mh">0x47</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0xE8</span><span class="p">,</span><span class="mh">0xDC</span><span class="p">,</span><span class="mh">0x8C</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0xAF</span><span class="p">,</span><span class="mh">0xB3</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0xC3</span><span class="p">,</span><span class="mh">0x68</span><span class="p">,</span><span class="mh">0x7E</span><span class="p">,</span><span class="mh">0xFD</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0xDA</span><span class="p">,</span><span class="mh">0x3C</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0xA3</span><span class="p">,</span><span class="mh">0xE3</span><span class="p">,</span><span class="mh">0xA8</span><span class="p">,</span><span class="mh">0x4E</span><span class="p">,</span><span class="mh">0x5</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0xE0</span><span class="p">,</span><span class="mh">0x97</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x9F</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x71</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0xF5</span><span class="p">,</span><span class="mh">0x3B</span><span class="p">,</span><span class="mh">0xAC</span><span class="p">,</span><span class="mh">0xB4</span><span class="p">,</span><span class="mh">0x9B</span><span class="p">,</span><span class="mh">0xC6</span><span class="p">,</span><span class="mh">0x5E</span><span class="p">,</span><span class="mh">0x9A</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x1</span><span class="p">,</span><span class="mh">0xD4</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x87</span><span class="p">,</span><span class="mh">0xE4</span><span class="p">,</span><span class="mh">0xAD</span><span class="p">,</span><span class="mh">0xA7</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0xEA</span><span class="p">,</span><span class="mh">0x52</span><span class="p">,</span><span class="mh">0x7C</span><span class="p">,</span><span class="mh">0x38</span><span class="p">,</span><span class="mh">0x5C</span><span class="p">,</span><span class="mh">0xCC</span><span class="p">,</span><span class="mh">0xFC</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x9</span><span class="p">,</span><span class="mh">0x95</span><span class="p">,</span><span class="mh">0x2E</span><span class="p">,</span><span class="mh">0xB1</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0xE1</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xC9</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0xD0</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x2A</span><span class="p">,</span><span class="mh">0x4B</span><span class="p">,</span><span class="mh">0xA6</span><span class="p">,</span><span class="mh">0xF4</span><span class="p">,</span><span class="mh">0x85</span><span class="p">,</span><span class="mh">0xCA</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0xC1</span><span class="p">,</span><span class="mh">0x6C</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0xDD</span><span class="p">,</span><span class="mh">0x84</span><span class="p">,</span><span class="mh">0x94</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0x56</span><span class="p">,</span><span class="mh">0xE9</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x55</span><span class="p">,</span><span class="mh">0x6</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x9E</span><span class="p">,</span><span class="mh">0x5D</span><span class="p">,</span><span class="mh">0xD5</span><span class="p">,</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x60</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0xF6</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0xB0</span><span class="p">,</span><span class="mh">0x79</span><span class="p">,</span><span class="mh">0xD8</span><span class="p">,</span><span class="mh">0xA1</span><span class="p">,</span><span class="mh">0xFA</span><span class="p">,</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span><span class="mh">0xF1</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0xB9</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x69</span><span class="p">,</span><span class="mh">0xEE</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0x4</span><span class="p">,</span><span class="mh">0xE2</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0xB7</span><span class="p">,</span><span class="mh">0xC0</span><span class="p">,</span><span class="mh">0xF0</span><span class="p">,</span><span class="mh">0x28</span><span class="p">,</span><span class="mh">0xA9</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0xBE</span><span class="p">,</span><span class="mh">0x4C</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0xCD</span><span class="p">,</span><span class="mh">0xBD</span><span class="p">,</span><span class="mh">0x7F</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x86</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0xA4</span><span class="p">,</span><span class="mh">0xD2</span><span class="p">,</span><span class="mh">0x8A</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0xAB</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mh">0x42</span><span class="p">,</span><span class="mh">0xCF</span><span class="p">,</span><span class="mh">0xDE</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x8E</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0x6E</span><span class="p">,</span><span class="mh">0xC7</span><span class="p">,</span><span class="mh">0xB8</span><span class="p">,</span><span class="mh">0xED</span><span class="p">,</span><span class="mh">0xA5</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0xC8</span><span class="p">,</span><span class="mh">0x29</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0xD6</span><span class="p">,</span><span class="mh">0xBA</span><span class="p">,</span><span class="mh">0xF8</span><span class="p">,</span><span class="mh">0x3D</span><span class="p">,</span><span class="mh">0xDB</span><span class="p">,</span><span class="mh">0x9D</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0x98</span><span class="p">,</span><span class="mh">0x26</span><span class="p">,</span><span class="mh">0xA2</span><span class="p">,</span><span class="mh">0xFE</span><span class="p">,</span><span class="mh">0x2C</span><span class="p">,</span><span class="mh">0xBC</span><span class="p">,</span><span class="mh">0x27</span><span class="p">,</span><span class="mh">0x89</span><span class="p">,</span><span class="mh">0x3</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0xD3</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0xD9</span><span class="p">,</span><span class="mh">0x65</span><span class="p">,</span><span class="mh">0xE7</span><span class="p">,</span><span class="mh">0xE6</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0xB5</span><span class="p">,</span><span class="mh">0x9C</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0xCB</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0xC4</span><span class="p">,</span><span class="mh">0x7</span><span class="p">,</span><span class="mh">0xAE</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0xB2</span><span class="p">,</span><span class="mh">0x2D</span><span class="p">,</span><span class="mh">0x8F</span><span class="p">,</span><span class="mh">0xC2</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0xF2</span><span class="p">,</span><span class="mh">0xAA</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0xB6</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x5A</span><span class="p">,</span><span class="mh">0xA0</span><span class="p">,</span><span class="mh">0x2B</span><span class="p">,</span><span class="mh">0x4A</span><span class="p">,</span><span class="mh">0xF3</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0xF9</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span><span class="mh">0x8</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x7A</span><span class="p">,</span><span class="mh">0xEC</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xE5</span><span class="p">,</span><span class="mh">0x53</span><span class="p">,</span><span class="mh">0xD1</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x80</span>
+<span class="p">]</span>
+<span class="n">inputindex</span><span class="o">=</span><span class="p">[</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x09</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x04</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">resindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="o">=</span><span class="n">inputindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">input</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">=</span><span class="n">perm</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">final</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">perm</span><span class="o">=</span><span class="p">[</span>
+<span class="mh">0x69</span><span class="p">,</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x4B</span><span class="p">,</span><span class="mh">0x0D2</span><span class="p">,</span><span class="mh">0x0E4</span><span class="p">,</span><span class="mh">0x0F5</span><span class="p">,</span><span class="mh">0x84</span><span class="p">,</span><span class="mh">0x0EC</span><span class="p">,</span><span class="mh">0x0C0</span><span class="p">,</span><span class="mh">0x0E1</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0x94</span><span class="p">,</span><span class="mh">0x0B5</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0x0ED</span><span class="p">,</span><span class="mh">0x65</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0x0D0</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0x0D3</span><span class="p">,</span><span class="mh">0x0E0</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x0E8</span><span class="p">,</span><span class="mh">0x2D</span><span class="p">,</span><span class="mh">0x9B</span><span class="p">,</span><span class="mh">0x0AD</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x2A</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span><span class="mh">0x2E</span><span class="p">,</span><span class="mh">0x6C</span><span class="p">,</span><span class="mh">0x0C8</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x0DE</span><span class="p">,</span><span class="mh">0x6A</span><span class="p">,</span><span class="mh">0x0B6</span><span class="p">,</span><span class="mh">0x79</span><span class="p">,</span><span class="mh">0x87</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x97</span><span class="p">,</span><span class="mh">0x0C5</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x0DD</span><span class="p">,</span><span class="mh">0x0C1</span><span class="p">,</span><span class="mh">0x0B7</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x42</span><span class="p">,</span><span class="mh">0x0B3</span><span class="p">,</span><span class="mh">0x0EB</span><span class="p">,</span><span class="mh">0x0E7</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x55</span><span class="p">,</span><span class="mh">0x0FE</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x0F6</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x0C6</span><span class="p">,</span><span class="mh">0x0E6</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x0E2</span><span class="p">,</span><span class="mh">0x0B1</span><span class="p">,</span><span class="mh">0x3</span><span class="p">,</span><span class="mh">0x47</span><span class="p">,</span><span class="mh">0x0F3</span><span class="p">,</span><span class="mh">0x26</span><span class="p">,</span><span class="mh">0x0FC</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x0C2</span><span class="p">,</span><span class="mh">0x28</span><span class="p">,</span><span class="mh">0x7</span><span class="p">,</span><span class="mh">0x60</span><span class="p">,</span><span class="mh">0x0AC</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x0CB</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0x9D</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x0AF</span><span class="p">,</span><span class="mh">0x38</span><span class="p">,</span><span class="mh">0x0B0</span><span class="p">,</span><span class="mh">0x0D1</span><span class="p">,</span><span class="mh">0x0D4</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x3D</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0x0FB</span><span class="p">,</span><span class="mh">0x0A6</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x0A3</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="mh">0x0E5</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x0EA</span><span class="p">,</span><span class="mh">0x0CC</span><span class="p">,</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0x0F9</span><span class="p">,</span><span class="mh">0x8F</span><span class="p">,</span><span class="mh">0x0BE</span><span class="p">,</span><span class="mh">0x9F</span><span class="p">,</span><span class="mh">0x6E</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span><span class="mh">0x0BB</span><span class="p">,</span><span class="mh">0x0A7</span><span class="p">,</span><span class="mh">0x4C</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x0B2</span><span class="p">,</span><span class="mh">0x0F2</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x0CA</span><span class="p">,</span><span class="mh">0x0D7</span><span class="p">,</span><span class="mh">0x0E9</span><span class="p">,</span><span class="mh">0x0B8</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x0B9</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mh">0x5C</span><span class="p">,</span><span class="mh">0x0D5</span><span class="p">,</span><span class="mh">0x0C7</span><span class="p">,</span><span class="mh">0x4A</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x8</span><span class="p">,</span><span class="mh">0x0BA</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span><span class="mh">0x0DC</span><span class="p">,</span><span class="mh">0x0BD</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0x27</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0x8A</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x0CD</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x98</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x5</span><span class="p">,</span><span class="mh">0x0C3</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x0A5</span><span class="p">,</span><span class="mh">0x0F1</span><span class="p">,</span><span class="mh">0x29</span><span class="p">,</span><span class="mh">0x0FF</span><span class="p">,</span><span class="mh">0x71</span><span class="p">,</span><span class="mh">0x0E3</span><span class="p">,</span><span class="mh">0x4E</span><span class="p">,</span><span class="mh">0x52</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0x0C4</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x95</span><span class="p">,</span><span class="mh">0x0AB</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x56</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x7F</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x0DA</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x0D6</span><span class="p">,</span><span class="mh">0x0B4</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x9E</span><span class="p">,</span><span class="mh">0x0D8</span><span class="p">,</span><span class="mh">0x0BC</span><span class="p">,</span><span class="mh">0x4</span><span class="p">,</span><span class="mh">0x0CE</span><span class="p">,</span><span class="mh">0x5D</span><span class="p">,</span><span class="mh">0x8E</span><span class="p">,</span><span class="mh">0x8C</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0x0A9</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0x0DF</span><span class="p">,</span><span class="mh">0x0FA</span><span class="p">,</span><span class="mh">0x3B</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0x68</span><span class="p">,</span><span class="mh">0x53</span><span class="p">,</span><span class="mh">0x7A</span><span class="p">,</span><span class="mh">0x0A2</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span><span class="mh">0x7C</span><span class="p">,</span><span class="mh">0x6</span><span class="p">,</span><span class="mh">0x0A4</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x89</span><span class="p">,</span><span class="mh">0x0D9</span><span class="p">,</span><span class="mh">0x0A0</span><span class="p">,</span><span class="mh">0x2C</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="mh">0x0A1</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x0AE</span><span class="p">,</span><span class="mh">0x86</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0x9C</span><span class="p">,</span><span class="mh">0x0AA</span><span class="p">,</span><span class="mh">0x0F4</span><span class="p">,</span><span class="mh">0x0DB</span><span class="p">,</span><span class="mh">0x0CF</span><span class="p">,</span><span class="mh">0x0BF</span><span class="p">,</span><span class="mh">0x0A8</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0x0F8</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x9</span><span class="p">,</span><span class="mh">0x3C</span><span class="p">,</span><span class="mh">0x0C9</span><span class="p">,</span><span class="mh">0x0EF</span><span class="p">,</span><span class="mh">0x0F0</span><span class="p">,</span><span class="mh">0x2B</span><span class="p">,</span><span class="mh">0x5A</span><span class="p">,</span><span class="mh">0x0EE</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x1</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x85</span><span class="p">,</span><span class="mh">0x5E</span><span class="p">,</span><span class="mh">0x7E</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x0FD</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x9A</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x0F7</span>
+<span class="p">]</span>
+<span class="n">inputindex</span><span class="o">=</span><span class="p">[</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x09</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">resindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="o">=</span><span class="n">inputindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">input</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">=</span><span class="n">perm</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">final</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">perm</span><span class="o">=</span><span class="p">[</span>
+    <span class="mh">0x0A5</span><span class="p">,</span><span class="mh">0x0E0</span><span class="p">,</span><span class="mh">0x82</span><span class="p">,</span><span class="mh">0x8</span><span class="p">,</span><span class="mh">0x68</span><span class="p">,</span><span class="mh">0x38</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x0FD</span><span class="p">,</span><span class="mh">0x0BD</span><span class="p">,</span><span class="mh">0x0AD</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x7E</span><span class="p">,</span><span class="mh">0x0AB</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x0EB</span><span class="p">,</span><span class="mh">0x0A6</span><span class="p">,</span><span class="mh">0x0CF</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0x37</span><span class="p">,</span><span class="mh">0x0CC</span><span class="p">,</span><span class="mh">0x0E9</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span><span class="mh">0x3A</span><span class="p">,</span><span class="mh">0x0C3</span><span class="p">,</span><span class="mh">0x6</span><span class="p">,</span><span class="mh">0x5D</span><span class="p">,</span><span class="mh">0x0AF</span><span class="p">,</span><span class="mh">0x95</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x0B3</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x0FC</span><span class="p">,</span><span class="mh">0x8C</span><span class="p">,</span><span class="mh">0x0E5</span><span class="p">,</span><span class="mh">0x60</span><span class="p">,</span><span class="mh">0x2B</span><span class="p">,</span><span class="mh">0x0C2</span><span class="p">,</span><span class="mh">0x69</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x0B8</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x0EF</span><span class="p">,</span><span class="mh">0x84</span><span class="p">,</span><span class="mh">0x5F</span><span class="p">,</span><span class="mh">0x0A0</span><span class="p">,</span><span class="mh">0x0D7</span><span class="p">,</span><span class="mh">0x6E</span><span class="p">,</span><span class="mh">0x2A</span><span class="p">,</span><span class="mh">0x0CB</span><span class="p">,</span><span class="mh">0x46</span><span class="p">,</span><span class="mh">0x2C</span><span class="p">,</span><span class="mh">0x0F1</span><span class="p">,</span><span class="mh">0x0B1</span><span class="p">,</span><span class="mh">0x0A9</span><span class="p">,</span><span class="mh">0x0DE</span><span class="p">,</span><span class="mh">0x0D5</span><span class="p">,</span><span class="mh">0x0B7</span><span class="p">,</span><span class="mh">0x0CE</span><span class="p">,</span><span class="mh">0x39</span><span class="p">,</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0x0E8</span><span class="p">,</span><span class="mh">0x70</span><span class="p">,</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x21</span><span class="p">,</span><span class="mh">0x0C6</span><span class="p">,</span><span class="mh">0x64</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x0BB</span><span class="p">,</span><span class="mh">0x0C1</span><span class="p">,</span><span class="mh">0x98</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x2</span><span class="p">,</span><span class="mh">0x0FF</span><span class="p">,</span><span class="mh">0x7F</span><span class="p">,</span><span class="mh">0x55</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x6C</span><span class="p">,</span><span class="mh">0x0F4</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x0F0</span><span class="p">,</span><span class="mh">0x56</span><span class="p">,</span><span class="mh">0x0C9</span><span class="p">,</span><span class="mh">0x57</span><span class="p">,</span><span class="mh">0x9D</span><span class="p">,</span><span class="mh">0x0D0</span><span class="p">,</span><span class="mh">0x0C5</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0x0DF</span><span class="p">,</span><span class="mh">0x0F8</span><span class="p">,</span><span class="mh">0x47</span><span class="p">,</span><span class="mh">0x0B5</span><span class="p">,</span><span class="mh">0x79</span><span class="p">,</span><span class="mh">0x9F</span><span class="p">,</span><span class="mh">0x3C</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x9C</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0x9A</span><span class="p">,</span><span class="mh">0x8D</span><span class="p">,</span><span class="mh">0x30</span><span class="p">,</span><span class="mh">0x0D9</span><span class="p">,</span><span class="mh">0x94</span><span class="p">,</span><span class="mh">0x2F</span><span class="p">,</span><span class="mh">0x42</span><span class="p">,</span><span class="mh">0x50</span><span class="p">,</span><span class="mh">0x35</span><span class="p">,</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x8E</span><span class="p">,</span><span class="mh">0x4E</span><span class="p">,</span><span class="mh">0x0C4</span><span class="p">,</span><span class="mh">0x4</span><span class="p">,</span><span class="mh">0x0B0</span><span class="p">,</span><span class="mh">0x0E1</span><span class="p">,</span><span class="mh">0x5C</span><span class="p">,</span><span class="mh">0x3D</span><span class="p">,</span><span class="mh">0x72</span><span class="p">,</span><span class="mh">0x0C7</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x6A</span><span class="p">,</span><span class="mh">0x4D</span><span class="p">,</span><span class="mh">0x49</span><span class="p">,</span><span class="mh">0x3</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x91</span><span class="p">,</span><span class="mh">0x99</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x5</span><span class="p">,</span><span class="mh">0x0C0</span><span class="p">,</span><span class="mh">0x0E7</span><span class="p">,</span><span class="mh">0x52</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span><span class="mh">0x59</span><span class="p">,</span><span class="mh">0x0F9</span><span class="p">,</span><span class="mh">0x85</span><span class="p">,</span><span class="mh">0x0D3</span><span class="p">,</span><span class="mh">0x0BC</span><span class="p">,</span><span class="mh">0x25</span><span class="p">,</span><span class="mh">0x0CD</span><span class="p">,</span><span class="mh">0x0B6</span><span class="p">,</span><span class="mh">0x0DB</span><span class="p">,</span><span class="mh">0x0EC</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0x7B</span><span class="p">,</span><span class="mh">0x0F6</span><span class="p">,</span><span class="mh">0x0AA</span><span class="p">,</span><span class="mh">0x73</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x0FE</span><span class="p">,</span><span class="mh">0x26</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x3E</span><span class="p">,</span><span class="mh">0x0A3</span><span class="p">,</span><span class="mh">0x53</span><span class="p">,</span><span class="mh">0x0ED</span><span class="p">,</span><span class="mh">0x5A</span><span class="p">,</span><span class="mh">0x34</span><span class="p">,</span><span class="mh">0x0EA</span><span class="p">,</span><span class="mh">0x0AC</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x90</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mh">0x63</span><span class="p">,</span><span class="mh">0x0A7</span><span class="p">,</span><span class="mh">0x0D2</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x0F7</span><span class="p">,</span><span class="mh">0x0BE</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0x4A</span><span class="p">,</span><span class="mh">0x7A</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x0DC</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0x0D6</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0x0EE</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="mh">0x0F2</span><span class="p">,</span><span class="mh">0x44</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mh">0x0DA</span><span class="p">,</span><span class="mh">0x5E</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mh">0x2D</span><span class="p">,</span><span class="mh">0x0A8</span><span class="p">,</span><span class="mh">0x0A4</span><span class="p">,</span><span class="mh">0x0</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0x65</span><span class="p">,</span><span class="mh">0x7C</span><span class="p">,</span><span class="mh">0x71</span><span class="p">,</span><span class="mh">0xD8</span><span class="p">,</span><span class="mh">0x87</span><span class="p">,</span><span class="mh">0xDD</span><span class="p">,</span><span class="mh">0x1</span><span class="p">,</span><span class="mh">0x3B</span><span class="p">,</span><span class="mh">0x4B</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0x27</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0xA1</span><span class="p">,</span><span class="mh">0xE3</span><span class="p">,</span><span class="mh">0xD1</span><span class="p">,</span><span class="mh">0x51</span><span class="p">,</span><span class="mh">0x9E</span><span class="p">,</span><span class="mh">0xD4</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0xAE</span><span class="p">,</span><span class="mh">0xFA</span><span class="p">,</span><span class="mh">0xF3</span><span class="p">,</span><span class="mh">0xB4</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">,</span><span class="mh">0xCA</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x9</span><span class="p">,</span><span class="mh">0xC8</span><span class="p">,</span><span class="mh">0xB9</span><span class="p">,</span><span class="mh">0x97</span><span class="p">,</span><span class="mh">0x75</span><span class="p">,</span><span class="mh">0x4C</span><span class="p">,</span><span class="mh">0xE4</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0x9B</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0xE6</span><span class="p">,</span><span class="mh">0x29</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x7</span><span class="p">,</span><span class="mh">0xB2</span><span class="p">,</span><span class="mh">0x2E</span><span class="p">,</span><span class="mh">0x89</span><span class="p">,</span><span class="mh">0x28</span><span class="p">,</span><span class="mh">0xE2</span><span class="p">,</span><span class="mh">0xA2</span><span class="p">,</span><span class="mh">0x8F</span><span class="p">,</span><span class="mh">0x8A</span><span class="p">,</span><span class="mh">0x86</span><span class="p">,</span><span class="mh">0xF5</span><span class="p">,</span><span class="mh">0xBA</span>
+<span class="p">]</span>
+<span class="n">inputindex</span><span class="o">=</span><span class="p">[</span><span class="mh">0x0C</span><span class="p">,</span><span class="mh">0x1F</span><span class="p">,</span><span class="mh">0x11</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x0A</span><span class="p">,</span><span class="mh">0x0F</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x13</span><span class="p">,</span><span class="mh">0x03</span><span class="p">,</span><span class="mh">0x1A</span><span class="p">,</span><span class="mh">0x14</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x18</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x0B</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x09</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,</span><span class="mh">0x0D</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x1E</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x1C</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="mh">0x1B</span><span class="p">,</span><span class="mh">0x1D</span><span class="p">,</span><span class="mh">0x0E</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">resindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="o">=</span><span class="n">inputindex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">input</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">=</span><span class="n">perm</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;picoCTF{&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+</code></pre></div>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2021年4月8日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../rolling/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                Rolling My Own
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../../modctf-2021/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                防衛省 CTF 参加記
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

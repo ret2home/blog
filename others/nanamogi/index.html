@@ -1,0 +1,1281 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="@ret2home のブログや CTF の Writeup など">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/others/nanamogi/">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      <link rel="shortcut icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>UFOキャッチャー制作中間記録・七模擬まで - risoria's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#7e56c2">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    
+      
+    
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="UFOキャッチャー制作中間記録・七模擬まで - risoria's blog">
+  <meta property="og:description" content="@ret2home のブログや CTF の Writeup など">
+  <meta property="og:url" content="https://ret2home.github.io/blog/others/nanamogi/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-header-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            risoria's blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              UFOキャッチャー制作中間記録・七模擬まで
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../kyopro/joi2022-ho/" class="md-tabs__link">
+          競プロ
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../CTF/metared2021-5/" class="md-tabs__link">
+          CTF
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" class="md-tabs__link md-tabs__link--active">
+          旅行記他
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://ret2home.github.io/blog/" title="risoria&#39;s blog" class="md-nav__button md-logo" aria-label="risoria's blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12h16m0-16a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59l3.99-4z"/></svg>
+
+    </a>
+    risoria's blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      競プロ
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="競プロ" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        競プロ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2022-ho/" class="md-nav__link">
+      JOI 2021/2022 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-ho/" class="md-nav__link">
+      JOI 2020/2021 本選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2021-yo/" class="md-nav__link">
+      JOI 2020/2021 二次予選参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-sp/" class="md-nav__link">
+      JOI 2019/2020 春合宿参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kyopro/joi2020-ho/" class="md-nav__link">
+      JOI 2019/2020 本選参加記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/metared2021-5/" class="md-nav__link">
+      Metared CTF 5th Stage writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      picoCTF 2021 writeup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="picoCTF 2021 writeup" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        picoCTF 2021 writeup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/" class="md-nav__link">
+      overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-2" type="checkbox" id="nav-3-2-2">
+    
+    <label class="md-nav__link" for="nav-3-2-2">
+      pwn
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="pwn" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        pwn
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+      Binary Gauntlet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/cacheme/" class="md-nav__link">
+      Cache Me Outside
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+      Here's a LIBC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+      Unsubscriptions Are Free
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/filtered/" class="md-nav__link">
+      filtered-shellcode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/kitengine/" class="md-nav__link">
+      Kit Engine
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/pwn/horsepower/" class="md-nav__link">
+      Download Horsepower
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-2-3" type="checkbox" id="nav-3-2-3">
+    
+    <label class="md-nav__link" for="nav-3-2-3">
+      rev
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="rev" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        rev
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/gogo/" class="md-nav__link">
+      gogo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+      Easy as GDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/powershelly/" class="md-nav__link">
+      powershelly
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/rolling/" class="md-nav__link">
+      Rolling My Own
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/picoctf-2021/rev/checkpass/" class="md-nav__link">
+      checkpass
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/modctf-2021/" class="md-nav__link">
+      防衛省 CTF 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/zer0pts-ctf-2021/" class="md-nav__link">
+      zer0pts CTF 2021 writeup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/0x41414141-pwn/" class="md-nav__link">
+      0x41414141 CTF Writeup (pwn only)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../CTF/pakenctf2020/" class="md-nav__link">
+      Paken CTF 2020 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      旅行記他
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="旅行記他" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        旅行記他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        UFOキャッチャー制作中間記録・七模擬まで
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      UFOキャッチャー制作中間記録・七模擬まで
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    0. 概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 設計
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 作業
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 作業">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-629" class="md-nav__link">
+    2.1. 6/29(木)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-630" class="md-nav__link">
+    2.2. 6/30(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-75" class="md-nav__link">
+    2.3. 7/5(水)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-77" class="md-nav__link">
+    2.4. 7/7(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-710" class="md-nav__link">
+    2.5. 7/10(月)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-711" class="md-nav__link">
+    2.6. 7/11(火)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-712" class="md-nav__link">
+    2.7. 7/12(水)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-713" class="md-nav__link">
+    2.8. 7/13(木)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-714" class="md-nav__link">
+    2.9. 7/14(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-715" class="md-nav__link">
+    2.10. 7/15(土)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211-716-day1" class="md-nav__link">
+    2.11. 7/16(日)　七模擬 Day1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-717-day2" class="md-nav__link">
+    2.12. 7/17(月)　七模擬 Day2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. まとめ
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TISF2023/" class="md-nav__link">
+      Thailand International Science Fair 2023 参加記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kansai-trip2/" class="md-nav__link">
+      関西旅行記2 〜マスフェスタ参加記を添えて〜
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ndfes2022/" class="md-nav__link">
+      灘校文化祭訪問記
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pakencamp2021/" class="md-nav__link">
+      パ研合宿 2021 運営記
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    0. 概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 設計
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 作業
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 作業">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-629" class="md-nav__link">
+    2.1. 6/29(木)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-630" class="md-nav__link">
+    2.2. 6/30(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-75" class="md-nav__link">
+    2.3. 7/5(水)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-77" class="md-nav__link">
+    2.4. 7/7(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-710" class="md-nav__link">
+    2.5. 7/10(月)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-711" class="md-nav__link">
+    2.6. 7/11(火)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-712" class="md-nav__link">
+    2.7. 7/12(水)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-713" class="md-nav__link">
+    2.8. 7/13(木)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-714" class="md-nav__link">
+    2.9. 7/14(金)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-715" class="md-nav__link">
+    2.10. 7/15(土)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211-716-day1" class="md-nav__link">
+    2.11. 7/16(日)　七模擬 Day1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-717-day2" class="md-nav__link">
+    2.12. 7/17(月)　七模擬 Day2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. まとめ
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ret2home/blog/edit/master/docs/others/nanamogi/index.md" title="編集" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>UFOキャッチャー制作中間記録・七模擬まで</h1>
+                
+                <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<h2 id="0">0. 概要<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<p>七月の模擬文化祭が終わった所で UFO キャッチャー制作の作業進捗を紹介していきます。</p>
+<p>私は主に XYZ 移動機構の設計を担当しているんですが、アームがなくなりフック式になった関係で、チームとしての作業は移動機構の設計を形にしていくものとなったため、備忘録的にこれを書いています。夏休み忘れちゃいそうですし。</p>
+<h2 id="1">1. 設計<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>7/1 の深夜、眠れなかったので 3 時間くらい掛けて頭の中にあった構想を図にしました。基本的に作業をする中で設計は変わっていくので、長さは特に決めず感覚で描きました。カーテンレールの向きが違ったりする事以外は、ほぼこのまま現物になりました。</p>
+<p><img alt="design" src="design.jpg" width="350px" /></p>
+<p>設計は階層構造になっています。まずワイヤーの巻き上げで上下に移動する Z 軸機構があり、それをチェーンで奥行き方向に移動させる Y 軸機構があり、さらにそれをチェーンで横方向に移動させる X 軸機構があります。</p>
+<p>X,Y 軸機構は仕組みとしてはほぼ同じで、下図のようにラダーチェーンをスプロケットという歯車にかませ、スプロケットをギヤを付けたモーターで回転させる事で平行移動を生み出しています。ここで、カーテンレールにランナーで吊り下げる事により滑らかな移動を出来るようにしています（図ではカーテンレールに載せていますが、結局吊り下げました）。</p>
+<p><img alt="chain" src="chain.png" width="350px" /></p>
+<p>一方、Z 軸機構はギヤを付けたモーターでワイヤーを巻き上げる事により上下移動を生み出しています。</p>
+<p>仕組みとしては簡単ですね。ただ、カーテンレールで土台を挟んで動かす時に、左右の進む速度が違うとガタガタになってしまうため、色々心配ではありました。</p>
+<h2 id="2">2. 作業<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21-629">2.1. 6/29(木)<a class="headerlink" href="#21-629" title="Permanent link">&para;</a></h3>
+<p>五月に必要そうな部品を適当に買っていたんですが、六月は音楽祭やら、コロナやらで作業が出来なかったので、回復した日にアトラク長の R 君に「七模擬あと二週間だけどやばくな〜い？（適当）」的な事を言って、ラダーチェーンを組み立て始めました。チェーンなので一つずつ切り出して組み立てるので結構大変なんですよね。。。期末前日ということもあり、それくらいしか進みませんでした。</p>
+<p>しかし、それまで実体が何もなかった事を考えると、大きな進歩！</p>
+<h3 id="22-630">2.2. 6/30(金)<a class="headerlink" href="#22-630" title="Permanent link">&para;</a></h3>
+<p>期末の Day1 という事で、X 軸機構のカーテンレールで木材を吊り下げてチェーンで動かす所までやろうとしましたが、ギヤボックスを木材を固定する方法が分からなくなった所で終了しました。ギヤボックスの出力シャフトにスプロケットを付けて回転させ、チェーンを動かす訳ですが、チェーンで何かを引っ張る以上はギヤボックスにも相当の力が掛かります。しかし、付属の固定部品はそれに耐え切れず取れてしまいました。</p>
+<p>この問題は、後にギヤボックスの周りに釘を打ち込む事で動けなくする事で解決しました。</p>
+<p>そして、この夜に上述の設計を描きました。</p>
+<h3 id="23-75">2.3. 7/5(水)<a class="headerlink" href="#23-75" title="Permanent link">&para;</a></h3>
+<p>期末最終日という事で、午後から 2 時間程金曜日の続きの作業（実験）をし、兎にも角にも「土台をラダーチェーンを使って真っ直ぐ移動させる」のが技術的に可能である事が分かりました。ただし、伸縮式カーテンレールを使っていた関係でレールの継ぎ目に引っ掛かってしまう問題が露見しました。逆に、継ぎ目をなくし片方だけだと可動域が短過ぎました。</p>
+<p>という事で、別の長いカーテンレールを発注する必要がある事が分かりました。</p>
+<p><img alt="test1" src="test1.jpg" width="350px" /></p>
+<h3 id="24-77">2.4. 7/7(金)<a class="headerlink" href="#24-77" title="Permanent link">&para;</a></h3>
+<p>この日は絶起したり、3D プリンターが壊れたりして散々でしたが、アトラク長の R 君とハンズに買い出しに行った時に色々と着想を得る事ができました。</p>
+<p>そもそも、買い出しに行ったのは Z 軸機構でギヤボックスの出力シャフトに合う、ワイヤー巻取りに使うボビンを探すためでした。これに関しては、なぜかクランクプレートという部品とボビンのサイズが丁度合っていたため、穴にネジを差し込んで固定する事で解決しました。</p>
+<p>また、3Dプリンターが壊れた事でアーム制作は絶望的になりましたが、途中でゲーセンに入った事により、UFOキャッチャーの中にはフック式のものがある事を知り、これなら作れそうという事でついでにハンズで部品（フック、リング他）を調達しました。また、元々 X,Y,Z 全てタミヤの「標準ギヤボックス」を使っていましたが、Z 軸機構に関してはパワーが心配になったので「シングルギヤボックス」に変えました。</p>
+<p>（余談）帰りに渋谷でナポリタンを食べて帰りました。おいしかったです（小並感）</p>
+<h3 id="25-710">2.5. 7/10(月)<a class="headerlink" href="#25-710" title="Permanent link">&para;</a></h3>
+<p>理系は登校日だと思ってたら休みでした。気付いたのが電車の中だったので、結局 R 君と寂しく作業をしました。ゲーセンで見たものよろしく、土台のコンパネを切り出し、チェーンをいくつか取り付け、その先端にフックを吊り下げる形にしました。</p>
+<p><img alt="design_z" src="design_z.jpg" width="350px" /></p>
+<p>チェーンを固定するのは工夫が必要でしたが、チェーンの継ぎ目部分に釘を数本打ちつける事で完全に固定する事ができました。</p>
+<p>また、ボビンをクランクプレートに取り付け、ギヤボックスで回転させてワイヤーを巻き取る機構も制作しました。ワイヤーの固定には別の器具が必要そうだったので、取り敢えずタコ糸で代用しましたが、「ほぼ」上手く行きました。（後述）</p>
+<p>（余談）金曜日に食べ損ねたラーメン一蘭を食べに行きました。おいしかったです（小並感 2）</p>
+<h3 id="26-711">2.6. 7/11(火)<a class="headerlink" href="#26-711" title="Permanent link">&para;</a></h3>
+<p>この日こそ登校日だったので、1 時間程作業をしました。フックが複数ある以上、端に景品が掛かるとモーメントで傾いてしまうので、上図のように固定の外枠から可動の内枠がせり出す機構を作りました。図では二重「マトリョーシカ」構造になっていますが、可動域の長さ的に三重にする必要がありそうな事が分かりました。</p>
+<p>というのも、可動部分は固定部分より長く移動することは出来ないわけで、40cm動かしたかったら固定枠も40cm以上必要なんですよね。それをすると筐体の高さ的に可動域が減ります。三重にすれば、40cm動かしたければ固定枠は20cmあれば十分という訳です。</p>
+<h3 id="27-712">2.7. 7/12(水)<a class="headerlink" href="#27-712" title="Permanent link">&para;</a></h3>
+<p>まずマトリョーシカ構造を三重にしました。そして、タコ糸を付けて上下移動させようとした時、先程の「ほぼ」上手く行った時の問題が露見しました。ボビンとクランクプレートはネジとナットで固定しているんですが、このナット部分にタコ糸が引っ掛かったり、タコ糸同士で絡まったりして、止まったり逆方向に進み始めたりする事がありました。そこで、パテでナットの隙間を埋めようとしましたが、結局タコ糸特有の問題が残ってしまったため、タコ糸は諦める事にしました。</p>
+<p>残るはワイヤーですが、なぜかボビンの穴を二周縫うようにしてみたらいい感じに固定でき（あとでちゃんとスリーブで固定しました）、巻き上げに成功しました。これにより、Z 軸機構が完成。</p>
+<p>七模擬まで、残り 3 日！</p>
+<p>(余談) 帰りに鉄緑に行く前に侍で肉増しラーメンを食べました。おいしかったです（小並感 3）</p>
+<h3 id="28-713">2.8. 7/13(木)<a class="headerlink" href="#28-713" title="Permanent link">&para;</a></h3>
+<p>Z 軸機構を動かすための Y 軸の土台とカーテンレールを取り付け、ラダーチェーンで移動出来る事を確認しました。</p>
+<p>また、ギミックとして景品を置く床を回転させたかったんですが、電動回転台は高かったので安いアナログ回転台を買い、その周りに余ったラダーチェーンを取り付けて、スプロケットに噛ませてモーター（ギヤボックス）で回転させる事により、自作電動回転台が出来ました。先述の Z 軸だけでなく、XY もギヤボックスをトルクが大きいものに変えたため、元のギヤボックスが余ってしまったため、それを有効活用（？）した形です。</p>
+<p>ここまで来ると完成しそうな気がしてきたので、七模擬当日がかなり暑い、という事でプレイを有料化して景品をアイスにしよう！という構想が進み、昼頃に氷屋にドライアイスを買いに行き、クーラーボックスの性能を確かめた他、帰りにアイスが安いスーパーを色々当たりました。結局、有料化は先生に止められてしまいましたが・・・。</p>
+<h3 id="29-714">2.9. 7/14(金)<a class="headerlink" href="#29-714" title="Permanent link">&para;</a></h3>
+<p>残るは X 軸ですが、こちらのカーテンレールはランナーが小さいため、Y 軸のように釘で固定するのがかなり難しくなっていました。そこで、木工に詳しい Y 君の技術によって U 字釘で固定する事になりました。これはそれなりに苦戦しました。何度も外れましたし。</p>
+<p>これが安定した後は、ついに筐体の立体化に着手しました。これまではただの機構なので、それを立体的に設置しないといけない訳です。</p>
+<p>木工に関しては私はど素人なので、プロがいて助かりました。私がやってたら筐体が崩れて全部壊れて台無しでした。画像は立体化の途中です。これじゃ強度最悪なんでね...。</p>
+<p><img alt="img1" src="img1.jpg" width="350px" /></p>
+<h3 id="210-715">2.10. 7/15(土)<a class="headerlink" href="#210-715" title="Permanent link">&para;</a></h3>
+<p>七模擬まで残り一日となりました。筐体を強靭にする作業と共に、配線作業が始まりました。X,Y のモーターはいいとして、Z 軸のモーターは縦横無尽に動くので、普通に配線を繋ぐと景品に引っ掛かってしまう訳です。ここで、S 君の思いつきにより、Y 軸のカーテンレールに電気を通してみた所なんと通じたので、Z 軸の土台を吊るすだけでなく、電気を通すレールとして活躍してもらう事になりました。ステンレスなので抵抗はそれなりにあるんですが、あまり問題はありませんでした。</p>
+<p>これにより、XYZ 全ての機構が筐体上で干渉なく稼働出来る事が確認できました！！パチパチ〜</p>
+<p><img alt="img2" src="img2.jpg" width="350px" /></p>
+<p>とは言っても、乾電池を毎回向きを変えてやってるだけなので、ユーザエクスペリエンスは最悪です。という事で、ここからはトグルスイッチを取り付ける必要がありました。</p>
+<h3 id="211-716-day1">2.11. 7/16(日)　七模擬 Day1<a class="headerlink" href="#211-716-day1" title="Permanent link">&para;</a></h3>
+<p>午前中はトグルスイッチのはんだ付けを S 君にやってもらいました。私は中学の技術の授業以来やってないんですが、あれ意外と時間掛かるんですね...。</p>
+<p>ところで、景品をアイスにして有料化しようとした所頓挫した、と先述しました。とはいえ景品は流石に必要だったので、倉庫にあるらしいチュッパチャップスをあてにしてポスターを R 君が作ってくれましたが、倉庫にあったのは賞味期限切れの中華製パチモンチュッパチャップス（保存状態最悪）でした。我々でも流石に食べたくなかったので、チュッパチャップスを買いに行こうとしましたが、1 本 30 円と割高だったので、同じくらいの値段のパピコに変える事にしました。暑いんでね。ここで、木曜日にアイス計画のために、氷屋でドライアイスを調達する用意をしていたのが効きました。</p>
+<p>諸々の準備が整った所で、13 時頃についに稼働しました！！　他のアトラクは稼働してなかった（その後いくつか稼働）ので、二週間前はうちのアトラクが進捗最悪だった事を思うとよくここまで出来たなという感じです。木工のプロがいるのと、メンバーがみんな毎日来てくれるのが本当に大きかったです。あと雰囲気も良かった。雰囲気作りって結構重要で、リーダーが気さくな感じだと本当にやりやすいですよね。ありがたい限りです。</p>
+<p>ただ、アンケート結果から分かるように UI の部分、つまりスイッチの部分がかなり扱いづらかったようです。それはそうですよね、即席で固定もしてない訳ですから...。本番までにはまともなボタンにする必要があります。あと、模型に詳しい顧問によると Z 軸のモーターのブラシがすぐに寿命を迎えそうなので、他のモーターにした方が良いとの事でした。</p>
+<video controls width=350px>
+    <source src="./IMG_0939.mp4" type="video/mp4">
+</video>
+
+<h3 id="212-717-day2">2.12. 7/17(月)　七模擬 Day2<a class="headerlink" href="#212-717-day2" title="Permanent link">&para;</a></h3>
+<p>暑いのと、Day1 から進められる事もほぼなかったので稼働時間は短くして休んでいる時間が長かったと思います。食品班おいしかったなぁ（小並感 4）</p>
+<p>一方、途中でボビンとクランクプレートを固定していたナットが緩み、色々外れる事案が発生しました。その後、適当に付け直したらまた外れました。ちゃんとスパナで留めたら直りました。横着はしないようにしよう。</p>
+<h2 id="3">3. まとめ<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>ただの作業記録にまとめも何もないですが、短期間で形に出来て良かったです。これなら秋は勉強できるな！笑</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最終更新日: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年7月17日</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../CTF/pakenctf2020/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  前
+                </span>
+                Paken CTF 2020 運営記
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../TISF2023/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  次
+                </span>
+                Thailand International Science Fair 2023 参加記
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e]+", "search.placeholder": "\u691c\u7d22", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
