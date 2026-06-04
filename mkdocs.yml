@@ -66,7 +66,6 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/config.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   
 plugins:
@@ -104,6 +103,7 @@ nav:
     - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
     - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
   - 旅行記他:
+    - セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し: others/seccamp2026_problem/index.md
     - UFOキャッチャー制作中間記録・七模擬まで: others/nanamogi/index.md
     - Thailand International Science Fair 2023 参加記: others/TISF2023/index.md
     - 関西旅行記2 〜マスフェスタ参加記を添えて〜: others/kansai-trip2/index.md
