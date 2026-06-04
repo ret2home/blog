@@ -17,3 +17,10 @@ h3{
     padding-bottom: 5px;
     padding-top: 10px;
 }
+
+.md-typeset h5,
+.md-typeset h6 {
+  color: var(--md-typeset-color);
+  font-size: 1em;
+  text-transform: none;
+}
