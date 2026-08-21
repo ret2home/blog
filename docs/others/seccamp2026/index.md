@@ -278,7 +278,10 @@ Visualizer も提供されていて，PoP や Probe の場所が表示されま�
 本演習では，当日に動かすソフトウェアとして，L4LB (Load Balancer), Cache Server を実装しました．
 
 L4LB では，サーバ数の増減によって，割り振り先のサーバが変わり TCP Connection が壊れないように，Consistent Hash や Connection Tracking を実装しました．
-XDP と呼ばれる ingress hook 手法を用いて，**温もりのある手作り IPv4/v6 over IPv6 トンネリングヘッダ**を付けていたり，行きは L4LB を経由するのに帰りは Cache Server から直接 return したりする (DSR, Direct Server Return) のがおもしろポイントだと思っています．
+
+Consistent Hash には，均等な振り分け方法として知られる Maglev Hash や，実装が簡単な Rendezvous Hash が知られていますが，私は Rendezvous Hash を実装しました．ちなみに，同じゼミのかわはらさんは，<a href="https://blog.kawababa.com/writing/2026/0512/" target="_blank">なんと応募時点で Maglev Hash を実装</a> されていました．凄すぎますね．
+
+L4LB の特に面白いポイントは，XDP と呼ばれる ingress hook 手法を用いて，**温もりのある手作り IPv4/v6 over IPv6 トンネリングヘッダ**を付けていたり，行きは L4LB を経由するのに帰りは Cache Server から直接 return したりする (DSR, Direct Server Return) する所だと思います．
 
 ```c
   ip2_v6->version = 6;
