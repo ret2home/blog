@@ -1,0 +1,2294 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="「私は CDN を自作した」と堂々と主張する権利を得る方法">
+      
+      
+        <meta name="author" content="ret2home">
+      
+      
+        <link rel="canonical" href="https://ret2home.github.io/blog/others/seccamp2026/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../seccamp2026_problem/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/avatar.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>セキュリティキャンプ2026 CDN 自作ゼミ参加記 - ret2home's blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+  
+    
+      
+    
+    
+      
+    
+    
+      
+    
+  
+  
+    
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="セキュリティキャンプ2026 CDN 自作ゼミ参加記 - ret2home&#39;s blog">
+  <meta property="og:description" content="「私は CDN を自作した」と堂々と主張する権利を得る方法">
+  <meta property="og:url" content="https://ret2home.github.io/blog/others/seccamp2026/">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/seccamp2026.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ret2home">
+  <meta name="twitter:creator" content="@ret2home">
+  <meta name="twitter:title" content="セキュリティキャンプ2026 CDN 自作ゼミ参加記 - ret2home&#39;s blog">
+  <meta name="twitter:description" content="「私は CDN を自作した」と堂々と主張する権利を得る方法">
+  <meta name="twitter:image" content="https://ret2home.github.io/blog/assets/seccamp2026.png">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-MJQPPFRVVS');
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="ret2home&#39;s blog" class="md-header__button md-logo" aria-label="ret2home's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ret2home's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              セキュリティキャンプ2026 CDN 自作ゼミ参加記
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  参加記など
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kyopro/joi2022-ho/" class="md-tabs__link">
+          
+  
+  
+  競プロ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CTF/metared2021-5/" class="md-tabs__link">
+          
+  
+  
+  CTF
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ret2home&#39;s blog" class="md-nav__button md-logo" aria-label="ret2home's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg>
+
+    </a>
+    ret2home's blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ret2home/blog/" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ret2home/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参加記など
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    参加記など
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セキュリティキャンプ2026 CDN 自作ゼミ参加記
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セキュリティキャンプ2026 CDN 自作ゼミ参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概要
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 当日の日記
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 当日の日記">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-day1-link-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Day1: こんにちは，LINK FOREST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-day2-lt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Day2: はじめての物理ネットワーク，LT 大会
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-day3-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Day3: CDN 構築成功，そして...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-day4-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Day4: ありがとう CDN 自作ゼミ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-day5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Day5: ありがとうセキュリティ・キャンプ協議会
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-day6-link-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6. Day6: ありがとう LINK FOREST
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 全体的な感想・反省
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. おまけ: 事前学習まで
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. おまけ: 事前学習まで">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-1-gslb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. 事前学習1: GSLB 演習
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-2-pop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. 事前学習2: PoP 演習
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. さらにおまけ: 応募課題
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seccamp2026_problem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nanamogi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UFOキャッチャー制作中間記録・七模擬まで
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TISF2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thailand International Science Fair 2023 参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kansai-trip2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関西旅行記2 〜マスフェスタ参加記を添えて〜
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ndfes2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    灘校文化祭訪問記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pakencamp2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    パ研合宿 2021 運営記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    競プロ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    競プロ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kyopro/joi2022-ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JOI 2021/2022 本選参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kyopro/joi2021-ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JOI 2020/2021 本選参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kyopro/joi2021-yo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JOI 2020/2021 二次予選参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kyopro/joi2020-sp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JOI 2019/2020 春合宿参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kyopro/joi2020-ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JOI 2019/2020 本選参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CTF
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/metared2021-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metared CTF 5th Stage writeup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    picoCTF 2021 writeup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    picoCTF 2021 writeup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pwn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    pwn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/gauntlet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Binary Gauntlet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/cacheme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cache Me Outside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/hereslibc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Here's a LIBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/unsubsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unsubscriptions Are Free
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/filtered/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    filtered-shellcode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/kitengine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kit Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/pwn/horsepower/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download Horsepower
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rev
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    rev
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/rev/gogo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gogo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/rev/easyasgdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Easy as GDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/rev/powershelly/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    powershelly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/rev/rolling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rolling My Own
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/picoctf-2021/rev/checkpass/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    checkpass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/modctf-2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    防衛省 CTF 参加記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/zer0pts-ctf-2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    zer0pts CTF 2021 writeup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/0x41414141-pwn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0x41414141 CTF Writeup (pwn only)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/pakenctf2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paken CTF 2020 運営記
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概要
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 当日の日記
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 当日の日記">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-day1-link-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Day1: こんにちは，LINK FOREST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-day2-lt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Day2: はじめての物理ネットワーク，LT 大会
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-day3-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Day3: CDN 構築成功，そして...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-day4-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Day4: ありがとう CDN 自作ゼミ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-day5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Day5: ありがとうセキュリティ・キャンプ協議会
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-day6-link-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6. Day6: ありがとう LINK FOREST
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 全体的な感想・反省
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. おまけ: 事前学習まで
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. おまけ: 事前学習まで">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-1-gslb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. 事前学習1: GSLB 演習
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-2-pop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. 事前学習2: PoP 演習
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. さらにおまけ: 応募課題
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>セキュリティキャンプ2026 CDN 自作ゼミ参加記</h1>
+
+<p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<h2 id="1">1. 概要<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>8/10-15 にセキュリティキャンプ 2026 開発 Y4 <strong>CDN 自作ゼミ</strong> に参加してきました！本ゼミは，</p>
+<ol>
+<li>CDN の仕組みを理解し，</li>
+<li>その要素技術を自ら実装，</li>
+<li>物理的ミニ CDN を構築・動作させる事に成功</li>
+</ol>
+<p>することで，<strong>「私は CDN を自作した」と堂々と主張する権利</strong> を獲得するゼミです．</p>
+<ul>
+<li>講師: <a href="https://x.com/nyaxt" target="_blank">nyaxt</a> 先生</li>
+<li>チューター: <a href="https://x.com/kota_yata" target="_blank">kota-yata</a> さん</li>
+<li>受講生: <a href="https://x.com/MSprzk" target="_blank">Miyamoto</a> さん, <a href="https://x.com/KwhrRyosei5590" target="_blank">かわはら</a>
+さん, <a href="https://x.com/repunit11" target="_blank">レプ</a>さん, <a href="https://x.com/ret2home" target="_blank">ret2home</a> (私)</li>
+</ul>
+<p>もう少し具体的に言うと，キャンプまでの事前学習で L4 Load Balancer や Cache Server などのソフトウェアを実装した上で，当日に配布される大量のネットワーク機器やミニ PC, Global IP らを用いて実際に CDN を構築します．</p>
+<p><strong>LAN ケーブルやら光ファイバーやらがごちゃごちゃ x 4 人分</strong>なので机上が本当に大変なことに... ※写真は私の分です</p>
+<p><img alt="当日の様子" src="servers.png" /></p>
+<p>私はゼミのベースラインの内容に加えて，動画などの <strong>大容量ファイルの高スループット配信</strong> を行うため，<strong>Request Collapsing</strong> や <strong>HTTP Range Requests</strong> などを実装しました．</p>
+<p><a href="https://github.com/ret2home/ncdn" target="_blank">リポジトリはこちら</a></p>
+<p>当日は 1Gbps が上限となる構成でミニ CDN を動作させた後，ネットワーク構成を大きく変え，<strong>ほぼ WireSpeed となる 3.3Gbps での配信に成功</strong>しました！</p>
+<p>この記事では，<a href="/blog/others/seccamp2026_problem/">応募課題晒し</a> の反省も踏まえて，前半を読み物として楽しめる当日の参加記として，後半で技術的なトピックを扱います．また，個人的に他の人の参加記で自分の名前が出ていると嬉しいので，参加者の方々のエピソードを積極的に出しています．</p>
+<h2 id="2">2. 当日の日記<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21-day1-link-forest">2.1. Day1: こんにちは，LINK FOREST<a class="headerlink" href="#21-day1-link-forest" title="Permanent link">&para;</a></h3>
+<p>計画性がないので当日朝に ACCEA で名刺を受け取りつつ，12:16 京王多摩センター着．学科同期の <a href="https://x.com/atree4728" target="_blank">atree</a> と待ち合わせ，なんと多摩までお見送りに来てくれていた彼女(本当にありがとう)と 3 人で昼食を取りました．隙あらば彼に惚気ていた話を暴露されたりしました．</p>
+<p>時間は余裕だったはずなのに，例によって計画性がないので走って何とか LINK FOREST に到着．
+キャリーケースだからと，どうせ使わない学科 PC やらマスタリング TCP/IP 応用編やらを詰め込んだ昨日の自分と，多摩の起伏の多い地形を呪いました．</p>
+<p>会場に着いた後は，セキュキャン初の名刺交換を楽しんだり，隣の席になった TEE ゼミのつよつよ <a href="https://x.com/no2cax" target="_blank">nonica</a> さんとちょっと意気投合(?)したりしていました．彼は凄くて，Rust で <a href="https://www.sigbus.info/compilerbook" target="_blank">rui さんの Compiler Book</a> を実装していたり，<a href="https://gihyo.jp/book/2025/978-4-297-15012-9" target="_blank">作って理解する仮想化技術</a> を Raspi 上で動かしたりとアクティブな人で，同年代なこともあり，かなり刺激を受けました．この compiler book ですが，同じゼミのレプさんも <a href="https://repunit11.com/blogs/2026-03-22-c-compiler-in-go/" target="_blank">Go で実装していて</a>，私もこの夏に何かしらの言語で実装したいです．</p>
+<p>交流会では，筑波勢が多くて羨ましくなりました．慶應勢も多いですね．隣の席の彼もそうですし，うちのゼミのチューターも，CPU ゼミのガチプロと名高い <a href="https://x.com/Latte72R" target="_blank">Latte くん</a> も．<strong>悲しくなったので，附属高校のよしみで筑波の顔をしておきました</strong>．</p>
+<p>Miro ボードに意気込みを書くパートがあったのですが，PC をホテルの部屋に忘れたのでスマホで書くしかなく，爆速 CDNとだけ書いたら </p>
+<p><strong>「おっ，爆速 CDN を作るらしいですよ！成果発表に期待しましょうね😎」</strong> </p>
+<p>と壇上で読み上げられ，以来爆速 CDN がゼミでミーム(?)になりました．</p>
+<p>21 時頃に解散後は，LT 会が Day2 ということで，atree と一緒にネタを考え，就寝．</p>
+<h3 id="22-day2-lt">2.2. Day2: はじめての物理ネットワーク，LT 大会<a class="headerlink" href="#22-day2-lt" title="Permanent link">&para;</a></h3>
+<p>専門講義会場に入ると，<strong>机の上には生のインターネットが来ていました</strong>．CDN ゼミは NOC 様様のおかげで，他の会場ネットワークと隔離された unfiltered なネットワークが提供されています．NOC 部屋から光ファイバーが廊下を伝って，机の上の 10G L2 スイッチまで来ているという訳です．</p>
+<p>当日はここら辺を何も分かっていなかったので，揃って NOC 部屋を見学させていただきました．けしからんネットワーク遊びの話をして下さった時の楽しそうな顔が今も思い浮かびますね．Home NOC やりたいなぁ，<strong>目指せ逸般の誤家庭</strong>．NOC の皆さん，ありがとうございました！</p>
+<p><img alt="NOC" src="noc.jpg" /></p>
+<p>部屋に戻った後は，初めての Router 設定をしました．このゼミでは受講生それぞれに Private ASN と global 割当 prefix が与えられており，インターネット相手に通信を往復するには，BGP プロトコルを用いて自分の持っているアドレスを広告する必要があります．これを間違えて他のサービスの IP を広告したりすると，BGP ハイジャックが起きて <strong>インターネットが壊れます</strong>．</p>
+<iframe width="318" height="212.25" scrolling="no" src="https://alu.jp/series/%E3%81%8B%E3%81%90%E3%82%84%E6%A7%98%E3%81%AF%E5%91%8A%E3%82%89%E3%81%9B%E3%81%9F%E3%81%84%E3%80%9C%E5%A4%A9%E6%89%8D%E3%81%9F%E3%81%A1%E3%81%AE%E6%81%8B%E6%84%9B%E9%A0%AD%E8%84%B3%E6%88%A6%E3%80%9C/crop/embed/Cjj7qWXNOuksiT6getUk/0?referer=oembed" style="margin: auto; display: block; border-width: 0px;"></iframe>
+
+<p>諸々の設定が完了し，<strong>11:30 頃にインターネットに進出成功</strong>．</p>
+<hr/>
+
+<p>昼食後は各々に Minisforum などのミニ PC が配布され，事前学習で制作した Load Balancer などのソフトウェアを動かしていくフェーズとなりました．</p>
+<p>写真はまだ PC 1 台ですが，これがどんどん Cache Server に Origin Server に増えていくことになります．</p>
+<p><img alt="installing ubuntu" src="ubuntu_install.png" /></p>
+<p>仮想マシンはともかく，実機に Ubuntu を入れるのは久しぶりで手間取ってしまいました．間違えて <strong>GUI 付きの Ubuntu Desktop の方をインストール</strong>してしまったり，<strong>BIOS をマウスで操作</strong>して笑われたり etc...</p>
+<p>ちなみに PC にはデフォルトで Windows が入っているので，起動時に Del なりを連打して BIOS の画面を出す必要があるんですが，最初は大概失敗して「絶望の画面」が表示されることになります．そもそも PC によって連打するキーも違いますし... <strong>中でも最悪だったのは，Windows Update が始まったこと</strong>ですね．</p>
+<p>何とか Windows に打ち勝った後は，いよいよソフトウェアをデプロイしていきます．事前学習環境では network namespace で分離し，一つの設定スクリプトになっていましたが，本番環境ではそれを L4LB 用，Cache Server 用，Origin Server 用，... とやっていく必要があります．微妙な差が多いので注意力が必要です．</p>
+<p>そんな中 Miyamoto さんが 17:30 頃に接続に成功し，一人目の免状交付となりました！私の方は LAN 内から直 IP では動作したものの，VIP 経由での動作までは漕ぎ着けませんでした．</p>
+<hr/>
+
+<p>夕食後は LT 大会ということで，atree と <strong>【内部告発】東大システムプログラミング実験の実態</strong> と題して，弊学科のポジティブキャンペーンをしていました．2 人で LT をするので枠を 10 分くださいと言っていたのに，蓋を開けたら 5 分しか貰えませんでした（涙）．</p>
+<p>余談ですが，atree は周りの受講生から <strong>内部告発とか大丈夫ですか？</strong>と割と心配されたらしいです．</p>
+<p><img alt="LT" src="lt.png" /></p>
+<details>
+<summary>LT 大会で特に面白いと思った発表の紹介</summary>
+<p>最初は hikalium 先生の部屋にいたのですが，トップバッターの OS 自作ゼミチューターの <a href="https://x.com/petitstb" target="_blank">バトルプログラマー見習いいちご</a> さんの発表が最高でした．何やら発表が中々始まらないと思ったら，自作 OS からスライドを映して発表していました（驚愕　しかも動画まで流れていました（驚愕２　OS ゼミは CDN ゼミのお隣なので様子をよく眺めていたのですが，チューターなのか受講生なのか分からないくらいに開発を楽しまれていたのが印象的でした．</p>
+<p>続いて，同じく OS ゼミ受講生の <a href="https://x.com/temari1013" target="_blank">てまり</a> さんの発表も面白かったです．hikalium 先生の Wasabi OS の拡張として MinixFS を触っていたらエンディアンの問題に直面し，調べたらそもそものファイルシステムのバグを見つけてしまった，という話でした（間違ってたらごめんなさい）． うちのシスプロ実験で遊んだ教育用 OS pintos のファイルシステムパートを飛ばしてしまったので，この夏にまたやりたくなりました．</p>
+<p>一番笑ったのは CPU ゼミ受講生の <a href="https://x.com/Ryoga_exe" target="_blank">Ryoga</a> さんの，筑波大で行われているけしからん電話機のイタズラの話でした．やはり登先生の本拠地，筑波は勢いがあります．そういえば NOC 部屋にも黒電話やら FAX やらが置かれていましたが，あれも筑波からの刺客，NOC チューターの <a href="https://x.com/bb_mase" target="_blank">間瀬bb</a> さんの仕業らしいですね．彼は :masebb_good: がミームになっていましたが，後日夢にも出てきました．恐るべし．</p>
+</details>
+<h3 id="23-day3-cdn">2.3. Day3: CDN 構築成功，そして...<a class="headerlink" href="#23-day3-cdn" title="Permanent link">&para;</a></h3>
+<p>Day2 中には動作しなかった私の CDN ですが，引数が事前演習用のままなことが判明し，朝一に修正しました．それでも CDN は動きません（大きなかぶ）．</p>
+<p>奇妙なことに，VIP 経由でアクセスすると，<strong>ほぼ 50% の確率でアクセスに失敗</strong>．かなり沼りましたが，ようやく原因が判明しました．VIP 宛のルーティング先として /32 で L4LB のアドレスを追加していたのですが，同時に /32 で Null0 へも追加していたため，prefix length が同じになり，<strong>Round Robin で 50% の確率で虚空に吸い込まれていた</strong>ためでした．</p>
+<p>それを修正し，11:00 頃についに動作成功！！ HTTP Range Requests の実装もしていたので，<strong>動画配信にも成功</strong>しました！</p>
+<p>ちなみに配信している動画は <a href="https://opencontent.netflix.com/" target="_blank">Netflix Open Content</a> の Sol Levante という作品です．4K HDR で mp4 にしても 1G 近いファイルサイズです．</p>
+<p><img alt="day3 success!" src="day3_movie.png" /></p>
+<p>というわけで，<strong>「私は CDN を自作した」と堂々と主張する権利</strong> ゲット！</p>
+<p>つい「私は CDN を自作したぞ〜〜」と叫んでしまいました．周りのゼミの方もお祝いしてくれて嬉しかったです．</p>
+<p><img alt="免状授与" src="clear.png" /></p>
+<p>ところで，私はこんな感じの <strong>Realtime Visualizer を実装</strong>していました．動画ファイル配信時に，各リクエストについて，ファイルの一部分である <strong>chunk ごとにキャッシュの状況が分かります</strong>．</p>
+<p>緑が HIT, 黄色が COLLAPSED (MISS だが，IN FLIGHT な fetch があるので待つ)，赤が MISS となっています．ブラウザの Developer Tool よろしく，リクエストごとのタイムラインやスループットも見られるので，配信のボトルネックも分かるという訳です！　動画は事前演習環境の時のもので，ストレージ内(しかも tmpfs) の配信なので，キャッシュが温まると <strong>なんと 20Gbps 近く</strong>出ています．</p>
+<p>これカッコ良くないですか？？ (UI は AI に組んでもらいました)</p>
+<video controls>
+  <source src="./visualizer.mp4" type="video/mp4" />
+</video>
+
+<p>実機で負荷を掛けながら，画面でスループットを見ると <strong>860Mbps ほど出ている</strong> ことが分かりました．Router の性能的に 1Gbps が上限なので，それに引っ掛かっている感じです．</p>
+<p>免状を頂き，残りは何をしても良いので，まずは折角実装した IPv6 対応をしたり，まだ実質 Load Balance していないので Cache Server を増やしたりしようかと思っていました．本音は，苦労してやっと CDN を組み上げたのに，スループットを出すためにネットワークを一からまた組み直すのは大変過ぎる...という及び腰だったと思います．</p>
+<p>それを見抜かれたのか，講師の nyaxt 先生に「君はスループットを出したいんでしょ？そしたらまず組み直した方がいいんじゃない？」とご指導頂き，<strong>無事に組み直しが決定</strong>しました．</p>
+<hr />
+
+<p>現状は Cisco C891FJ-K9 Router に L4LB, Cache, Origin 用のミニ PC を繋いでいて，Router がその上の 2.5G L2 スイッチに繋がっている構成だったのですが，それを以下のような構成に組み直すことになりました．（レイヤーが混ざっていてあまり良くない図）</p>
+<p>簡単に言うと，<strong>新しく支給された 10G SFP+ ポート付きのミニ PC を Router 兼 L4LB</strong> として使い，PC 群はこれも新しく支給する 10G L2 スイッチに接続する構成にしました．このミニ PC が高性能品で，なんと 64GB RAM を積んでいます．</p>
+<p><img src="./network.png" style="max-width: 400px;" alt="ネットワーク構成図"/></p>
+<p>記事のトップ画像は，この新しいミニ PC に Ubuntu Server をインストールしている所でした．これで 4 台目になり，段々映えてきましたね．</p>
+<p><img alt="当日の様子" src="servers.png" /></p>
+<p>ミニ PC 群へは SSH 経由で作業していたんですが，新しく global 割当 prefix を頂いたので，ネットワークを切り替える作業が必要で，<strong>失敗すると SSH が繋がらなくなり</strong>，キーボードやディスプレイを繋いで直接作業することになるのが大変でした．また，PC 名を前の構成の前提で付けていたので，役割を変えると <strong>名前が実態と違ったり，以前のスクリプトが入っていたり</strong> と混乱しました．そして，当然ですが PC の台数が増えると <strong>SSH 窓も増え</strong> ...</p>
+<p>という訳で爆散し，残りは翌日へ．</p>
+<p>夕食では，<a href="https://diary.shift-js.info/building-a-riscv-cpu-for-linux/" target="_blank">Linux が動作する RISC-V CPU を自作した (2019 年度 CPU 実験 余興)</a> で有名な，専門 C プロデューサの <a href="https://x.com/lmt_swallow" target="_blank">米内 貴志</a> さんとお話でき，大変光栄でした．学科の控室「地下」が理学部 7 号館建て壊しで「地上」になったお話をしたら大変驚かれていました．理情昔話にちょっと詳しくなりました．</p>
+<h3 id="24-day4-cdn">2.4. Day4: ありがとう CDN 自作ゼミ<a class="headerlink" href="#24-day4-cdn" title="Permanent link">&para;</a></h3>
+<p>セキュリティキャンプは 10-15 で 6 日間ありますが，実は専門講義は 3 日間しかありません．しかも，この日の午後は発表と片付けなので，実質午前中が最後．</p>
+<p>諸々の設定を済ませ，<strong>LAN 内からはアクセス出来るようになりましたが，インターネットから接続出来ません</strong>．BGP 広告する方法ではなく，NOC 側 Router から static route を貰っているので，BGP ミスという訳ではありません．それに，外への ping も通っています．</p>
+<details class="note">
+<summary>原因の詳しい解説</summary>
+<p>nyaxt 先生に相談して，<strong>原因は L4LB と Router を同じ PC にしたため</strong>であることが判明しました．これを理解するには，XDP について説明する必要があります．L4LB では ingress hook 手法である XDP を使っているのですが，attach されている interface が問題なのです．以前は L4LB 用の PC があり，LAN 側 interface からパケットが Linux に渡される前に処理を挟み，同じ interface から送り返していました．</p>
+<p>現在も L4LB 兼 Router PC の LAN 側 interface に attach しており，LAN 側からのアクセスでは同じように動きます．しかし，WAN 側 interface から来たパケットは Linux stack を通ってから LAN 側 interface へ出ます．これは LAN 側 interface への ingress 方向のパケットではないため，処理できません．</p>
+<p>解決方法として，L4LB 兼 Router PC を network namespace で分離し，WAN 側 interface から入って来たパケットが一旦 L2 スイッチを通り，L4LB namespace の interface に戻ってくる方式を提案されました．これで，WAN 側からのパケットも ingress 方向のパケットとして扱えるようになります．</p>
+</details>
+<p>これに気付いたのがお昼休み直前だったので，昼食を取って，コース内発表のためのスライド制作をして，15:30 までの残りの 1.5h ほどで作業をする羽目に...</p>
+<p>例によって，また細かい設定の変更が必要となり，tcpdump と睨めっこしながらのデバッグをする羽目になりましたが，<strong>なんと 15:28 に動作成功！！</strong>
+この変更のために内部からも動かなくなり，ほとんど諦めかけていたので，本当に嬉しかったです．最後のバグは，L4LB namespace 分離で IP を新しくした変更が Server の設定スクリプトに反映されていなかったことでした．</p>
+<p>発表の休憩時間に試しに負荷を掛けてみると，<strong>なんと安定して Client 3.27 Gbps, Origin 928Mbps</strong> 出ています！Cache Server への LAN の容量が 2.5G, 1G であり，Origin への容量が 1G であることを踏まえると，<strong>ほぼ Wirespeed</strong> では？？</p>
+<p><img alt="wirespeed達成" src="wirespeed.png" /></p>
+<p>これはびっくり，ということで私の成果発表の最後に続報として報告すると，ゼミ内部からも驚きの声が．それもそのはず，さっき分かったんだもん．</p>
+<p>ここまでは当日のネットワークの工夫の話をしていますが，その前段のソフトウェアでの高速化については，<a href="#42-2-pop">4.2. 事前学習2: PoP 演習</a> を参照してください．</p>
+<p>何はともあれ，Day1 に掲げた目標 <strong>「爆速 CDN」</strong>を概ね？達成することが出来て良かったです．発表後のポスターセッションでは，協賛企業の方が Wirespeed 達成後のさらなる工夫についてアドバイスをしてくださいました．</p>
+<p>17:00 以降は片付け，私は全体発表のスライド制作をしました．あんなにケーブルでぐちゃぐちゃだった机の上も気付けば片付いていて，文化祭の片付け後のような寂しさを覚えました．本当はやりたかったが，時間がなく出来なかった事が多いのもそんな所です．IPv6 対応，複数 L4LB，ライブ配信，Raspi 触ってみる...</p>
+<h3 id="25-day5">2.5. Day5: ありがとうセキュリティ・キャンプ協議会<a class="headerlink" href="#25-day5" title="Permanent link">&para;</a></h3>
+<p>午前中は全体成果発表会で，私は Y4 CDN ゼミの発表を担当しました．2 分の時間ギリギリでしたが，Y コースプロデューサ hikalium 先生の笑顔から見て，セーフだったと思います．</p>
+<p>特に印象に残っているのは CPU ゼミとジュニア，そして NOC ですね．CPU ゼミはなんと，FPGA からスライドを映していました．LT 大会では自作 OS から映していましたが，今度は FPGA から...！そして，ジュニアコースの発表が本当にハイレベルで，良い意味で耳を疑いました．自作 OS やってる人もいたし，日本の未来が明るすぎる！私の一つの上の代には，2019 年に中学生で自作言語を発表して「スーパー中学生」と称された人がいるんですが，その人を彷彿としました．</p>
+<p>発表後に席を外してから戻ったら，発表への質問をするために私を探していた方々がいらっしゃって中々嬉しかったですね．</p>
+<p>閉会式後の昼食では，<a href="https://x.com/uchan_nos" target="_blank">uchan_nos</a> さんとお会いできました．実は中学生の時に <a href="https://book.mynavi.jp/ec/products/detail/id=121220" target="_blank">ゼロからのOS自作入門</a>の出版前試読に参加し，名前まで載せていただいたのですが，まだ未完なのでこの夏こそ完遂します！と宣言して来ました．頑張るぞ〜</p>
+<p>昼食後の協賛企業イベントについては，多くは書けませんが最高でした．協議会の皆様，協賛企業の皆様ありがとうございました．</p>
+<h3 id="26-day6-link-forest">2.6. Day6: ありがとう LINK FOREST<a class="headerlink" href="#26-day6-link-forest" title="Permanent link">&para;</a></h3>
+<p>私のアイコンでもある，鳩のぬいぐるみ「あひるくん」(命名: Latte くん) を大変気に入ってくださった方がいたので，写真を撮ってから解散しました．<a href="https://note.com/unicorn_lovers/n/nf29dff04c7d6" target="_blank">参加記</a> にも載せてくださったようです．</p>
+<p>解散後に秋葉原に繰り出す人たちもいて，体力が凄いなぁと思いながら atree らと帰りました．帰りは <a href="https://x.com/h_okumura/status/1436869174664458244" target="_blank">日本語 CS 用語集</a> を使ってクイズをしていました．</p>
+<p>意外と，内部の仕組みを分かっていれば答えられるものも多く面白かったので，大体難易度順（？）にいくつか英訳問題を出しておきます．いくつわかりましたか？</p>
+<p>例: 返戻値 -&gt; return value</p>
+<div class="admonition question">
+<p class="admonition-title">問題</p>
+<ol>
+<li>緩衝領域</li>
+<li>奇遇検査</li>
+<li>重つなぎ並び</li>
+<li>操作系</li>
+<li>信号燈</li>
+<li>直訳</li>
+</ol>
+</div>
+<details class="note">
+<summary>解答</summary>
+<ol>
+<li>buffer</li>
+<li>parity check</li>
+<li>doubly linked list</li>
+<li>operating system</li>
+<li>semaphore</li>
+<li>assemble</li>
+</ol>
+</details>
+<h2 id="3">3. 全体的な感想・反省<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>一週間経過して振り返ってみると，やはり<strong>飛び込んでみて良かった</strong>というのが第一です．Twitter 上での技術交流だけでは得られない刺激がそこにはあります．
+また，B3 のこの時期に参加して丁度良かったと思います．というのも，専門講義が始まり CPU，OS，コンパイラ等 CS の各分野の知見が付いてきて，他の開発コースの参加者とも，その内容について(多少は)踏み込んだ話をする事が出来るからです．</p>
+<p>その上で，共通講義を踏まえて，離散数学や情報論理のような<strong>基礎理論よりの講義にもっと力を入れよう</strong>と思いました．既存ツールの使い方を学んだ先にある，根本的な改善に必要なのは基礎的なサイエンスです．簡単な例で言えば，CIDR の仕組みを理解し，Go の net/netip ライブラリの使い方を分かった所で，より根本的に longest match prefix を見つけるのに必要なのは，データ構造とアルゴリズムの知見です．また，基礎的な数学の知見が足りていないために，気になる分野に踏み込めないということも往々にしてあります．</p>
+<p>ここからは主に CDN ゼミ本体に関する反省ですが，事前学習期間に強調されたこととして，<strong>トレードオフ</strong>を意識する重要性です．ソフトウェアエンジニアリングは本質的にはトレードオフの選択であり，考えられる手法らのトレードオフは何か，その中でなぜその手法を選択したかを説明できるようになる必要があるということです．</p>
+<p>言葉だけ聞くと，まぁ意識すればいいよねという話になりそうですが，考えるほどに難しく感じられました．
+Load Balance の例で言えば，特に意外だったのが「<strong>CDN ではサーバの負荷は下げれば下げるほど良いとは限らない</strong>」ことです．CDN はキャッシュを扱っている以上，負荷がある程度掛かっている方が，キャッシュヒット率が高い場合もあるのです．</p>
+<p>この例を見るに，対象となる<strong>指標を考える難しさ</strong>を実感できます．今回で言えば，負荷が低い → キャッシュヒット率が低い → Latency 増加という関係に思い至らず，そもそも指標としてキャッシュヒット率を考えられませんでした．さらに，トレードオフを設計できた所で，何らかの考えで割り切って選択をする必要がありますが，これはユーザに<strong>どんな価値を提供するか？</strong>という上位の設計判断となり，局所的・大局的両面の難しさが感じられます．</p>
+<p>もう一つは，特に当日の<strong>問題の切り分け</strong> についてです．私は問題が起きた際に，問題の切り分けをかなり適当に行っていた節があったと思います．本来はどこまでが正常に作動しているのかを記録しながら調査し，仮説を立てて検証していくのが筋です．しかし，私は怪しそうな所を調べ，それが原因だったら直し，違ったら他の原因を考えるのを繰り返し，最終的に動いたらそれでよしとすることが多かったです．その結果，<strong>自分が何のトラブルで対応しているのか，どこまでが正しいのかが何も分からなく</strong>なり，ますます困ってしまいました．最終日になっても tcpdump と仲良くなれていなかったのは，自分でもどうかと思いました．
+トラブル対応においては，これまでの調査，そこから導き出した仮説，結果というサイクルを入念に記録し，<strong>少なくとも自分に向かって説明出来なければなりません</strong>．</p>
+<p>これらはいずれも，サイエンス及びエンジニアリングにおける基礎的な事柄ですが，自分に根本的に足りない部分であると実感する所となりました．これらを意識して演習出来る機会はそう多くないので，これからの講義・実験で特に気を付けたいです．</p>
+<p>最後に，このような機会を設けてくださった講師の nyaxt 先生，チューターの kota-yata さん，そして一緒に頑張った受講生同期の皆さん，他コースの講師ほか，セキュリティ・キャンプ関係者の皆様にお礼申し上げます．</p>
+<h2 id="4">4. おまけ: 事前学習まで<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>技術的に細かい話を書いていきます．</p>
+<h3 id="41-1-gslb">4.1. 事前学習1: GSLB 演習<a class="headerlink" href="#41-1-gslb" title="Permanent link">&para;</a></h3>
+<p>CDN の要素技術に触れようということで，まずは GSLB (Global Server Load Balancing) を実装する演習が行われました．これは，ユーザを適切に近傍の PoP (Point of Presence) と呼ばれる拠点に誘導することで，<strong>Latency を削減するとともに，特定の PoP に負荷が掛かりすぎないようにする</strong> 仕組みです．</p>
+<details class="note">
+<summary>GSLB の詳しい解説</summary>
+<p>方法としては大きく 2 つあります．</p>
+<p>一つは <strong>DNS を用いる方法</strong>で，ECS (EDNS Client Subnet) と呼ばれる，クエリに Client IP Subnet を載せる拡張を用いることで，Client によって返す IP を変える手法です．各サーバの負荷状況を見て自由度高く制御することが出来る一方で，DNS の結果がキャッシュされると，障害発生時に切り替えが遅れる欠点があります．</p>
+<p>もう一つは <strong>BGP Anycast を用いる方法</strong>で，同一の IP を複数 PoP に割り当てた上で，それぞれから BGP 広告すると，経路制御の結果，各 Client から(多分)近い PoP に到達するという手法です．地理的位置ではなく，インターネット上の最適経路上に誘導するため，Latency が削減され，障害時も高速に切り替えられる一方で，誘導先は経路制御に任せるため自由度が低い欠点があります．</p>
+<p>参考: <a href="https://shinobi.hatenadiary.com/entry/2026/05/08/101131" target="_blank"><a href="https://shinobi.hatenadiary.com/entry/2026/05/08/101131">https://shinobi.hatenadiary.com/entry/2026/05/08/101131</a></a></p>
+</details>
+<p>演習では DNS を用いる方法について，Client IP Subnet が与えられた時に，どの PoP に誘導するか選択するアルゴリズムの実装を行いました．</p>
+<p>Visualizer も提供されていて，PoP や Probe の場所が表示されます．かっこいい！</p>
+<p><img alt="GSLB WebUI" src="gslb.png" />
+(Miyamoto さんの Discord 上投稿より)</p>
+<p>私は大まかには <strong>Geo IP</strong> を用いて Client の国を推定して，そこから最も近い PoP を選択するという方式にしました．国の推定は，<a href="https://github.com/ipverse/country-ip-blocks/" target="_blank">country-ip-blocks</a> というリポジトリで国ごとの CIDR List が得られるので，<strong>CIDR Trie</strong> を構築すると Longest Match で出来ます．<a href="https://github.com/ret2home/ncdn/pull/1" target="_blank">Pull Request</a> <br/> Probe Subnet 外の IP も近傍の PoP に誘導できるようになった一方で，推定粒度が国単位なので，国土が広い国だと精度が落ちることや，地政学的要因などにより，<strong>地理的近傍は必ずしもネットワーク上の近傍とはならない</strong>欠点がありました．</p>
+<p>この演習の発表で強調されたことが，トレードオフについてであり，内容については反省に書いた通りです．
+技術的な内容以上に，トレードオフについて考えさせられた演習でした．</p>
+<h3 id="42-2-pop">4.2. 事前学習2: PoP 演習<a class="headerlink" href="#42-2-pop" title="Permanent link">&para;</a></h3>
+<p>本演習では，当日に動かすソフトウェアとして，L4LB (Load Balancer), Cache Server を実装しました．</p>
+<p>L4LB では，サーバ数の増減によって，割り振り先のサーバが変わり TCP Connection が壊れないように，Consistent Hash や Connection Tracking を実装しました．
+XDP と呼ばれる ingress hook 手法を用いて，<strong>温もりのある手作り IPv4/v6 over IPv6 トンネリングヘッダ</strong>を付けていたり，行きは L4LB を経由するのに帰りは Cache Server から直接 return したりする (DSR, Direct Server Return) のがおもしろポイントだと思っています．</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">flow_lbl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">flow_lbl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">flow_lbl</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">payload_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">inner_length</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">nexthdr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">isv4</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">IPPROTO_IPIP</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">IPPROTO_IPV6</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">hop_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">saddr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">src_entry</span><span class="o">-&gt;</span><span class="n">ip_address_v6_byte</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">in6_addr</span><span class="p">));</span>
+<span class="w">  </span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ip2_v6</span><span class="o">-&gt;</span><span class="n">daddr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dest</span><span class="o">-&gt;</span><span class="n">ip_address_v6_byte</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">in6_addr</span><span class="p">));</span>
+</code></pre></div>
+<p>Cache Server では，<strong>SIEVE</strong> と呼ばれる Cache Replacement，Cache Miss 時に大量に Origin Server に fetch しないようにする <strong>Request Collapsing</strong>，動画配信用に HTTP <strong>Range Requests</strong> などを実装しました．多分実装が一番大変だったのはコレです．というのも，Request Collapsing やら Cache やらで共有資源が多いので，適切に Lock を設計し，また Cache Object の生存期間を考える必要があるからです．</p>
+<p>実装する中で特に実感したのは，<strong>Producer/Consumer 分離</strong>及び <strong>Control/Data Plane 分離</strong>の重要性です．Request Collapsing の実装を例に説明すると，最初はキャッシュミス時の Origin Fetch と Client Write を同じ関数で扱っていました．すると，その Origin Fetch を待って Collapsed したリクエストたちは，その結果を待って別途 Client Write する必要があります．同じ Client Write なのに，最初とそれ以降で処理が分かれているのは，あまり綺麗ではありません．</p>
+<p>さらに，HTTP Cache Control を実装すると，stale-while-revalidate では，古いキャッシュで Client Write しつつ，background で Origin Fetch することになり，pure な fetch が必要になります．</p>
+<p>という訳で，Origin Fetch (Producer) と Client Write (Consumer) を分離すると，次のような嬉しさがあります．</p>
+<p>まず，<strong>Consumer 側はキャッシュのヒット状況を意識する必要がない</strong>ということです．キャッシュヒットしていようと，IN FLIGHT なリクエストを待とうと，Origin Fetch していようと，「Producer の結果を待つ」ということに抽象化できます．</p>
+<p>また，Origin Fetch と同時に複数 Client でそれぞれの速度で書き込む実装が自然になります．結合している場合，最初の Client の書き込み速度が遅い場合，全体が遅れることになります．分離したことで，Producer は一定サイズ読み込む度に条件変数を broadcast し，Consumer はそれぞれの file pos を持ちながら，それぞれの速度で書き込む事ができます．これにより，<strong>Origin から読むと同時に，並列に Client に書き込む事ができ，大容量ファイルにおいて特にスループットが大変向上</strong>します．</p>
+<h3 id="43">4.3. さらにおまけ: 応募課題<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>CDN 自作ゼミの応募課題は，自己アピールを除くと去年と共通で，以下の 1 問のみでした．</p>
+<blockquote>
+<p>ブラウザのURLバーに、 <a href="https://www.shonenjump.com/j/weeklyshonenjump/">https://www.shonenjump.com/j/weeklyshonenjump/</a> を入力して決定キーを押した時になにが起こるか」を調べて、可能な限り詳しく説明してください。</p>
+</blockquote>
+<p>普通は教科書的な知識を前提として，Wireshark でパケットキャプチャして，DNS, TCP Handshake, TLS Handshake の後に HTTP が始まって，レンダリングされますね〜くらいの内容になると思います．私も最初そうなりました．</p>
+<p>しかし，<a href="https://www.on-keyday.net/static/blog/posts/2025_07_15_seccamp_2025_y2_application/" target="_blank">去年の参加者の応募課題</a> を見ると，なんとブラウザの内部実装や OS の TCP プロトコルスタックまで潜り込んでいます．問題文には <strong>可能な限り詳しく説明してください</strong> とあります．全然不十分では？？</p>
+<p>ということで，AI と壁打ちしつつ，パケット解析に加えて，L5-7 TLS, HTTP 処理の主体であるブラウザ，L4 TCP 処理をしている OS のコードを読み，L3 経路情報を見て...ということで大変なことになりました．</p>
+<p>特に頑張ったのがブラウザ解析パートでした．講師の方が Chromium 開発者なので適当なこと書けないなということで，Enter キーを検知してから，DOM Content Loaded でレンダリングが完了するまでの<strong>ブラウザ側処理の一連の流れを，関数レベルでなるべく繋ごう</strong>と試みました．</p>
+<p>Firefox Profiler を使うと Stack Trace が取れるので，<a href="https://searchfox.org/" target="_blank">Searchfox</a> でコードと突き合わせると，追うことが出来ます．</p>
+<p>たとえば，以下で <code>_on_keydown</code> と見えているのが Enter キーの処理で...と言った具合です．かなり途方もないですね．</p>
+<p><img alt="Firefox Profiler" src="profiler.png" /></p>
+<p>一回で取れるなら良いんですが，困ったことにサンプリングの都合で処理時間が短いものは表示されないことがあります．ということで，<strong>表示されるまでガチャを回し続ける</strong>という作業も発生し...</p>
+<p><img alt="discord" src="discord.png" /></p>
+<p>...という訳で，かなり頑張ったんですが，ゼミで必要となったのはどちらかと言うと L1 〜 L4 (特に L3) の知識でした（完）</p>
+<p>提出内容の詳細は<a href="/blog/others/seccamp2026_problem/">応募課題晒し</a>を参照してください．多分来年は分量制限が付けられる気がします．</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月21日 12:01:03 UTC">2026年8月21日</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ret2home/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/ret2home" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
