@@ -4,7 +4,7 @@ repo_url: https://github.com/ret2home/blog/
 repo_name: ret2home/blog
 site_author: "ret2home"
 site_description: >-
-  @ret2home のブログや CTF の Writeup など
+  Network・OS・Computer Architecture が好きな大学生のブログ
 theme:
   name: material
   custom_dir: overrides
@@ -74,6 +74,14 @@ plugins:
 
 nav:
   - Home: index.md
+  - 参加記など:
+    - セキュリティキャンプ2026 CDN 自作ゼミ参加記: others/seccamp2026/index.md
+    - セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し: others/seccamp2026_problem/index.md
+    - UFOキャッチャー制作中間記録・七模擬まで: others/nanamogi/index.md
+    - Thailand International Science Fair 2023 参加記: others/TISF2023/index.md
+    - 関西旅行記2 〜マスフェスタ参加記を添えて〜: others/kansai-trip2/index.md
+    - 灘校文化祭訪問記: others/ndfes2022/index.md
+    - パ研合宿 2021 運営記: others/pakencamp2021/index.md
   - 競プロ:
     - JOI 2021/2022 本選参加記: kyopro/joi2022-ho/index.md
     - JOI 2020/2021 本選参加記: kyopro/joi2021-ho/index.md
@@ -102,10 +110,3 @@ nav:
     - zer0pts CTF 2021 writeup: CTF/zer0pts-ctf-2021/index.md
     - 0x41414141 CTF Writeup (pwn only): CTF/0x41414141-pwn/index.md
     - Paken CTF 2020 運営記: CTF/pakenctf2020/index.md
-  - 旅行記他:
-    - セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し: others/seccamp2026_problem/index.md
-    - UFOキャッチャー制作中間記録・七模擬まで: others/nanamogi/index.md
-    - Thailand International Science Fair 2023 参加記: others/TISF2023/index.md
-    - 関西旅行記2 〜マスフェスタ参加記を添えて〜: others/kansai-trip2/index.md
-    - 灘校文化祭訪問記: others/ndfes2022/index.md
-    - パ研合宿 2021 運営記: others/pakencamp2021/index.md

@@ -1,18 +1,38 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  {% set title = config.site_name %}
-  {% if page and page.title and not page.is_homepage %}
-    {% set title = config.site_name ~ " - " ~ page.title | striptags %}
+  {% set og_title = config.site_name %}
+  {% set og_description = config.site_description %}
+  {% set og_image = "assets/ogp.png" %}
+  {% if page %}
+    {% if page.meta and page.meta.og_title %}
+      {% set og_title = page.meta.og_title %}
+    {% elif page.title and not page.is_homepage %}
+      {% set og_title = page.title ~ " - " ~ config.site_name %}
+    {% endif %}
+    {% if page.meta and page.meta.description %}
+      {% set og_description = page.meta.description %}
+    {% endif %}
+    {% if page.meta and page.meta.og_image %}
+      {% set og_image = page.meta.og_image %}
+    {% endif %}
   {% endif %}
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ page.title ~ " - " ~ config.site_name}}">
-  <meta property="og:description" content="{{ config.site_description }}">
-  <meta property="og:url" content="{{ page.canonical_url }}">
-  <meta property="og:image" content="https://ret2home.github.io/blog/assets/avatar.png">
-  <meta name="twitter:card" content="summary">
+  {% if og_image.startswith("http://") or og_image.startswith("https://") %}
+    {% set og_image_url = og_image %}
+  {% else %}
+    {% set og_image_url = config.site_url ~ og_image.lstrip("/") %}
+  {% endif %}
+  <meta property="og:type" content="{{ 'website' if page and page.is_homepage else 'article' }}">
+  <meta property="og:title" content="{{ og_title | striptags | e }}">
+  <meta property="og:description" content="{{ og_description | striptags | e }}">
+  <meta property="og:url" content="{{ page.canonical_url if page else config.site_url }}">
+  <meta property="og:image" content="{{ og_image_url }}">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ret2home">
   <meta name="twitter:creator" content="@ret2home">
+  <meta name="twitter:title" content="{{ og_title | striptags | e }}">
+  <meta name="twitter:description" content="{{ og_description | striptags | e }}">
+  <meta name="twitter:image" content="{{ og_image_url }}">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
