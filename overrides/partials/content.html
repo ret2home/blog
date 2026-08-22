@@ -8,14 +8,18 @@
     <div class="article-share-mobile">
       {% include "partials/share.html" %}
     </div>
-    {% if page.meta.published %}
-      <span class="article-published md-source-file__fact">Published: {{ page.meta.published.strftime('%B') }} {{ page.meta.published.day }}, {{ page.meta.published.year }}</span>
-    {% endif %}
-    {% include "partials/source-file.html" %}
+    <aside class="article-dates md-source-file">
+      {% if page.meta.published %}
+        <span class="md-source-file__fact">Published: {{ page.meta.published.strftime('%B') }} {{ page.meta.published.day }}, {{ page.meta.published.year }}</span>
+      {% endif %}
+      {% include "partials/source-file.html" %}
+    </aside>
   </div>
 {% else %}
   <div class="article-meta article-meta--home">
-    {% include "partials/source-file.html" %}
+    <aside class="article-dates md-source-file">
+      {% include "partials/source-file.html" %}
+    </aside>
   </div>
 {% endif %}
 {{ page.content }}

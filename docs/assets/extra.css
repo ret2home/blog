@@ -85,15 +85,18 @@ h3{
 }
 
 .article-meta .md-source-file {
-  margin: 0 0 0 0.8rem;
+  margin: 0 0 0 auto;
 }
 
-.article-meta--home .md-source-file {
-  margin-left: auto;
+.article-dates {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
 }
 
-.article-published {
-  margin-left: auto;
+.article-dates .md-source-file__fact {
+  margin: 0;
 }
 
 .article-meta .md-source-file__fact {
