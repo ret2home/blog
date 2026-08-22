@@ -59,6 +59,32 @@
     }
   }
   </script>
+  {% elif page and page.is_homepage %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": {{ (page.canonical_url ~ '#profile') | tojson }},
+    "url": {{ page.canonical_url | tojson }},
+    "name": {{ config.site_name | tojson }},
+    "description": {{ config.site_description | tojson }},
+    "mainEntity": {
+      "@type": "Person",
+      "@id": {{ (page.canonical_url ~ '#person') | tojson }},
+      "name": "ret2home",
+      "description": {{ config.site_description | tojson }},
+      "url": {{ page.canonical_url | tojson }},
+      "image": {{ (config.site_url ~ 'assets/avatar.png') | tojson }},
+      "sameAs": [
+        "https://github.com/ret2home/",
+        "https://x.com/ret2home",
+        "https://atcoder.jp/users/define",
+        "https://qiita.com/ret2home",
+        "https://www.linkedin.com/in/ret2home/"
+      ]
+    }
+  }
+  </script>
   {% endif %}
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
