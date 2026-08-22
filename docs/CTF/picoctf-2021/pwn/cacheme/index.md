@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Cache Me Outsideのヒープ脆弱性を利用した解法を解説するwriteup
+---
+
 ## tl;dr
 
 tcache poisoning

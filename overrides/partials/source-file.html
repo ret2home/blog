@@ -1,0 +1,11 @@
+{% if page.meta and (page.meta.updated or page.meta.git_revision_date_localized) %}
+  <aside class="md-source-file">
+    <span class="md-source-file__fact">
+      {% if page.meta.updated %}
+        Last updated: {{ page.meta.updated.strftime('%B') }} {{ page.meta.updated.day }}, {{ page.meta.updated.year }}
+      {% else %}
+        Last updated: {{ page.meta.git_revision_date_localized }}
+      {% endif %}
+    </span>
+  </aside>
+{% endif %}

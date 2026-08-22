@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 checkpassのバイナリ解析とパスワード特定手順をまとめたreversing writeup
+---
+
 ## tl;dr
 
 IDA で頑張る

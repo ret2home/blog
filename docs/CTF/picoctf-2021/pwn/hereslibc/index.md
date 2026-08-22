@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Here's a LIBCをret2libcで攻略する手順をまとめたwriteup
+---
+
 ## tl;dr
 
 BOF, libc leak, ret2libc

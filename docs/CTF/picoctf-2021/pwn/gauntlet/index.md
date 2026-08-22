@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Binary Gauntletの各ステージを攻略するpwn writeup
+---
+
 ## tl;dr
 
 FSB, BOF, ret2libc

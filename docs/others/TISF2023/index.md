@@ -1,3 +1,8 @@
+---
+published: 2023-02-26
+updated: 2026-04-03
+description: Thailand International Science Fair 2023での研究発表、文化交流とタイ滞在を振り返る参加記
+---
 
 ## 0. 超！概要
 

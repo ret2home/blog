@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 filtered-shellcodeの制約下でシェルコードを実行する解法を解説するwriteup
+---
+
 ## tl;dr
 
 shellcode

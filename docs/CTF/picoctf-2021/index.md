@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021で取り組んだpwn・reversing問題のwriteup一覧と競技結果
+---
+
 # picoCTF 2021 writeup
 
 ## tl;dr

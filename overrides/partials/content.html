@@ -5,12 +5,18 @@
 {% endif %}
 {% if not page.is_homepage %}
   <div class="article-meta">
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Post</a>
+    <div class="article-share-mobile">
+      {% include "partials/share.html" %}
+    </div>
+    {% if page.meta.published %}
+      <span class="article-published md-source-file__fact">Published: {{ page.meta.published.strftime('%B') }} {{ page.meta.published.day }}, {{ page.meta.published.year }}</span>
+    {% endif %}
     {% include "partials/source-file.html" %}
   </div>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% else %}
-  {% include "partials/source-file.html" %}
+  <div class="article-meta article-meta--home">
+    {% include "partials/source-file.html" %}
+  </div>
 {% endif %}
 {{ page.content }}
 {% include "partials/feedback.html" %}

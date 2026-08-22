@@ -34,6 +34,33 @@
   <meta name="twitter:description" content="{{ og_description | striptags | e }}">
   <meta name="twitter:image" content="{{ og_image_url }}">
 
+  {% if page and not page.is_homepage and page.meta and page.meta.published %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ page.canonical_url | tojson }}
+    },
+    "headline": {{ page.title | striptags | tojson }},
+    {% if page.meta.description %}"description": {{ page.meta.description | striptags | tojson }},{% endif %}
+    "image": {{ og_image_url | tojson }},
+    "datePublished": {{ page.meta.published.isoformat() | tojson }},
+    "dateModified": {{ (page.meta.updated or page.meta.published).isoformat() | tojson }},
+    "author": {
+      "@type": "Person",
+      "name": "ret2home",
+      "url": "https://ret2home.github.io/blog/",
+      "sameAs": [
+        "https://github.com/ret2home/",
+        "https://x.com/ret2home"
+      ]
+    }
+  }
+  </script>
+  {% endif %}
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
   <script>

@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Rolling My Ownの独自暗号処理を解析するreversing writeup
+---
+
 ## tl;dr
 
 MD5, asm

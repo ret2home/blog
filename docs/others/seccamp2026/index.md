@@ -1,4 +1,6 @@
 ---
+published: 2026-08-21
+updated: 2026-08-21
 og_image: /assets/seccamp2026.png
 description: 「私は CDN を自作した」と堂々と主張する権利を得る方法
 ---

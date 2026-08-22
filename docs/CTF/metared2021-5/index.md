@@ -1,4 +1,7 @@
 ---
+published: 2021-12-17
+updated: 2021-12-17
+description: MetaRed CTF 5th Stageへの参加記と、解いた問題の考察・解法をまとめたwriteup
 title: Metared CTF 5th Stage writeup
 ---
 

@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Easy as GDBをGDBによる動的解析で攻略するreversing writeup
+---
+
 ## tl;dr
 
 可逆変換

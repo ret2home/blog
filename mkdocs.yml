@@ -71,7 +71,7 @@ extra_javascript:
 plugins:
   - search
   - git-revision-date-localized:
-      locale: ja
+      locale: en
       timezone: Asia/Tokyo
 
 nav:

@@ -1,3 +1,9 @@
+---
+published: 2021-02-25
+updated: 2021-03-15
+description: 0x41414141 CTFのpwn問題に取り組んだ際の考察と解法をまとめたwriteup
+---
+
 ## tl; dr
 
 I think the pwn problems given in 0x41414141 CTF are very educational, so

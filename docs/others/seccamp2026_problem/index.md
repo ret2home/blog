@@ -1,4 +1,6 @@
 ---
+published: 2026-06-05
+updated: 2026-06-05
 og_image: /assets/seccamp2026_problem.png
 description: セキュリティキャンプ 2026 全国大会開発 Y4 CDN ゼミの応募課題公開　ブラウザに URL を入力してからレンダリングされるまでを追う
 ---

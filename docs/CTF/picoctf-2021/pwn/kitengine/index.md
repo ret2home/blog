@@ -1,3 +1,9 @@
+---
+published: 2021-04-09
+updated: 2021-04-09
+description: picoCTF 2021 Kit EngineのJavaScriptエンジンを利用した攻略手順をまとめたwriteup
+---
+
 ## tl;dr
 
 V8 exploit, shellcode

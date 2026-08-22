@@ -4,7 +4,7 @@
     {% if not file.page.is_link and (file.page.abs_url or file.page.canonical_url) %}
     <url>
          <loc>{% if file.page.canonical_url %}{{ file.page.canonical_url|e }}{% else %}{{ file.page.abs_url|e }}{% endif %}</loc>
-         <lastmod>{{ file.page.meta.get('git_revision_date_localized_raw_iso_date') or file.page.update_date }}</lastmod>
+         <lastmod>{{ file.page.meta.get('updated') or file.page.meta.get('git_revision_date_localized_raw_iso_date') or file.page.update_date }}</lastmod>
     </url>
     {%- endif -%}
 {% endfor %}
