@@ -1,4 +1,3 @@
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 文実有志で灘校文化祭 2022 "Turn it over" に行ってきました。後々参考になることもあるかもしれないので一応記録を残しておこうと思います（大体遊んだだけだけど）。
 

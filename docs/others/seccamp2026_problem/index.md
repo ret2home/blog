@@ -1,4 +1,7 @@
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+---
+og_image: /assets/seccamp2026_problem.png
+description: セキュリティキャンプ 2026 全国大会開発 Y4 CDN ゼミの応募課題公開　ブラウザに URL を入力してからレンダリングされるまでを追う
+---
 
 久しぶりの投稿になります．最後が高校三年生の文化祭の作業ログとかだったので，3 年ぶりでしょうか．
 近況としては，無事に大学受験・進振りも終わり，理学部情報科学科で wktk しております．

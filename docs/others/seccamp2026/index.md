@@ -3,8 +3,6 @@ og_image: /assets/seccamp2026.png
 description: 「私は CDN を自作した」と堂々と主張する権利を得る方法
 ---
 
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 ## 1. 概要
 
 8/10-15 にセキュリティキャンプ 2026 開発 Y4 **CDN 自作ゼミ** に参加してきました！本ゼミは，

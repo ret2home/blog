@@ -1,4 +1,3 @@
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 8/27〜8/28 に SSH（スーパーサイエンスハイスクール）事業の一環である「マスフェスタ」に参加するついでに 1 泊 2 日で小旅行をしてきました。
 
