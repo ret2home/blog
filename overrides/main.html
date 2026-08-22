@@ -23,6 +23,7 @@
     {% set og_image_url = config.site_url ~ og_image.lstrip("/") %}
   {% endif %}
   <meta property="og:type" content="{{ 'website' if page and page.is_homepage else 'article' }}">
+  <meta property="og:site_name" content="{{ config.site_name | striptags | e }}">
   <meta property="og:title" content="{{ og_title | striptags | e }}">
   <meta property="og:description" content="{{ og_description | striptags | e }}">
   <meta property="og:url" content="{{ page.canonical_url if page else config.site_url }}">
