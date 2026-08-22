@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Network・OS・Computer Architecture が好きな大学生のブログ">
+        <meta name="description" content="セキュリティキャンプ 2026 全国大会開発 Y4 CDN ゼミの応募課題公開　ブラウザに URL を入力してからレンダリングされるまでを追う">
       
       
         <meta name="author" content="ret2home">
@@ -71,6 +71,10 @@
       
     
     
+      
+    
+    
+      
     
   
   
@@ -78,15 +82,15 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し - ret2home&#39;s blog">
-  <meta property="og:description" content="Network・OS・Computer Architecture が好きな大学生のブログ">
+  <meta property="og:description" content="セキュリティキャンプ 2026 全国大会開発 Y4 CDN ゼミの応募課題公開 ブラウザに URL を入力してからレンダリングされるまでを追う">
   <meta property="og:url" content="https://ret2home.github.io/blog/others/seccamp2026_problem/">
-  <meta property="og:image" content="https://ret2home.github.io/blog/assets/ogp.png">
+  <meta property="og:image" content="https://ret2home.github.io/blog/assets/seccamp2026_problem.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ret2home">
   <meta name="twitter:creator" content="@ret2home">
   <meta name="twitter:title" content="セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し - ret2home&#39;s blog">
-  <meta name="twitter:description" content="Network・OS・Computer Architecture が好きな大学生のブログ">
-  <meta name="twitter:image" content="https://ret2home.github.io/blog/assets/ogp.png">
+  <meta name="twitter:description" content="セキュリティキャンプ 2026 全国大会開発 Y4 CDN ゼミの応募課題公開 ブラウザに URL を入力してからレンダリングされるまでを追う">
+  <meta name="twitter:image" content="https://ret2home.github.io/blog/assets/seccamp2026_problem.png">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
@@ -2826,7 +2830,41 @@
 
   <h1>セキュリティキャンプ2026 CDN 自作ゼミ応募課題晒し</h1>
 
-<p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+  <div class="article-meta">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Post</a>
+    
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月22日 14:07:28 JST">2026年8月22日</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+  </div>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <p>久しぶりの投稿になります．最後が高校三年生の文化祭の作業ログとかだったので，3 年ぶりでしょうか．
 近況としては，無事に大学受験・進振りも終わり，理学部情報科学科で wktk しております．</p>
 <p>さて，先日セキュリティキャンプ 2026 選考結果の発表があり，開発 Y4 「CDN 自作ゼミ」に参加できることになりました．
@@ -5389,35 +5427,6 @@ Wireshark や traceroute から，VM と Host の間には仮想 NIC や NAT が
 Apache が直接 TLS 終端と HTTP/2 処理を担当している場合には，TLS には mod_ssl，HTTP/2 には mod_http2 が関与している可能性が高い．その場合，TLS handshake 後に h2 として HTTP/2 connection が扱われ，GET /j/weeklyshonenjump/ の request が Apache 内部の request processing に渡される．
 最終的に今回の観測では，server: Apache header を含む 200 OK の HTML response が返った．</p>
 <p>今回の解析では，すべての処理を完全に確認できたわけではない．特に，server 側の Apache 設定や backend 構成，TLS 終端の正確な位置，network 経路上の詳細な L2 接続などは外部からは確認できなかった．時間的制約で systemd-resolved の挙動，また Enter key が伝わるまでの QEMU や Wayland の挙動も追えていない．また，Firefox Profiler はサンプリングベースであるため，短時間で終わる処理は stack に現れないことがある．そのため，本回答では Wireshark，Developer Tools，Firefox Profiler，Searchfox，Linux kernel source，RFC document などを組み合わせ，可能な範囲で一連の流れを追跡した．</p>
-
-
-
-
-
-
-
-  
-    
-  
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最終更新日">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月4日 15:14:26 UTC">2026年6月4日</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
-
 
 
 
