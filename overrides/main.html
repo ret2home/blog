@@ -46,8 +46,8 @@
     "headline": {{ page.title | striptags | tojson }},
     {% if page.meta.description %}"description": {{ page.meta.description | striptags | tojson }},{% endif %}
     "image": {{ og_image_url | tojson }},
-    "datePublished": {{ page.meta.published.isoformat() | tojson }},
-    "dateModified": {{ (page.meta.updated or page.meta.published).isoformat() | tojson }},
+    "datePublished": {{ (page.meta.published.isoformat() ~ 'T00:00:00+09:00') | tojson }},
+    "dateModified": {{ ((page.meta.updated or page.meta.published).isoformat() ~ 'T00:00:00+09:00') | tojson }},
     "author": {
       "@type": "Person",
       "name": "ret2home",
