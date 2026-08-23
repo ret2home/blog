@@ -88,13 +88,30 @@
   </script>
   {% endif %}
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS"></script>
+  <!-- Load Google Analytics after the first user interaction so it doesn't
+       compete with the initial page render. -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-MJQPPFRVVS');
+    (() => {
+      let loaded = false;
+
+      const loadAnalytics = () => {
+        if (loaded) return;
+        loaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-MJQPPFRVVS");
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-MJQPPFRVVS";
+        document.head.appendChild(script);
+      };
+
+      for (const event of ["pointerdown", "keydown", "touchstart", "scroll"]) {
+        window.addEventListener(event, loadAnalytics, { once: true, passive: true });
+      }
+    })();
   </script>
 {% endblock %}
