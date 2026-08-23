@@ -2105,7 +2105,7 @@
 <h3 id="22-day2-lt">2.2. Day2: はじめての物理ネットワーク，LT 大会<a class="headerlink" href="#22-day2-lt" title="Permanent link">&para;</a></h3>
 <p>専門講義会場に入ると，<strong>机の上には生のインターネットが来ていました</strong>．CDN ゼミは NOC 様様のおかげで，他の会場ネットワークと隔離された unfiltered なネットワークが提供されています．NOC 部屋から光ファイバーが廊下を伝って，机の上の 10G L2 スイッチまで来ているという訳です．</p>
 <p>当日はここら辺を何も分かっていなかったので，揃って NOC 部屋を見学させていただきました．けしからんネットワーク遊びの話をして下さった時の楽しそうな顔が今も思い浮かびますね．Home NOC やりたいなぁ，<strong>目指せ逸般の誤家庭</strong>．NOC の皆さん，ありがとうございました！</p>
-<p><img alt="NOC" src="noc.jpg" /></p>
+<p><img alt="NOC" loading="lazy" src="noc.jpg" /></p>
 <p>部屋に戻った後は，初めての Router 設定をしました．このゼミでは受講生それぞれに Private ASN と global 割当 prefix が与えられており，インターネット相手に通信を往復するには，BGP プロトコルを用いて自分の持っているアドレスを広告する必要があります．これを間違えて他のサービスの IP を広告したりすると，BGP ハイジャックが起きて <strong>インターネットが壊れます</strong>．</p>
 <iframe width="318" height="212.25" scrolling="no" src="https://alu.jp/series/%E3%81%8B%E3%81%90%E3%82%84%E6%A7%98%E3%81%AF%E5%91%8A%E3%82%89%E3%81%9B%E3%81%9F%E3%81%84%E3%80%9C%E5%A4%A9%E6%89%8D%E3%81%9F%E3%81%A1%E3%81%AE%E6%81%8B%E6%84%9B%E9%A0%AD%E8%84%B3%E6%88%A6%E3%80%9C/crop/embed/Cjj7qWXNOuksiT6getUk/0?referer=oembed" style="margin: auto; display: block; border-width: 0px;"></iframe>
 
@@ -2114,7 +2114,7 @@
 
 <p>昼食後は各々に Minisforum などのミニ PC が配布され，事前学習で制作した Load Balancer などのソフトウェアを動かしていくフェーズとなりました．</p>
 <p>写真はまだ PC 1 台ですが，これがどんどん Cache Server に Origin Server に増えていくことになります．</p>
-<p><img alt="installing ubuntu" src="ubuntu_install.webp" /></p>
+<p><img alt="installing ubuntu" loading="lazy" src="ubuntu_install.webp" /></p>
 <p>仮想マシンはともかく，実機に Ubuntu を入れるのは久しぶりで手間取ってしまいました．間違えて <strong>GUI 付きの Ubuntu Desktop の方をインストール</strong>してしまったり，<strong>BIOS をマウスで操作</strong>して笑われたり etc...</p>
 <p>ちなみに PC にはデフォルトで Windows が入っているので，起動時に Del なりを連打して BIOS の画面を出す必要があるんですが，最初は大概失敗して「絶望の画面」が表示されることになります．そもそも PC によって連打するキーも違いますし... <strong>中でも最悪だったのは，Windows Update が始まったこと</strong>ですね．</p>
 <p>何とか Windows に打ち勝った後は，いよいよソフトウェアをデプロイしていきます．事前学習環境では network namespace で分離し，一つの設定スクリプトになっていましたが，本番環境ではそれを L4LB 用，Cache Server 用，Origin Server 用，... とやっていく必要があります．微妙な差が多いので注意力が必要です．</p>
@@ -2123,7 +2123,7 @@
 
 <p>夕食後は LT 大会ということで，atree と <strong>【内部告発】東大システムプログラミング実験の実態</strong> と題して，弊学科のポジティブキャンペーンをしていました．2 人で LT をするので枠を 10 分くださいと言っていたのに，蓋を開けたら 5 分しか貰えませんでした（涙）．</p>
 <p>余談ですが，atree は周りの受講生から <strong>内部告発とか大丈夫ですか？</strong>と割と心配されたらしいです．</p>
-<p><img alt="LT" src="lt.webp" /></p>
+<p><img alt="LT" loading="lazy" src="lt.webp" /></p>
 <details>
 <summary>LT 大会で特に面白いと思った発表の紹介</summary>
 <p>最初は hikalium 先生の部屋にいたのですが，トップバッターの OS 自作ゼミチューターの <a href="https://x.com/petitstb" target="_blank">バトルプログラマー見習いいちご</a> さんの発表が最高でした．何やら発表が中々始まらないと思ったら，自作 OS からスライドを映して発表していました（驚愕　しかも動画まで流れていました（驚愕２　OS ゼミは CDN ゼミのお隣なので様子をよく眺めていたのですが，チューターなのか受講生なのか分からないくらいに開発を楽しまれていたのが印象的でした．</p>
@@ -2135,14 +2135,14 @@
 <p>奇妙なことに，VIP 経由でアクセスすると，<strong>ほぼ 50% の確率でアクセスに失敗</strong>．かなり沼りましたが，ようやく原因が判明しました．VIP 宛のルーティング先として /32 で L4LB のアドレスを追加していたのですが，同時に /32 で Null0 へも追加していたため，prefix length が同じになり，<strong>Round Robin で 50% の確率で虚空に吸い込まれていた</strong>ためでした．</p>
 <p>それを修正し，11:00 頃についに動作成功！！ HTTP Range Requests の実装もしていたので，<strong>動画配信にも成功</strong>しました！</p>
 <p>ちなみに配信している動画は <a href="https://opencontent.netflix.com/" target="_blank">Netflix Open Content</a> の Sol Levante という作品です．4K HDR で mp4 にしても 1G 近いファイルサイズです．</p>
-<p><img alt="day3 success!" src="day3_movie.webp" /></p>
+<p><img alt="day3 success!" loading="lazy" src="day3_movie.webp" /></p>
 <p>というわけで，<strong>「私は CDN を自作した」と堂々と主張する権利</strong> ゲット！</p>
 <p>つい「私は CDN を自作したぞ〜〜」と叫んでしまいました．周りのゼミの方もお祝いしてくれて嬉しかったです．</p>
-<p><img alt="免状授与" src="clear.webp" /></p>
+<p><img alt="免状授与" loading="lazy" src="clear.webp" /></p>
 <p>ところで，私はこんな感じの <strong>Realtime Visualizer を実装</strong>していました．動画ファイル配信時に，各リクエストについて，ファイルの一部分である <strong>chunk ごとにキャッシュの状況が分かります</strong>．</p>
 <p>緑が HIT, 黄色が COLLAPSED (MISS だが，IN FLIGHT な fetch があるので待つ)，赤が MISS となっています．ブラウザの Developer Tool よろしく，リクエストごとのタイムラインやスループットも見られるので，配信のボトルネックも分かるという訳です！　動画は事前演習環境の時のもので，ストレージ内(しかも tmpfs) の配信なので，キャッシュが温まると <strong>なんと 20Gbps 近く</strong>出ています．</p>
 <p>これカッコ良くないですか？？ (UI は AI に組んでもらいました)</p>
-<video controls>
+<video controls preload="none">
   <source src="./visualizer.mp4" type="video/mp4" />
 </video>
 
@@ -2153,9 +2153,9 @@
 
 <p>現状は Cisco C891FJ-K9 Router に L4LB, Cache, Origin 用のミニ PC を繋いでいて，Router がその上の 2.5G L2 スイッチに繋がっている構成だったのですが，それを以下のような構成に組み直すことになりました．（レイヤーが混ざっていてあまり良くない図）</p>
 <p>簡単に言うと，<strong>新しく支給された 10G SFP+ ポート付きのミニ PC を Router 兼 L4LB</strong> として使い，PC 群はこれも新しく支給された 10G L2 スイッチに接続する構成にしました．このミニ PC が高性能品で，なんと 64GB RAM を積んでいます．</p>
-<p><img src="./network.webp" style="max-width: 400px;" alt="ネットワーク構成図"/></p>
+<p><img src="./network.webp" style="max-width: 400px;" alt="ネットワーク構成図" loading="lazy"/></p>
 <p>記事のトップ画像は，この新しいミニ PC に Ubuntu Server をインストールしている所でした．これで 4 台目になり，段々映えてきましたね．</p>
-<p><img alt="当日の様子" src="servers.webp" /></p>
+<p><img alt="当日の様子" loading="lazy" src="servers.webp" /></p>
 <p>ミニ PC 群へは SSH 経由で作業していたんですが，新しく global 割当 prefix を頂いたので，ネットワークを切り替える作業が必要で，<strong>失敗すると SSH が繋がらなくなり</strong>，キーボードやディスプレイを繋いで直接作業することになるのが大変でした．また，PC 名を前の構成の前提で付けていたので，役割を変えると <strong>名前が実態と違ったり，以前のスクリプトが入っていたり</strong> と混乱しました．そして，当然ですが PC の台数が増えると <strong>SSH 窓も増え</strong> ...</p>
 <p>という訳で爆散し，残りは翌日へ．</p>
 <p>夕食では，<a href="https://diary.shift-js.info/building-a-riscv-cpu-for-linux/" target="_blank">Linux が動作する RISC-V CPU を自作した (2019 年度 CPU 実験 余興)</a> で有名な，専門 C プロデューサの <a href="https://x.com/lmt_swallow" target="_blank">米内 貴志</a> さんとお話でき，大変光栄でした．学科の控室「地下」が理学部 7 号館建て壊しで「地上」になったお話をしたら大変驚かれていました．理情昔話にちょっと詳しくなりました．</p>
@@ -2172,7 +2172,7 @@
 <p>例によって，また細かい設定の変更が必要となり，tcpdump と睨めっこしながらのデバッグをする羽目になりましたが，<strong>なんと 15:28 に動作成功！！</strong>
 この変更のために内部からも動かなくなり，ほとんど諦めかけていたので，本当に嬉しかったです．最後のバグは，L4LB namespace 分離で IP を新しくした変更が Server の設定スクリプトに反映されていなかったことでした．</p>
 <p>発表の休憩時間に試しに負荷を掛けてみると，<strong>なんと安定して Client 3.27 Gbps, Origin 928Mbps</strong> 出ています！Cache Server への LAN の帯域が 2.5G, 1G で合計 3.5G であり，Origin への容量が 1G であることを踏まえると，<strong>ほぼ Wirespeed</strong> では？？</p>
-<p><img alt="wirespeed達成" src="wirespeed.webp" /></p>
+<p><img alt="wirespeed達成" loading="lazy" src="wirespeed.webp" /></p>
 <p>これはびっくり，ということで私の成果発表の最後に続報として報告すると，ゼミ内部からも驚きの声が．それもそのはず，さっき分かったんだもん．</p>
 <p>ここまでは当日のネットワークの工夫の話をしていますが，その前段のソフトウェアでの高速化については，<a href="#42-2-pop">4.2. 事前学習2: PoP 演習</a> を参照してください．</p>
 <p>何はともあれ，Day1 に掲げた目標 <strong>「爆速 CDN」</strong>を概ね？達成することが出来て良かったです．発表後のポスターセッションでは，協賛企業の方が Wirespeed 達成後のさらなる工夫についてアドバイスをしてくださいました．</p>
@@ -2235,7 +2235,7 @@ Load Balance の例で言えば，特に意外だったのが「<strong>CDN で�
 </details>
 <p>演習では DNS を用いる方法について，Client IP Subnet が与えられた時に，どの PoP に誘導するか選択するアルゴリズムの実装を行いました．</p>
 <p>Visualizer も提供されていて，PoP や Probe の場所が表示されます．かっこいい！</p>
-<p><img alt="GSLB WebUI" src="gslb.webp" />
+<p><img alt="GSLB WebUI" loading="lazy" src="gslb.webp" />
 (Miyamoto さんの Discord 上投稿より)</p>
 <p>私は大まかには <strong>Geo IP</strong> を用いて Client の国を推定して，そこから最も近い PoP を選択するという方式にしました．国の推定は，<a href="https://github.com/ipverse/country-ip-blocks/" target="_blank">country-ip-blocks</a> というリポジトリで国ごとの CIDR List が得られるので，<strong>CIDR Trie</strong> を構築すると Longest Match で出来ます．<a href="https://github.com/ret2home/ncdn/pull/1" target="_blank">Pull Request</a> <br/> Probe Subnet 外の IP も近傍の PoP に誘導できるようになった一方で，推定粒度が国単位なので，国土が広い国だと精度が落ちることや，地政学的要因などにより，<strong>地理的近傍は必ずしもネットワーク上の近傍とはならない</strong>欠点がありました．</p>
 <p>この演習の発表で強調されたことが，トレードオフについてであり，内容については反省に書いた通りです．
@@ -2274,9 +2274,9 @@ Load Balance の例で言えば，特に意外だったのが「<strong>CDN で�
 <p>特に頑張ったのがブラウザ解析パートでした．講師の方が Chromium 開発者なので適当なこと書けないなということで，Enter キーを検知してから，DOMContentLoaded が発火するまでの<strong>ブラウザ側処理の一連の流れを，関数レベルでなるべく繋ごう</strong>と試みました．</p>
 <p>Firefox Profiler を使うと Stack Trace が取れるので，<a href="https://searchfox.org/" target="_blank">Searchfox</a> でコードと突き合わせると，追うことが出来ます．</p>
 <p>たとえば，以下で <code>_on_keydown</code> と見えているのが Enter キーの処理で...と言った具合です．かなり途方もないですね．</p>
-<p><img alt="Firefox Profiler" src="profiler.webp" /></p>
+<p><img alt="Firefox Profiler" loading="lazy" src="profiler.webp" /></p>
 <p>一回で取れるなら良いんですが，困ったことにサンプリングの都合で処理時間が短いものは表示されないことがあります．ということで，<strong>表示されるまでガチャを回し続ける</strong>という作業も発生し...</p>
-<p><img alt="discord" src="discord.webp" /></p>
+<p><img alt="discord" loading="lazy" src="discord.webp" /></p>
 <p>...という訳で，かなり頑張ったんですが，ゼミで必要となったのはどちらかと言うと L1 〜 L4 (特に L3) の知識でした（完）</p>
 <p>提出内容の詳細は<a href="/blog/others/seccamp2026_problem/">応募課題晒し</a>を参照してください．多分来年は分量制限が付けられる気がします．</p>
 
