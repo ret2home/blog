@@ -25,6 +25,13 @@ h3{
   text-transform: none;
 }
 
+.md-typeset p a:not(.headerlink):not(.article-share-button),
+.md-typeset li a:not(.headerlink) {
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.15em;
+}
+
 .article-meta {
   display: flex;
   flex-wrap: wrap;
