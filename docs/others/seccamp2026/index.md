@@ -65,7 +65,9 @@ Miro ボードに意気込みを書くパートがあったのですが，PC を
 
 部屋に戻った後は，初めての Router 設定をしました．このゼミでは受講生それぞれに Private ASN と global 割当 prefix が与えられており，インターネット相手に通信を往復するには，BGP プロトコルを用いて自分の持っているアドレスを広告する必要があります．これを間違えて他のサービスの IP を広告したりすると，BGP ハイジャックが起きて **インターネットが壊れます**．
 
+<!--
 <iframe width="318" height="212.25" scrolling="no" loading="lazy" title="『かぐや様は告らせたい』のコマ" src="https://alu.jp/series/%E3%81%8B%E3%81%90%E3%82%84%E6%A7%98%E3%81%AF%E5%91%8A%E3%82%89%E3%81%9B%E3%81%9F%E3%81%84%E3%80%9C%E5%A4%A9%E6%89%8D%E3%81%9F%E3%81%A1%E3%81%AE%E6%81%8B%E6%84%9B%E9%A0%AD%E8%84%B3%E6%88%A6%E3%80%9C/crop/embed/Cjj7qWXNOuksiT6getUk/0?referer=oembed" style="margin: auto; display: block; border-width: 0px;"></iframe>
+-->
 
 諸々の設定が完了し，**11:30 頃にインターネットに進出成功**．
 
