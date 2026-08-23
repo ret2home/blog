@@ -4,7 +4,7 @@
 
 <div class="recent-posts">
   <a class="recent-post-card" href="others/seccamp2026/">
-    <img src="others/seccamp2026/servers.png" alt="机上に積まれたサーバーとネットワーク機器" width="720" height="540" loading="lazy">
+    <img src="others/seccamp2026/servers.webp" alt="机上に積まれたサーバーとネットワーク機器" width="720" height="540">
     <span class="recent-post-card__body">
       <span class="recent-post-card__date"><time datetime="2026-08-21">August 21, 2026</time></span>
       <span class="recent-post-card__title">セキュリティキャンプ2026 CDN 自作ゼミ参加記</span>
@@ -12,7 +12,7 @@
     </span>
   </a>
   <a class="recent-post-card" href="others/seccamp2026_problem/">
-    <img src="others/seccamp2026/profiler.png" alt="Firefox Profilerで表示したブラウザ処理のプロファイル" width="2532" height="1560" loading="lazy">
+    <img src="others/seccamp2026/profiler.webp" alt="Firefox Profilerで表示したブラウザ処理のプロファイル" width="2532" height="1560" loading="lazy">
     <span class="recent-post-card__body">
       <span class="recent-post-card__date"><time datetime="2026-06-05">June 5, 2026</time></span>
       <span class="recent-post-card__title">セキュリティキャンプ2026 CDN 自作ゼミ応募課題</span>

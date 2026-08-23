@@ -24,7 +24,7 @@ description: 「私は CDN を自作した」と堂々と主張する権利を�
 
 **LAN ケーブルやら光ファイバーやらがごちゃごちゃ x 4 人分**なので机上が本当に大変なことに... ※写真は私の分です
 
-![当日の様子](./servers.png)
+![当日の様子](./servers.webp)
 
 私はゼミのベースラインの内容に加えて，動画などの **大容量ファイルの高スループット配信** を行うため，**Request Collapsing** や **HTTP Range Requests** などを実装しました．
 
@@ -75,7 +75,7 @@ Miro ボードに意気込みを書くパートがあったのですが，PC を
 
 写真はまだ PC 1 台ですが，これがどんどん Cache Server に Origin Server に増えていくことになります．
 
-![installing ubuntu](./ubuntu_install.png)
+![installing ubuntu](./ubuntu_install.webp)
 
 仮想マシンはともかく，実機に Ubuntu を入れるのは久しぶりで手間取ってしまいました．間違えて **GUI 付きの Ubuntu Desktop の方をインストール**してしまったり，**BIOS をマウスで操作**して笑われたり etc...
 
@@ -91,7 +91,7 @@ Miro ボードに意気込みを書くパートがあったのですが，PC を
 
 余談ですが，atree は周りの受講生から **内部告発とか大丈夫ですか？**と割と心配されたらしいです．
 
-![LT](lt.png)
+![LT](lt.webp)
 
 ??? "LT 大会で特に面白いと思った発表の紹介"
     最初は hikalium 先生の部屋にいたのですが，トップバッターの OS 自作ゼミチューターの <a href="https://x.com/petitstb" target="_blank">バトルプログラマー見習いいちご</a> さんの発表が最高でした．何やら発表が中々始まらないと思ったら，自作 OS からスライドを映して発表していました（驚愕　しかも動画まで流れていました（驚愕２　OS ゼミは CDN ゼミのお隣なので様子をよく眺めていたのですが，チューターなのか受講生なのか分からないくらいに開発を楽しまれていたのが印象的でした．
@@ -110,13 +110,13 @@ Day2 中には動作しなかった私の CDN ですが，引数が事前演習�
 
 ちなみに配信している動画は <a href="https://opencontent.netflix.com/" target="_blank">Netflix Open Content</a> の Sol Levante という作品です．4K HDR で mp4 にしても 1G 近いファイルサイズです．
 
-![day3 success!](./day3_movie.png)
+![day3 success!](./day3_movie.webp)
 
 というわけで，**「私は CDN を自作した」と堂々と主張する権利** ゲット！
 
 つい「私は CDN を自作したぞ〜〜」と叫んでしまいました．周りのゼミの方もお祝いしてくれて嬉しかったです．
 
-![免状授与](./clear.png)
+![免状授与](./clear.webp)
 
 ところで，私はこんな感じの **Realtime Visualizer を実装**していました．動画ファイル配信時に，各リクエストについて，ファイルの一部分である **chunk ごとにキャッシュの状況が分かります**．
 
@@ -140,11 +140,11 @@ Day2 中には動作しなかった私の CDN ですが，引数が事前演習�
 
 簡単に言うと，**新しく支給された 10G SFP+ ポート付きのミニ PC を Router 兼 L4LB** として使い，PC 群はこれも新しく支給された 10G L2 スイッチに接続する構成にしました．このミニ PC が高性能品で，なんと 64GB RAM を積んでいます．
 
-<img src="./network.png" style="max-width: 400px;" alt="ネットワーク構成図"/>
+<img src="./network.webp" style="max-width: 400px;" alt="ネットワーク構成図"/>
 
 記事のトップ画像は，この新しいミニ PC に Ubuntu Server をインストールしている所でした．これで 4 台目になり，段々映えてきましたね．
 
-![当日の様子](./servers.png)
+![当日の様子](./servers.webp)
 
 ミニ PC 群へは SSH 経由で作業していたんですが，新しく global 割当 prefix を頂いたので，ネットワークを切り替える作業が必要で，**失敗すると SSH が繋がらなくなり**，キーボードやディスプレイを繋いで直接作業することになるのが大変でした．また，PC 名を前の構成の前提で付けていたので，役割を変えると **名前が実態と違ったり，以前のスクリプトが入っていたり** と混乱しました．そして，当然ですが PC の台数が増えると **SSH 窓も増え** ...
 
@@ -172,7 +172,7 @@ Day2 中には動作しなかった私の CDN ですが，引数が事前演習�
 
 発表の休憩時間に試しに負荷を掛けてみると，**なんと安定して Client 3.27 Gbps, Origin 928Mbps** 出ています！Cache Server への LAN の帯域が 2.5G, 1G で合計 3.5G であり，Origin への容量が 1G であることを踏まえると，**ほぼ Wirespeed** では？？
 
-![wirespeed達成](./wirespeed.png)
+![wirespeed達成](./wirespeed.webp)
 
 これはびっくり，ということで私の成果発表の最後に続報として報告すると，ゼミ内部からも驚きの声が．それもそのはず，さっき分かったんだもん．
 
@@ -265,7 +265,7 @@ CDN の要素技術に触れようということで，まずは GSLB (Global Se
 
 Visualizer も提供されていて，PoP や Probe の場所が表示されます．かっこいい！
 
-![GSLB WebUI](./gslb.png)
+![GSLB WebUI](./gslb.webp)
 (Miyamoto さんの Discord 上投稿より)
 
 私は大まかには **Geo IP** を用いて Client の国を推定して，そこから最も近い PoP を選択するという方式にしました．国の推定は，<a href="https://github.com/ipverse/country-ip-blocks/" target="_blank">country-ip-blocks</a> というリポジトリで国ごとの CIDR List が得られるので，**CIDR Trie** を構築すると Longest Match で出来ます．<a href="https://github.com/ret2home/ncdn/pull/1" target="_blank">Pull Request</a> <br/> Probe Subnet 外の IP も近傍の PoP に誘導できるようになった一方で，推定粒度が国単位なので，国土が広い国だと精度が落ちることや，地政学的要因などにより，**地理的近傍は必ずしもネットワーク上の近傍とはならない**欠点がありました．
@@ -328,11 +328,11 @@ Firefox Profiler を使うと Stack Trace が取れるので，<a href="https://
 
 たとえば，以下で `_on_keydown` と見えているのが Enter キーの処理で...と言った具合です．かなり途方もないですね．
 
-![Firefox Profiler](./profiler.png)
+![Firefox Profiler](./profiler.webp)
 
 一回で取れるなら良いんですが，困ったことにサンプリングの都合で処理時間が短いものは表示されないことがあります．ということで，**表示されるまでガチャを回し続ける**という作業も発生し...
 
-![discord](./discord.png)
+![discord](./discord.webp)
 
 ...という訳で，かなり頑張ったんですが，ゼミで必要となったのはどちらかと言うと L1 〜 L4 (特に L3) の知識でした（完）
 
